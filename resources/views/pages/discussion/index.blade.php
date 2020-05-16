@@ -21,8 +21,11 @@
                                 <div class="flex flex-1">
                                     <div>
                                         <div class="select-wrap">
-                                            <select class="text-grey-dark text-sm bg-grey-panel rounded-full px-8 cursor-pointer py-2">
-                                                <option value="all">All</option>
+                                            <select id="select-tags" class="text-grey-dark text-sm bg-grey-panel rounded-full px-8 cursor-pointer py-2">
+                                                <option value="" {{ request()->get('tag', null) == null ? '' : 'selected' }}>All</option>
+                                                @foreach ($tags as $tag)
+                                                    <option value="{{ urlencode($tag->name) }}" {{ request()->get('tag', null) == $tag->name ? 'selected' : '' }}>{{ $tag->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -97,7 +100,7 @@
                                                 </div>
                                                 <div class="text-xs mb-2 text-white">
                                                     @foreach ($discussion->tags as $tag)
-                                                        <a href="{{ route('discussion.index') . '?tag=' . $tag->name }}" class="bg-red-400 rounded-lg px-2 py-1">{{ $tag->name }}</a>
+                                                        <a href="{{ route('discussion.index') . '?tag=' . urlencode($tag->name) }}" class="bg-red-400 rounded-lg px-2 py-1">{{ $tag->name }}</a>
                                                     @endforeach
                                                 </div>
                                                 <div class="text-grey-dark text-xs">
@@ -137,3 +140,11 @@
         </div>
     </div>
 @stop
+
+@push('js')
+    <script>
+        $('#select-tags').on('change', () => {
+            window.location.href = "{{ route('discussion.index') }}?tag=" + $('#select-tags').val()
+        })
+    </script>
+@endpush

@@ -25,17 +25,19 @@
                 </div>
                 <div class="mx-1 lg:mx-10 mb-5">
                     <div class="text-gray-600 leading-10 mb-2" style="font-size: 2rem;">
-                        # <h1 class="inline-block">{{ $discussion->title }}</h1>
+                        <div class="inline">
+                            # <h1 class="inline">{{ $discussion->title }}</h1>
+                        </div>
                     </div>
                 </div>
-                <div class="block h-2 border-t-2 border-gray-200 lg:mx-10 mb-10 mx-1"></div>
+                <div class="block h-2 border-t-2 border-gray-200 lg:mx-10 mb-10 mx-1 lg:mr-0"></div>
                 <div class="forum-main lg:ml-10 lg:flex">
                     <div class="content-md hidden">{{ $discussion->content }}</div>
                     <div class="lg:flex-1" id="wrapper">
                         Loading...
                     </div>
                 </div>
-                <div class="block h-2 border-t-2 border-gray-200 lg:mx-10 mt-10 mx-1"></div>
+                <div class="block h-2 border-t-2 border-gray-200 lg:mx-10 mt-10 mx-1 lg:mr-0"></div>
             </div>
             
 

@@ -6,6 +6,8 @@ use App\Models\Discussion;
 use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class DiscussionController extends Controller
@@ -22,6 +24,7 @@ class DiscussionController extends Controller
      */
     public function index()
     {
+        
         // params
         $query = request()->get('q', null);
         $tag = request()->get('tag', null);
@@ -47,8 +50,14 @@ class DiscussionController extends Controller
         // pagination
         $discussions = $discussions->simplePaginate($perpage);
 
+        // show all tags
+        $tags = Cache::remember('all_tag_in_discussion_tag', now()->addMinute(5), function () {
+            $tags_id = DB::table('discussion_tag')->get()->pluck('tag_id')->flatten()->unique();
+            return Tag::whereIn('id', $tags_id)->get();
+        });
+
         // return
-        return view('pages.discussion.index', compact('discussions'));
+        return view('pages.discussion.index', compact('discussions', 'tags'));
     }
 
     public function handleFilter($filter, $discussions) 
