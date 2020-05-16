@@ -17,6 +17,15 @@ a Forum Website based Laravel with TailwindCss, created by <a href="https://gith
 - Profile
 - Etc.
 
+### To-do List
+- [ ] Discussion Comments
+- [ ] Discusiion Edit - Set Solved
+- [ ] Article Page
+- [ ] Series Page
+- [ ] Error Page
+- [ ] Profile Setting
+- [ ] Email Verification, Forgot Password
+
 
 ## Install
 
