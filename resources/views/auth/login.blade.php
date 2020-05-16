@@ -63,7 +63,7 @@
                     
                     <div class="flex justify-between p-8 text-sm border-t border-gray-300 bg-gray-100">
                         <a href="{{ route('register') }}" class="font-medium text-indigo-500">Create account</a>
-                        <a href="#" class="text-gray-600">Forgot password?</a>
+                        <a href="{{ route('password.request') }}" class="text-gray-600">Forgot password?</a>
                     </div>
                 </div>
             </div>

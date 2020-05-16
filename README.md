@@ -24,7 +24,7 @@ a Forum Website based Laravel with TailwindCss, created by <a href="https://gith
 - [ ] Error Page
 - [ ] Profile Setting
 - [x] Email Verification
-- [ ] Forgot Password
+- [x] Forgot Password
 
 
 ## Install

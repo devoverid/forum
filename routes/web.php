@@ -21,6 +21,6 @@ Route::resource('discussion', 'DiscussionController');
 Auth::routes(['verify' => true]);
 
 
-Route::get('tes', function () { return view('auth.verify'); });
+// Route::get('tes', function () { return view('auth.passwords.confirm'); });
 // Route::get('/home', 'HomeController@index')->name('home');
 
