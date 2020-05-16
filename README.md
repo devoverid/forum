@@ -42,10 +42,21 @@ npm install && npm run dev
 
 2. **Open ```.env``` and change configuration database**
 ```
+// database configuration
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=root
 DB_PASSWORD=
+
+// email configuration - verify user register
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=null
+MAIL_FROM_NAME="${APP_NAME}"
 ```
 
 3. **Prepare a website**
@@ -54,7 +65,7 @@ php artisan key:generate
 php artisan migrate --seed
 ```
 
-4.** Run A Web **
+4.**Run A Web**
 ```bash
 php artisan serve
 ```
