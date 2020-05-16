@@ -23,7 +23,8 @@ a Forum Website based Laravel with TailwindCss, created by <a href="https://gith
 - [ ] Series Page
 - [ ] Error Page
 - [ ] Profile Setting
-- [ ] Email Verification, Forgot Password
+- [x] Email Verification
+- [ ] Forgot Password
 
 
 ## Install
