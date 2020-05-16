@@ -53,13 +53,13 @@ php artisan key:generate
 php artisan migrate --seed
 ```
 
-4.** Jalankan website**
+4.** Run A Web **
 ```bash
 php artisan serve
 ```
 
 ## Author
-- Facebook : <a href="https://www.facebook.com/viandwi24"> Ahmad Saugi</a>
+- Facebook : <a href="https://www.facebook.com/viandwi24"> Alfian Dwi Nugraha</a>
 
 ## Contributing
 Contributions, issues and feature requests you can do..
