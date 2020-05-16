@@ -22,7 +22,8 @@ a Forum Website based Laravel with TailwindCss, created by <a href="https://gith
 - [ ] Article Page
 - [ ] Series Page
 - [ ] Error Page
-- [ ] Profile Setting
+- [x] Profile Setting
+- [x] Login & Register with Github
 - [x] Email Verification
 - [x] Forgot Password
 

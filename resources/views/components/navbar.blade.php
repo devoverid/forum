@@ -88,8 +88,8 @@
                     </a>
                 </li>
                 <li class="py-2">
-                    <a href="{{ url('/@') . auth()->user()->username }}" class="block hover:text-gray-700 hover:bg-gray-200 rounded py-2 text-gray-500 font-bold uppercase">
-                        Settings
+                    <a href="{{ route('setting') }}" class="block hover:text-gray-700 hover:bg-gray-200 rounded py-2 text-gray-500 font-bold uppercase">
+                        Setting
                     </a>
                 </li>
                 <li class="py-2">

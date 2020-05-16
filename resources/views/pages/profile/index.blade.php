@@ -13,7 +13,7 @@
                 
                 @if (auth()->check() && auth()->user()->username == $user->username)
                 <div class="absolute">
-                    <a href="#" class="bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-600">
+                    <a href="{{ route('setting') }}" class="bg-indigo-500 p-2 px-4 text-white hover:bg-indigo-600">
                         <i class="fa fa-edit"></i> Change Profile
                     </a>
                 </div>                    
