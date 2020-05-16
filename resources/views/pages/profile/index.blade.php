@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => 'Discussion',
+        'title' => $user->name . ' (@' . $user->username . ')',
         'footer' => true,
         'navbar' => true,
 ])
@@ -39,7 +39,7 @@
                             No Activity
                         </div>
                     @else
-                        <div class="relative w-full m-8">
+                        <div class="relative w-10/12 m-8">
                             <div class="border-r-2 border-indigo-500 absolute h-full top-0" style="left: 15px"></div>
                             <ul class="list-none m-0 p-0">
                                 @foreach ($activities as $activity)
