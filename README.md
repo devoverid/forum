@@ -2,7 +2,6 @@
 # Devover Forum
 
 ![Login Page](https://github.com/devoverid/forum/blob/master/public/assets/images/ss2.png?raw=true)
-![Landing Page](https://github.com/devoverid/forum/blob/master/public/assets/images/ss.png?raw=true)
 
 
 [![](https://img.shields.io/github/issues/devoverid/forum?style=flat-square)](https://img.shields.io/github/issues/devoverid/forum?style=flat-square) ![](https://img.shields.io/github/stars/devoverid/forum?style=flat-square)
