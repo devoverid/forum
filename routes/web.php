@@ -18,6 +18,9 @@ Route::get('/@{username}', 'ProfileController@index')->name('profile');
 
 Route::resource('discussion', 'DiscussionController');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+
+
+Route::get('tes', function () { return view('auth.verify'); });
 // Route::get('/home', 'HomeController@index')->name('home');
 

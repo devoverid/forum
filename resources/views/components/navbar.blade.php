@@ -2,6 +2,12 @@
     @if (!auth()->user()->hasVerifiedEmail())
     <div class="block bg-red-300 p-2 text-center text-white">
         Hey {{ auth()->user()->name }}, Your Email isn't verified!
+        <a class="underline hover:text-indigo-500" href="{{ route('verification.resend') }}" onclick="event.preventDefault(); document.getElementById('resend-verification-form').submit();">
+            Click Here
+        </a> to Resend.
+        <form id="resend-verification-form" method="POST" action="{{ route('verification.resend') }}" class="hidden">
+            @csrf
+        </form>
     </div>
     @endif
 @endauth
@@ -57,12 +63,12 @@
     <div class="app-drawer hidden w-10/12 md:w-3/12 fixed right-0 h-full bg-gray-100 z-40 top-0 text-center pt-10">
         <div class="flex flex-col items-center text-center overflow-y-auto">
             <a href="{{ url('/@') . auth()->user()->username }}" class="block">
-                <img src="//www.gravatar.com/avatar/b1a867b5382f8a6cb08fb9d72693bf41?s=100&amp;d=https%3A%2F%2Fs3.amazonaws.com%2Flaracasts%2Fimages%2Fforum%2Favatars%2Favatar-23.png" alt="Avatar" width="70" class="rounded-full">
+                <img src="{{ asset('avatar/' . auth()->user()->avatar) }}" alt="Avatar" width="70" class="rounded-full">
             </a>
             <div class="mb-8 mt-4">
-                <div class="btn text-2xs bg-gray-300 p-2 rounded p-0 pr-4 leading-none text-center px-4 text-white">
+                <a href="{{ url('/@') . auth()->user()->username }}" class="btn text-2xs bg-indigo-400 p-2 rounded p-0 pr-4 leading-none text-center px-4 text-white">
                     {{ auth()->user()->name }}
-                </div>
+                </a>
             </div>
 
             <ul class="text-center w-8/12">
@@ -79,6 +85,11 @@
                 <li class="py-2">
                     <a href="{{ url('/@') . auth()->user()->username }}" class="block hover:text-gray-700 hover:bg-gray-200 rounded py-2 text-gray-500 font-bold uppercase">
                         My Profile
+                    </a>
+                </li>
+                <li class="py-2">
+                    <a href="{{ url('/@') . auth()->user()->username }}" class="block hover:text-gray-700 hover:bg-gray-200 rounded py-2 text-gray-500 font-bold uppercase">
+                        Settings
                     </a>
                 </li>
                 <li class="py-2">

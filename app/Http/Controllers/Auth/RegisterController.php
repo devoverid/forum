@@ -64,8 +64,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // generate username
+        $username = str_replace(' ', '.', strtolower($data['name']));
+        while (User::whereUsername($username)->get()->count() > 0) {
+            $rand = rand(1000, 9999);
+            $username = str_replace(' ', '.', strtolower($data['name'])) . $rand;
+        }
+
+        // generate random avatar
+        $rand_avatar = rand(1, 8);
+
         return User::create([
             'name' => $data['name'],
+            'avatar' => $rand_avatar . '.png',
+            'username' => $username,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

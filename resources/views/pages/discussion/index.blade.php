@@ -71,7 +71,7 @@
                                         <div class="flex flex-col md:flex-row items-center cursor-pointer rounded-lg hover:bg-gray-100 px-6 py-4">
                                             <div class="avatar w-full md:w-auto md:mr-6 flex items-center md:block mb-4 md:mb-0">
                                                 <a href="" class="block mr-3 md:mr-0">
-                                                    <img style="max-height: 50px;" class="rounded-full" src="https://www.gravatar.com/avatar/7bf9b29e0256d345bda5573c05e635f8?s=100&amp;d=https%3A%2F%2Fs3.amazonaws.com%2Flaracasts%2Fimages%2Fforum%2Favatars%2Favatar-29.png">
+                                                    <img style="max-height: 50px;" class="rounded-full" src="{{ asset('avatar/' . $discussion->user->avatar) }}">
                                                 </a>
                                                 
                                                 <div class="flex items-center justify-center md:hidden ml-auto mr-3 md:mr-4 bg-grey-panel rounded-xl py-2">

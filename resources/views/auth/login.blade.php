@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="block bg-gray-200 font-sans text-gray-700">
-        <div class="container flex items-center lg:p-20 p-8">
+        <div class="flex items-center lg:p-20 w-full">
 
             <div class="lg:w-8/12 md:w-full hidden pr-20 md:block text-center">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="">

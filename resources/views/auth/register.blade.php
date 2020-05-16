@@ -19,11 +19,11 @@
                             <!-- name -->
                             <div class="mb-5">
                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-600">Name</label>
-                                <input type="text" name="name" class="block w-full p-3 rounded bg-gray-200 border-transparent focus:outline-none hover:bg-gray-300 focus:bg-gray-300 @error('name') border-4 border-red-300 @enderror" required autocomplete="name" autofocus>
+                                <input value="{{ old('name') }}" type="text" name="name" class="block w-full p-3 rounded bg-gray-200 border-transparent focus:outline-none hover:bg-gray-300 focus:bg-gray-300 @error('name') border-4 border-red-300 @enderror" required autocomplete="name" autofocus>
                             </div>
 
                             @error('name')
-                            <p class="text-red-500 text-xs italic mt-4">
+                            <p class="text-red-500 text-xs italic my-4">
                                 {{ $message }}
                             </p>                                
                             @enderror
@@ -32,11 +32,11 @@
                             <!-- email -->
                             <div class="mb-5">
                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-600">Email</label>
-                                <input type="email" name="email" class="block w-full p-3 rounded bg-gray-200 border-transparent focus:outline-none hover:bg-gray-300 focus:bg-gray-300 @error('email') border-4 border-red-300 @enderror" required autocomplete="email" autofocus>
+                                <input value="{{ old('email') }}" type="email" name="email" class="block w-full p-3 rounded bg-gray-200 border-transparent focus:outline-none hover:bg-gray-300 focus:bg-gray-300 @error('email') border-4 border-red-300 @enderror" required autocomplete="email" autofocus>
                             </div>
 
                             @error('email')
-                            <p class="text-red-500 text-xs italic mt-4">
+                            <p class="text-red-500 text-xs italic my-4">
                                 {{ $message }}
                             </p>                                
                             @enderror
@@ -48,7 +48,7 @@
                             </div>
 
                             @error('password')
-                            <p class="text-red-500 text-xs italic mt-4">
+                            <p class="text-red-500 text-xs italic my-4">
                                 {{ $message }}
                             </p>                                
                             @enderror

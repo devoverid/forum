@@ -1,4 +1,7 @@
 <style>
+    #wrapper ul {
+        list-style-type: disc;
+    }
     #wrapper h1 {
         font-size: 2.5em;
         border-bottom: 1px solid #ddd;
