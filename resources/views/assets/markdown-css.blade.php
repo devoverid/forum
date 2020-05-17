@@ -1,41 +1,41 @@
 <style>
-    #wrapper ul {
+    .md-wrapper ul {
         list-style-type: disc;
     }
-    #wrapper h1 {
+    .md-wrapper h1 {
         font-size: 2.5em;
         border-bottom: 1px solid #ddd;
     }
-    #wrapper h2 {
+    .md-wrapper h2 {
         font-size: 2em;
         border-bottom: 1px solid #eee;
     }
-    #wrapper h3 {
+    .md-wrapper h3 {
         font-size: 1.5em;
     }
-    #wrapper h4 {
+    .md-wrapper h4 {
         font-size: 1.2em;
     }
-    #wrapper h5 {
+    .md-wrapper h5 {
         font-size: 1em;
     }
-    #wrapper h6 {
+    .md-wrapper h6 {
         color: #777;
         font-size: 1em;
     }
-    #wrapper p, blockquote, table, pre {
+    .md-wrapper p, blockquote, table, pre {
         margin: 15px 0;
     }
-    #wrapper ul {
+    .md-wrapper ul {
         padding-left: 30px;
     }
-    #wrapper ol {
+    .md-wrapper ol {
         padding-left: 30px;
     }
-    #wrapper ol li ul:first-of-type {
+    .md-wrapper ol li ul:first-of-type {
         margin-top: 0px;
     }
-    #wrapper hr {
+    .md-wrapper hr {
         background: transparent url(data:image/png;
         base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
         border: 0 none;
@@ -44,19 +44,19 @@
         margin: 15px 0;
         padding: 0;
     }
-    #wrapper > h2:first-child {
+    .md-wrapper > h2:first-child {
         margin-top: 0;
         padding-top: 0;
     }
-    #wrapper > h1:first-child {
+    .md-wrapper > h1:first-child {
         margin-top: 0;
         padding-top: 0;
     }
-    #wrapper > h1:first-child + h2 {
+    .md-wrapper > h1:first-child + h2 {
         margin-top: 0;
         padding-top: 0;
     }
-    #wrapper > h3:first-child, #wrapper > h4:first-child, #wrapper > h5:first-child, #wrapper > h6:first-child {
+    .md-wrapper > h3:first-child, .md-wrapper > h4:first-child, .md-wrapper > h5:first-child, .md-wrapper > h6:first-child {
         margin-top: 0;
         padding-top: 0;
     }
@@ -209,7 +209,7 @@
         img, pre, blockquote, table, figure {
             page-break-inside: avoid;
         }
-        #wrapper {
+        .md-wrapper {
             background: #fff;
             border: none;
         }
@@ -223,7 +223,7 @@
             border-color: #555;
             box-shadow: none;
         }
-        .inverted #wrapper, .inverted hr, .inverted p, .inverted td, .inverted li, .inverted h1, .inverted h2, .inverted h3, .inverted h4, .inverted h5, .inverted h6, .inverted th, .inverted .math, .inverted caption, .inverted dd, .inverted dt, .inverted blockquote {
+        .inverted .md-wrapper, .inverted hr, .inverted p, .inverted td, .inverted li, .inverted h1, .inverted h2, .inverted h3, .inverted h4, .inverted h5, .inverted h6, .inverted th, .inverted .math, .inverted caption, .inverted dd, .inverted dt, .inverted blockquote {
             color: #eee !important;
             border-color: #555;
             box-shadow: none;
@@ -275,7 +275,7 @@
             background: #0b2531;
             background: #252a2a;
         }
-        .inverted #wrapper {
+        .inverted .md-wrapper {
             background: #252a2a;
         }
         .inverted a {
@@ -443,7 +443,7 @@
     .type-csharp .highlight .s, .type-csharp .highlight .sc {
         color: #A31515;
     }
-    body.dark #wrapper {
+    body.dark .md-wrapper {
         background: transparent !important;
         box-shadow: none !important;
     }

@@ -186,8 +186,20 @@ class DiscussionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $discussion = Discussion::whereSlug($slug)->first();
+
+        // if not found, return 404
+        if (!$discussion) return abort(404);
+
+        // user must a writer to delete
+        if ($discussion->user_id != auth()->user()->id) return abort(403);
+
+        // delete
+        $destroy = $discussion->delete();
+
+        // return
+        return redirect()->route('discussion.index');
     }
 }

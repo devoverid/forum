@@ -18,4 +18,9 @@ class Discussion extends Model
     {
         return $this->belongsToMany(Tag::class, 'discussion_tag');
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->orderBy('created_at', 'ASC');
+    }
 }

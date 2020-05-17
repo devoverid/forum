@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Discussion;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,12 +20,20 @@ Route::get('/setting', 'SettingController@index')->name('setting');
 Route::post('/setting', 'SettingController@update')->name('setting.update');
 
 Route::resource('discussion', 'DiscussionController');
+Route::post('comment/{type}/{slug}', 'CommentController@comment')->name('comment');
 
 Route::get('auth/github', 'Auth\GithubLoginController@redirectToProvider')->name('auth.github');
 Route::get('auth/github/callback', 'Auth\GithubLoginController@handleProviderCallback')->name('auth.github.callback');
 Auth::routes(['verify' => true]);
 
 
-// Route::get('tes', function () { return view('auth.passwords.confirm'); });
+Route::get('tes', function () { 
+    // $discussion = Discussion::whereSlug('indonesia-highmaps-6803')->first();
+    // dd($discussion->comments);
+    $store = $discussion->comments()->create([
+        'user_id' => auth()->user()->id,
+        'text' => 'awoeawkeawoekawoe'
+    ]);
+});
 // Route::get('/home', 'HomeController@index')->name('home');
 

@@ -80,7 +80,7 @@
                                                 <div class="flex items-center justify-center md:hidden ml-auto mr-3 md:mr-4 bg-grey-panel rounded-xl py-2">
                                                     <div class="flex items-center justify-center mr-4">
                                                         <div class="mr-2"><i class="fa fa-comments"></i></div>
-                                                        <span class="text-xs text-grey-dark font-semibold text-left leading-none relative">1</span>
+                                                        <span class="text-xs text-grey-dark font-semibold text-left leading-none relative">{{ $discussion->comments()->count() }}</span>
                                                     </div>
                                                     <div class="flex items-center justify-center">
                                                         <div class="mr-2"><i class="fa fa-eye"></i></div>
@@ -115,7 +115,7 @@
                                             <div class="hidden md:flex md:items-center md:flex-row-reverse text-center md:ml-auto relative pl-4">
                                                 <div class="flex items-center justify-center ml-4">
                                                     <div class="mr-2"><i class="fa fa-comments"></i></div>
-                                                    <span class="text-xs text-grey-dark font-semibold text-left leading-none relative">1</span>
+                                                    <span class="text-xs text-grey-dark font-semibold text-left leading-none relative">{{ $discussion->comments()->count() }}</span>
                                                 </div>
                                                 <div class="flex items-center justify-center">
                                                     <div class="mr-2"><i class="fa fa-eye"></i></div>

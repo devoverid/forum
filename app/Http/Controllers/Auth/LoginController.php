@@ -42,7 +42,11 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        return redirect('/');
-        return redirect( url('/@') . $user->username );
+        return redirect( route('profile', [$user->username]) );
+    }
+
+    protected function loggedOut(Request $request)
+    {
+        return redirect()->back();
     }
 }

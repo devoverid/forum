@@ -61,7 +61,7 @@
                 <div id="wrapper" class="flex h-full" style="min-height: 50vh;">
                     <textarea name="content" class="flex-1 h-full" :class="{'w-12/12': showPreview}" :value="input" @input="update"></textarea>
                     <textarea id="content-old" class="hidden">{{ old('content', 'null') }}</textarea>
-                    <div v-show="showPreview" class="flex-1 h-full" v-html="compiledMarkdown" style="padding: 1.3rem;"></div>
+                    <div v-show="showPreview" class="flex-1 h-full md-wrapper" v-html="compiledMarkdown" style="padding: 1.3rem;"></div>
                 </div>
             </div>
         </div>
