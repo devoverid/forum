@@ -92,7 +92,6 @@ Contributions, issues and feature requests you can do..
 - **Devover Forum is open-sourced software licensed under the MIT license.**
 
 ------------
-
 - **Made with ❤️ by Alfian Dwi Nugraha .**
 - Thanks to <a href="http://devover.id">DevoverID</a>
 - Devover is open-sourced software licensed under the MIT license.
