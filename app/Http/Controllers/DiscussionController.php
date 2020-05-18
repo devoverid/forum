@@ -160,12 +160,20 @@ class DiscussionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $slug
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        // get
+        $discussion = Discussion::whereSlug($slug)->first();
+        $tags = Tag::all();
+
+        // if not found, return 404
+        if (!$discussion) abort(404);
+
+        // 
+        return view('pages.discussion.edit', compact('tags', 'discussion'));
     }
 
     /**
@@ -175,9 +183,31 @@ class DiscussionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        // validate
+        $request->validate([
+            'title' => 'required|min:5|max:255',
+            'tags' => 'required|array',
+            'content' => 'required|min:10',
+        ]);
+
+        // get
+        $discussion = Discussion::whereSlug($slug)->first();
+
+        // if not found, return 404
+        if (!$discussion) abort(404);
+
+        // update
+        $update = $discussion->update(
+            $request->only('title', 'tags')
+        );
+
+        // add tag - manytomany
+        $discussion->tags()->sync($request->tags);
+
+        // redirect
+        return redirect()->route('discussion.show', [$discussion->slug]);
     }
 
     /**

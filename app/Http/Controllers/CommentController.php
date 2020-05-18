@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Discussion;
 use Illuminate\Http\Request;
 
@@ -35,5 +36,14 @@ class CommentController extends Controller
         }
 
         return $request->all();
+    }
+
+    public function delete(Comment $comment)
+    {
+        // delete
+        $comment->delete();
+
+        // 
+        return redirect()->back();
     }
 }

@@ -15,7 +15,7 @@
 
             <!-- Content -->
             <div class="flex-1">
-                <div class="forum-main lg:ml-10 flex text-xs mb-5">
+                <div class="forum-main lg:mx-10 flex text-xs mb-5">
                     <div class="md:mr-5 text-left phone:flex phone:items-center md:items-start">
                         <a href="" class="block relative" style="margin-bottom: 3px;">
                             <img style="max-height: 50px;" class="rounded-full" src="{{ asset('avatar/' . $discussion->user->avatar) }}">
@@ -29,16 +29,18 @@
                             Posted
                             <span class="font-bold text-gray-500"> {{ $discussion->created_at->diffForHumans() }} </span>
                         </div>
-                        <div class="block">
-                            <a href="{{ route('discussion.edit', [$discussion->slug]) }}" class="font-bold text-gray-500 hover:underline hover:text-gray-600 mr-2">Edit</a>
-                            <form action="{{ route('discussion.destroy', [$discussion->slug]) }}" method="POST" class="inline">
-                                @csrf
-                                @method('delete')
-                                <button class="font-bold text-gray-500 hover:underline hover:text-gray-600 mr-2">
-                                    Delete
-                                </button>
-                            </form>
-                        </div>
+                        @if (auth()->check() && auth()->user()->id == $discussion->user_id)
+                            <div class="block">
+                                <a href="{{ route('discussion.edit', [$discussion->slug]) }}" class="font-bold text-gray-500 hover:underline hover:text-gray-600 mr-2">Edit</a>
+                                <form action="{{ route('discussion.destroy', [$discussion->slug]) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="font-bold text-gray-500 hover:underline hover:text-gray-600 mr-2">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>                            
+                        @endif
                     </div>
                 </div>
                 
@@ -49,25 +51,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="block h-2 border-t-2 border-gray-200 lg:mx-10 lg:mr-0 mb-10 mx-1"></div>
-                <div class="forum-main lg:ml-10 lg:px-2 lg:flex hover:bg-gray-100 rounded">
+                <div class="block border-t-2 border-gray-200 mb-10"></div>
+                <div class="forum-main lg:mx-10 lg:px-4 lg:flex hover:bg-gray-100 rounded">
                     <div class="content-md hidden">{{ $discussion->content }}</div>
                     <div class="lg:flex-1 md-wrapper" id="wrapper">
                         Loading...
                     </div>
                 </div>
-                <div class="ml-10 mt-8 font-bold text-lg"># Reply</div>
-                <div class="block h-2 border-t-2 border-gray-200 lg:mx-10 mx-1 lg:mr-0 mb-10"></div>
+                <div class="block border-t-2 border-gray-200 mt-10"></div>
+                <div class="mx-10 mt-8 font-bold text-xl"># Reply</div>
+                <div class="block border-t-2 border-gray-200 mb-4"></div>
 
 
                 <!-- comments -->
                 @if (count($discussion->comments) == 0)
-                    <div class="block bg-red-300 p-3 text-center text-white mt-4 ml-10">
+                    <div class="block bg-red-300 p-3 text-center text-white mt-4 mx-10">
                         No reply found.
                     </div>                    
                 @endif
                 @foreach ($discussion->comments as $comment)
-                    <div class="forum-comment md:mb-2 is-reply md:flex md:px-6 md:-ml-4 pt-4 pb-7 md:py-4 hover:bg-gray-200 lg:ml-10">
+                    <div class="forum-comment md:mb-2 is-reply md:flex md:px-6 md:-ml-4 pt-4 pb-7 md:py-4 hover:bg-gray-200 lg:mx-10">
                         <div class="md:mr-5 text-left phone:flex phone:items-center md:items-start">
                             <a href="" class="block relative" style="margin-bottom: 3px;">
                                 <img style="max-height: 50px;" class="rounded-full" src="{{ asset('avatar/' . $discussion->user->avatar) }}">
@@ -86,25 +89,36 @@
                                         </strong>
                                     </a>
                                 </div>
+                                @if (auth()->user()->id == $comment->user->id)
+                                    <div class="flex text-xs">
+                                        <form action="{{ route('comment.delete', [$comment->id]) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="font-bold text-gray-500 hover:underline hover:text-gray-600 mr-2">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>                                    
+                                @endif  
                             </div>
 
                             <div class="comment-wrapper md-wrapper">{{ $comment->text }}</div>
                         </div>
                     </div>                    
                 @endforeach
-                <div class="block h-2 border-t-2 border-gray-200 lg:mx-10 mt-10 mx-1 lg:mr-0"></div>
+                <div class="block border-t-2 border-gray-200"></div>
 
 
                 <!-- reply -->
                 @auth
-                    <div class="block bg-indigo-300 p-3 text-center text-white mt-4 ml-10">
+                    <div id="to-reply" class="block bg-indigo-300 p-3 text-center text-white mt-4 mx-10">
                         We make reply form with Markdown, you can see markdown 
                         <a class="underline hover:text-blue-400" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">
                             Markdown Cheatshett
                         </a>
                         for how to write markdown.
                     </div>
-                    <div class="mt-4 bg-white shadow-xl rounded ml-10">
+                    <div class="mt-4 bg-white shadow-xl rounded mx-10">
                         <form action="{{ route('comment', [ 'discussion', $discussion->slug ]) }}" method="POST">
                             @csrf
                             <div class="flex p-2 pl-4 text-gray-600 font-bold bg-gray-100 border-b border-2ray-400 content-center items-center justify-center">
@@ -127,7 +141,7 @@
                         </form>
                     </div>
                 @else
-                    <div class="block bg-red-300 p-3 text-center text-white mt-4 ml-10">
+                    <div id="to-reply" class="block bg-red-300 p-3 text-center text-white mt-4 mx-10">
                         You must login to reply this discussion.
                     </div>      
                 @endauth
@@ -136,8 +150,13 @@
 
 
             <!-- activity -->
-            <div class="sticky md:ml-2 mobile:bg-white hidden xl:block" style="top: 0px;">
-                <div class="forum-secondary-sidebar lg:sticky vue-portal-target">
+            <div class="mobile:bg-white hidden xl:block forum-sidebar hidden lg:block flex-none border-l border-solid border-gray-100" style="border-color: rgb(239, 239, 239);">
+                <div class="forum-secondary-sidebar sticky">
+                    <div class="block text-right w-auto ml-10">
+                        <button id="btn-to-reply" onclick="$('html, body').animate({ scrollTop: $('#to-reply').offset().top }, 1000);" class="btn btn-blue rounded w-full block">
+                            Reply
+                        </button>
+                    </div>
                     <div class="flex md:h-full mb-8 md:mb-0">
                         
                         <div class="relative m-8">

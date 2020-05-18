@@ -21,6 +21,7 @@ Route::post('/setting', 'SettingController@update')->name('setting.update');
 
 Route::resource('discussion', 'DiscussionController');
 Route::post('comment/{type}/{slug}', 'CommentController@comment')->name('comment');
+Route::delete('comment/{comment}', 'CommentController@delete')->name('comment.delete');
 
 Route::get('auth/github', 'Auth\GithubLoginController@redirectToProvider')->name('auth.github');
 Route::get('auth/github/callback', 'Auth\GithubLoginController@handleProviderCallback')->name('auth.github.callback');
