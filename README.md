@@ -11,14 +11,18 @@
 a Forum Website based Laravel with TailwindCss, created by <a href="https://github.com/viandwi24"> Alfian Dwi </a>.
 
 ### Features
-- Standart Auth (Login, Register, Activate Account by Email)
+- Standart Auth (Login, Register, Activate Account by Email, Forgot Password)
+- Github Account
 - Discussion (Create, Comments)
+- Disucssion and Comment Editor with Markdown Format
 - Profile
 - Etc.
 
 ### To-do List
-- [ ] Discussion Comments
-- [ ] Discusiion Edit - Set Solved
+- [x] Discussion Comments
+- [x] Delete Discussion Comments
+- [x] Discussion Edit & Delete
+- [ ] Discussion Set Solved
 - [ ] Article Page
 - [ ] Series Page
 - [ ] Error Page
