@@ -5,7 +5,7 @@
 ])
 
 @section('content')
-    <div class="block bg-gray-200 font-sans text-gray-700">
+    <div class="block bg-gray-200 font-sans text-gray-700" style="min-height: 90vh;">
         <div class="flex items-center lg:p-20 w-full">
 
             <div class="lg:w-8/12 md:w-full hidden pr-20 md:block text-center">
@@ -20,7 +20,7 @@
                 </a>
             </div>
 
-            <div class="lg:w-4/12 md:w-full">    
+            <div class="lg:w-4/12 w-full p-4 lg:p-0">    
                 <div class="bg-white rounded-lg overflow-hidden shadow-2xl">
                     <div class="font-semibold text-gray-700 pt-4 px-6 mb-0 text-xl">
                         Login

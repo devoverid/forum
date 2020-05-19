@@ -46,7 +46,7 @@
                     <i class="fa fa-bars p-0"></i>
                 </a>
             @else
-                <a href="{{ route('register') }}" class="text-white font-semibold mr-4 inline-flex">
+                <a href="{{ route('register') }}" class="text-white font-semibold mr-4 mt-2 lg:mt-0 inline-flex">
                     <span>Register</span>
                 </a>
                 <a href="{{ route('login') }}" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">

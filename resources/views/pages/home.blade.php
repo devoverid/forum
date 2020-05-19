@@ -5,13 +5,13 @@
 ])
 
 @section('content')
-    <div class="main text-center">
-        <div class="typing hidden lg:block">
+    <div class="main text-center" style="min-height: 100vh;">
+        <div class="typing lg:block mb-20">
             <span class="char1">H</span>
             <span class="char2">i</span>
             <span class="char3">.</span>
         </div>
-        <div class="programm-wrapped hidden lg:block">
+        <div class="programm-wrapped lg:absolute static translate-y-96 lg:block">
             <div class="browser">
               <div class="top-line">
                 <span class="button1"></span>
@@ -175,7 +175,7 @@
 @push('css')
     <style>
         .typing { 
-            font-size: 100px;
+            font-size: 84px;
             color: white;
         }
         .nav:not(.bg-transparent):not(.bg-laracasts-light), .main {
@@ -188,7 +188,6 @@
         .programm-wrapped {
             width: 226px;
             margin: 15% 0;
-            position: absolute;
             right: 0;
             transform: translateX(-100%);
         }
