@@ -34,6 +34,16 @@
             <!-- activity -->
             <div class="w-full mt-4 bg-white shadow-lg rounded p-8 text-left">
                 <div class="font-bold text-lg text-gray-500">User Activity</div>
+                    <div class="bg-white mt-4">
+                        <nav class="flex flex-col sm:flex-row">
+                            <a href="?" class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none {{ (request()->get('activity', null) == null) ? 'text-blue-500 border-b-2 font-medium border-blue-500' : '' }}">
+                                Discussion
+                            </a>
+                            <a href="?activity=comment" class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none {{ request()->get('activity', null) == 'comment' ? 'text-blue-500 border-b-2 font-medium border-blue-500' : '' }}">
+                                Comments
+                            </a>
+                        </nav>
+                    </div>
                     @if (count($activities) == 0)
                         <div class="text-center">
                             No Activity
@@ -53,6 +63,17 @@
                                             $subtitle = $activity->title;
                                             $link = route('discussion.show', $activity->slug);
                                             $time = $activity->created_at;
+                                        }
+
+
+                                        if ($activity instanceOf \App\Models\Comment) {
+                                            if ($activity->commentable  instanceOf \App\Models\Discussion) {
+                                                $discussion = $activity->commentable;
+                                                $title = 'Reply on a discussion';
+                                                $subtitle = 'in a discussion "'. $discussion->title .'"';
+                                                $link = route('discussion.show', $discussion->slug);
+                                                $time = $activity->created_at;
+                                            }
                                         }
                                     @endphp
                                     <li class="mb-2">
