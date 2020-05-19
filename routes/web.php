@@ -1,7 +1,10 @@
 <?php
 
 use App\Models\Discussion;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +34,19 @@ Auth::routes(['verify' => true]);
 Route::get('tes', function () { 
     // $discussion = Discussion::whereSlug('indonesia-highmaps-6803')->first();
     // dd($discussion->comments);
-    $store = $discussion->comments()->create([
-        'user_id' => auth()->user()->id,
-        'text' => 'awoeawkeawoekawoe'
-    ]);
+    // $store = $discussion->comments()->create([
+    //     'user_id' => auth()->user()->id,
+    //     'text' => 'awoeawkeawoekawoe'
+    // ]);
 });
 // Route::get('/home', 'HomeController@index')->name('home');
 
+//  LIVE HACK :V DONE
+Route::get('avatar/{name}', function ($name) {
+    $path = storage_path() . "/app/public/avatar/" . $name;
+    $file = File::get($path);
+    $type = File::mimeType($path);
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+});

@@ -58,7 +58,7 @@
                         Loading...
                     </div>
                 </div>
-                <div class="block border-t-2 border-gray-200 mt-10"></div>
+                {{-- <div class="block border-t-2 border-gray-200 mt-10"></div> --}}
                 <div class="mx-10 mt-8 font-bold text-xl"># Reply</div>
                 <div class="block border-t-2 border-gray-200 mb-4"></div>
 
@@ -72,7 +72,7 @@
                 @foreach ($discussion->comments as $comment)
                     <div class="forum-comment md:mb-2 is-reply md:flex md:px-6 md:-ml-4 pt-4 pb-7 md:py-4 hover:bg-gray-200 lg:mx-10">
                         <div class="md:mr-5 text-left phone:flex phone:items-center md:items-start">
-                            <a href="{{ route('profile', [$comment->]) }}" class="block relative" style="margin-bottom: 3px;">
+                            <a href="{{ route('profile', [$comment->user->avatar]) }}" class="block relative" style="margin-bottom: 3px;">
                                 <img style="max-height: 50px;" class="rounded-full" src="{{ asset('avatar/' . $comment->user->avatar) }}">
                             </a>
                         </div>
@@ -106,7 +106,7 @@
                         </div>
                     </div>                    
                 @endforeach
-                <div class="block border-t-2 border-gray-200"></div>
+                {{-- <div class="block border-t-2 border-gray-200 mt-4"></div> --}}
 
 
                 <!-- reply -->

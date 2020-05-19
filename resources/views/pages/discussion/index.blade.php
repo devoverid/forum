@@ -49,6 +49,7 @@
                                         </svg>
                                     </button>
                                 </div>
+
                                 <form action="" autocomplete="off" class="search-form hidden md:block md:w-52">
                                     <div class="bg-gray-200 hover:bg-gray-300 rounded-full relative">
                                         <i class="fa fa-search absolute mt-3 ml-3"></i>
@@ -70,8 +71,8 @@
                                         $endPoint = strrpos($stringCut, ' ');
                                         $description = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
                                     @endphp
-                                    <a href="{{ route('discussion.show', $discussion->slug) }}">
-                                        <div class="flex flex-col md:flex-row items-center cursor-pointer rounded-lg hover:bg-gray-100 px-6 py-4">
+                                    <a href="{{ route('discussion.show', $discussion->slug) }}" role="link">
+                                        <div onClick="articelRedirect('{{ route('discussion.show', $discussion->slug) }}')" class="flex flex-col md:flex-row items-center cursor-pointer rounded-lg hover:bg-gray-100 px-6 py-4">
                                             <div class="avatar w-full md:w-auto md:mr-6 flex items-center md:block mb-4 md:mb-0">
                                                 <a href="" class="block mr-3 md:mr-0">
                                                     <img style="max-height: 50px;" class="rounded-full" src="{{ asset('avatar/' . $discussion->user->avatar) }}">
@@ -146,5 +147,9 @@
         $('#select-tags').on('change', () => {
             window.location.href = "{{ route('discussion.index') }}?tag=" + $('#select-tags').val()
         })
+        function articelRedirect(link)
+        {
+            location.href = link;
+        }
     </script>
 @endpush

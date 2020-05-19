@@ -51,6 +51,13 @@
             </div>
     
             <!-- editor -->
+            <div id="to-reply" class="block bg-indigo-300 p-3 text-center text-white mt-4">
+                We use question form with Markdown, you can see markdown 
+                <a class="underline hover:text-blue-400" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">
+                    Markdown Cheatshett
+                </a>
+                for how to write markdown.
+            </div>
             <div class="w-full mt-4 bg-white shadow-xl rounded">
                 <div class="flex p-2 pl-4 text-gray-600 font-bold bg-gray-100 border-b border-2ray-400 content-center items-center justify-center">
                     <div class="w-6/12">Type Your Question...</div>

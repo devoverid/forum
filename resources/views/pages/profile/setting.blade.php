@@ -13,8 +13,23 @@
                         Setting
                     </div>
                     <div class="p-8">
-                        <form method="POST" action="{{ route('setting.update') }}">
+                        <form method="POST" action="{{ route('setting.update') }}" enctype="multipart/form-data">
                             @csrf
+
+                            <!-- avatar -->
+                            <div class="mb-5">
+                                <label>Avatar</label>
+                                <div class="hover:bg-gray-100 p-4">
+                                    <div class="relative inline-block rounded-full" style="width: auto; height: auto;">
+                                        <img id="img-preview" class="inline-block" src="{{ asset('avatar/' . $user->avatar) }}" class="rounded-full" style="max-height: 128px;max-width: 128px;height:128px;width:128px;">
+                                        <button id="btn-change-image" type="button" class="absolute bottom-0 right-0 inline-block text-center p-3 mt-4 bg-blue-500 text-white rounded shadow hover:bg-blue-600 text-xs">
+                                            Change
+                                        </button>
+                                    </div>
+                                    <div class="text-xs text-gray-500">* use image wit 1:1 ration, ex : 460x460</div>
+                                    <input type="file" class="hidden" name="avatar" id="image-file">
+                                </div>
+                            </div>
 
                             <!-- name -->
                             <div class="mb-5">
@@ -61,3 +76,21 @@
         </div>
     </div>
 @stop
+
+
+@push('js')
+    <script>
+        $('#btn-change-image').on('click', () => {  $('#image-file').trigger('click'); });
+        $('#image-file').on('change', (e) => {
+            let input = e.target;
+            let path = $(e.target).val();
+            var ext = path.substring(path.lastIndexOf('.') + 1).toLowerCase();
+            if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) 
+            {
+                var reader = new FileReader();
+                reader.onload = function (res) { $('#img-preview').attr('src', res.target.result); };
+                reader.readAsDataURL(input.files[0]);
+            }
+        })
+    </script> 
+@endpush
