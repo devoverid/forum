@@ -4,6 +4,14 @@
             New Discussion
         </a>
         <ul class="pt-2 mt-10 mobile:hidden">
+            @auth
+                <li class="mt-4 block">
+                    <a href="{{ route('discussion.index') . '?filter=me' }}" class="text-grey-dark text-sm mb-1 hover:text-indigo-600 hover:bg-gray-100 rounded py-2 px-3 {{ (request()->get('filter', null) == 'me') ? 'text-indigo-600 font-bold ' : '' }}">
+                        <i class="far fa-user"></i>
+                        My Thread
+                    </a>
+                </li>
+            @endauth
             <li class="mt-4 block">
                 <a href="{{ route('discussion.index') }}" class="text-grey-dark text-sm mb-1 hover:text-indigo-600 hover:bg-gray-100 rounded py-2 px-3 {{ (request()->get('filter', null) == null) && (url()->current() == route('discussion.index')) ? 'text-indigo-600 font-bold ' : '' }}">
                     <i class="far fa-comments"></i>

@@ -89,6 +89,12 @@ class DiscussionController extends Controller
             $discussions->whereNull('solved_at');
         }
 
+        // filter me
+        if ($filter == 'me' && auth()->check())
+        {
+            $discussions->whereUserId(auth()->user()->id);
+        }
+
 
         // return obj
         return $discussions;

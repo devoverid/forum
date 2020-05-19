@@ -72,8 +72,8 @@
                 @foreach ($discussion->comments as $comment)
                     <div class="forum-comment md:mb-2 is-reply md:flex md:px-6 md:-ml-4 pt-4 pb-7 md:py-4 hover:bg-gray-200 lg:mx-10">
                         <div class="md:mr-5 text-left phone:flex phone:items-center md:items-start">
-                            <a href="" class="block relative" style="margin-bottom: 3px;">
-                                <img style="max-height: 50px;" class="rounded-full" src="{{ asset('avatar/' . $discussion->user->avatar) }}">
+                            <a href="{{ route('profile', [$comment->]) }}" class="block relative" style="margin-bottom: 3px;">
+                                <img style="max-height: 50px;" class="rounded-full" src="{{ asset('avatar/' . $comment->user->avatar) }}">
                             </a>
                         </div>
                         <div class="flex-1 relative">
@@ -89,7 +89,7 @@
                                         </strong>
                                     </a>
                                 </div>
-                                @if (auth()->user()->id == $comment->user->id)
+                                @if (auth()->check() && auth()->user()->id == $comment->user->id)
                                     <div class="flex text-xs">
                                         <form action="{{ route('comment.delete', [$comment->id]) }}" method="POST" class="inline">
                                             @csrf
