@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
+        HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
     ],
 
     /*
@@ -229,7 +230,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
     ],
 
 ];

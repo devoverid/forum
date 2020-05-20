@@ -9,16 +9,22 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Socialite;
 
-class GithubLoginController extends Controller
+class OauthLoginController extends Controller
 {
+    // driver accepted
+    protected $accepted_driver = ['facebook', 'github'];
+
     /**
      * Redirect the user to the GitHub authentication page.
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToProvider()
+    public function redirectToProvider($driver)
     {
-        return Socialite::driver('github')->redirect();
+        /** accpet only define driver */
+        if (!in_array($driver, $this->accepted_driver)) return abort(404);
+
+        return Socialite::driver($driver)->redirect();
     }
 
     /**
@@ -26,16 +32,19 @@ class GithubLoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback($driver)
     {
+        /** accpet only define driver */
+        if (!in_array($driver, $this->accepted_driver)) return abort(404);
+
         try {
-            $user = Socialite::driver('github')->user();
+            $user = Socialite::driver($driver)->user();
         } catch (Exception $e) {
-            return redirect()->route('auth.github');
+            return redirect()->route('auth.oauth', [$driver]);
         }
 
         // create account
-        $authUser = $this->findOrCreateUser($user);
+        $authUser = $this->findOrCreateUser($user, $driver);
 
         // auto login user 
         Auth::login($authUser, true);
@@ -51,21 +60,32 @@ class GithubLoginController extends Controller
      * @param $githubUser
      * @return User
      */
-    private function findOrCreateUser($user)
+    private function findOrCreateUser($user, $driver)
     {
-        if ($authUser = User::where('provider_id', $user->getId())->where('provider', 'github')->first()) {
+        if ($authUser = User::where('provider_id', $user->getId())->where('provider', $driver)->first()) {
             return $authUser;
         }
 
         // download avatar images and save to storage
         $avatar = $this->getAvatar($user);
 
+        // generate
+        $username = $user->getNickname();
+        if ($username == null)
+        {
+            $username = str_replace(' ', '.', strtolower($user->getName()));
+            while (User::whereUsername($username)->get()->count() > 0) {
+                $rand = rand(1000, 9999);
+                $username = str_replace(' ', '.', strtolower($user->getName())) . $rand;
+            }
+        }
+
         // create user
         return User::create([
             'name' => $user->getName(),
-            'username' => $user->getNickname(),
+            'username' => $username,
             'email' => $user->getEmail(),
-            'provider' => 'github',
+            'provider' => $driver,
             'provider_id' => $user->getId(),
             'avatar' => $avatar
         ]);

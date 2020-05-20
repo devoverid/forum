@@ -7,8 +7,8 @@
 @section('content')
 <form action="{{ route('discussion.store') }}" method="POST">
     @csrf
-    <div class="flex w-full">
-        <div class="block w-full px-6 lg:w-9/12 mx-auto mt-4 mb-10 justify-center" style="min-height: 80vh;">
+    <div class="flex w-full min-h-full">
+        <div class="block w-full px-6 lg:w-9/12 mx-auto mt-4 mb-10 justify-center">
             
             <!-- aw -->
             <div>

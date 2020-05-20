@@ -5,8 +5,8 @@
 ])
 
 @section('content')
-    <div class="flex w-full bg-cool-gray-200">
-        <div class="block w-full px-6 lg:w-6/12 mx-auto mt-4 mb-10 justify-center" style="min-height: 80vh;">
+    <div class="flex w-full bg-cool-gray-200 min-h-full">
+        <div class="block w-full px-6 lg:w-6/12 mx-auto mt-4 mb-10 justify-center">
  
             <!-- profile -->
             <div class="w-full mt-4 bg-white shadow-lg rounded p-8 text-center relative">

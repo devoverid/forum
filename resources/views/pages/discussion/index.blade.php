@@ -5,9 +5,9 @@
 ])
 
 @section('content')
-    <div class="section py-10" style="min-height: 80vh;">
+    <div class="section py-10 min-h-full">
         <div class="disscussion-wrapper">
-            <div class="flex flex-col flex-col-reverse md:flex-row mx-auto" style="max-width: 1400px;">
+            <div class="flex flex-col flex-col-reverse md:flex-row mx-auto">
                 <!-- Menu -->
                 <x-sidebar-discussion />
 

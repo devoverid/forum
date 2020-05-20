@@ -21,3 +21,7 @@ if (mix.inProduction()) {
   mix
    .version();
 }
+
+// minify
+mix.minify('public/js/main.js')
+mix.styles([ 'public/css/main.css' ], 'public/css/main.min.css');

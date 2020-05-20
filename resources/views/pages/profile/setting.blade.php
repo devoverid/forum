@@ -5,8 +5,8 @@
 ])
 
 @section('content')
-    <div class="block bg-gray-200 font-sans text-gray-700">
-        <div class="container flex mx-auto items-center lg:p-20 p-8">
+    <div class="block bg-gray-200 font-sans text-gray-700 min-h-full">
+        <div class="container flex mx-auto items-center lg:p-20 p-4">
             <div class="max-w-md w-full mx-auto">
                 <div class="bg-white rounded-lg overflow-hidden shadow-2xl">
                     <div class="font-semibold text-gray-700 pt-4 px-6 mb-0 text-xl">
@@ -19,14 +19,14 @@
                             <!-- avatar -->
                             <div class="mb-5">
                                 <label>Avatar</label>
-                                <div class="hover:bg-gray-100 p-4">
+                                <div class="hover:bg-gray-100 p-4 text-left sm:text-center">
                                     <div class="relative inline-block rounded-full" style="width: auto; height: auto;">
                                         <img id="img-preview" class="inline-block" src="{{ asset('avatar/' . $user->avatar) }}" class="rounded-full" style="max-height: 128px;max-width: 128px;height:128px;width:128px;">
                                         <button id="btn-change-image" type="button" class="absolute bottom-0 right-0 inline-block text-center p-3 mt-4 bg-blue-500 text-white rounded shadow hover:bg-blue-600 text-xs">
                                             Change
                                         </button>
                                     </div>
-                                    <div class="text-xs text-gray-500">* use image wit 1:1 ration, ex : 460x460</div>
+                                    <div class="text-xs text-gray-500">* use image with 1:1 ration, ex : 460x460</div>
                                     <input type="file" class="hidden" name="avatar" id="image-file">
                                 </div>
                             </div>

@@ -1,11 +1,10 @@
 @extends('layouts.app', [
-    'title' => 'Discussion',
-        'footer' => true,
-        'navbar' => true,
+    'footer' => true,
+    'navbar' => true,
 ])
 
 @section('content')
-    <div class="main text-center" style="min-height: 100vh;">
+    <div class="main text-center min-h-full">
         <div class="typing lg:block mb-20">
             <span class="char1">H</span>
             <span class="char2">i</span>

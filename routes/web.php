@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Discussion;
+use HTMLMin\HTMLMin\Facades\HTMLMin;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
@@ -18,30 +19,14 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/', function () { return view('pages.home'); })->name('home');
-Route::get('/@{username}', 'ProfileController@index')->name('profile');
-Route::get('/setting', 'SettingController@index')->name('setting');
-Route::post('/setting', 'SettingController@update')->name('setting.update');
 
 Route::resource('discussion', 'DiscussionController');
 Route::post('comment/{type}/{slug}', 'CommentController@comment')->name('comment');
 Route::delete('comment/{comment}', 'CommentController@delete')->name('comment.delete');
 
-Route::get('auth/github', 'Auth\GithubLoginController@redirectToProvider')->name('auth.github');
-Route::get('auth/github/callback', 'Auth\GithubLoginController@handleProviderCallback')->name('auth.github.callback');
-Auth::routes(['verify' => true]);
+Route::get('owner', 'OwnerController@index')->name('owner');
 
-
-Route::get('tes', function () { 
-    // $discussion = Discussion::whereSlug('indonesia-highmaps-6803')->first();
-    // dd($discussion->comments);
-    // $store = $discussion->comments()->create([
-    //     'user_id' => auth()->user()->id,
-    //     'text' => 'awoeawkeawoekawoe'
-    // ]);
-});
-// Route::get('/home', 'HomeController@index')->name('home');
-
-//  LIVE HACK :V DONE
+/** avatar image from storage */
 Route::get('avatar/{name}', function ($name) {
     $path = storage_path() . "/app/public/avatar/" . $name;
     $file = File::get($path);
@@ -50,3 +35,13 @@ Route::get('avatar/{name}', function ($name) {
     $response->header("Content-Type", $type);
     return $response;
 });
+
+/** profile */
+Route::get('/@{username}', 'ProfileController@index')->name('profile');
+Route::get('/setting', 'SettingController@index')->name('setting');
+Route::post('/setting', 'SettingController@update')->name('setting.update');
+
+/** auth */
+Auth::routes(['verify' => true]);
+Route::get('auth/{driver}', 'Auth\OauthLoginController@redirectToProvider')->name('auth.oauth');
+Route::get('auth/{driver}/callback', 'Auth\OauthLoginController@handleProviderCallback')->name('auth.oauth.callback');

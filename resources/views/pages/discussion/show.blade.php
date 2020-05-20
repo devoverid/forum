@@ -5,7 +5,7 @@
 ])
 
 @section('content')
-<div class="section py-10" style="min-height: 80vh;">
+<div class="section py-10 min-h-full">
     <div class="disscussion-wrapper">
         <div class="flex flex-col flex-col-reverse md:flex-row mx-auto" style="max-width: 1400px;">
             <!-- Menu -->
@@ -21,7 +21,7 @@
                             <img style="max-height: 50px;" class="rounded-full" src="{{ asset('avatar/' . $discussion->user->avatar) }}">
                         </a>
                     </div>
-                    <div class="flex-1 relative text-xs">
+                    <div class="flex-1 relative text-xs ml-2">
                         <a href="{{ route('profile', [$discussion->user->username]) }}" class="block uppercase font-bold text-blue-400 hover:text-blue-500 hover:underline mr-2">
                             {{ $discussion->user->name }} 
                         </a> 
@@ -49,16 +49,16 @@
                 
                 <div class="mx-1 lg:mx-10 mb-5">
                     <div class="text-gray-600 leading-10 mb-2" style="font-size: 1.8rem;">
-                        <div class="inline">
-                            # <h1 class="inline">{{ $discussion->title }}</h1>
+                        <div class="inline-block break-words" style="min-width: 100px;">
+                            # <h1 class="inline break-words"> {{ $discussion->title }}</h1>
                         </div>
                     </div>
                 </div>
                 <div class="block border-t-2 border-gray-200 mb-10"></div>
                 <div class="forum-main lg:mx-10 lg:px-4 lg:flex hover:bg-gray-100 rounded">
                     <div class="content-md hidden">{{ $discussion->content }}</div>
-                    <div class="lg:flex-1 md-wrapper" id="wrapper">
-                        Loading...
+                    <div class="lg:flex-1 md-wrapper">
+                        @markdown($discussion->content)
                     </div>
                 </div>
                 {{-- <div class="block border-t-2 border-gray-200 mt-10"></div> --}}
@@ -68,12 +68,12 @@
 
                 <!-- comments -->
                 @if (count($discussion->comments) == 0)
-                    <div class="block bg-red-300 p-3 text-center text-white mt-4 mx-10">
+                    <div class="block bg-red-300 p-3 text-center text-white mt-4 lg:mx-10 mx-0">
                         No reply found.
                     </div>                    
                 @endif
                 @foreach ($discussion->comments as $comment)
-                    <div class="forum-comment md:mb-2 is-reply md:flex md:px-6 md:-ml-4 pt-4 pb-7 md:py-4 hover:bg-gray-200 lg:mx-10">
+                    <div class="forum-comment md:mb-2 is-reply md:flex md:px-6 md:-ml-4 pt-4 pb-7 md:py-4 hover:bg-gray-200 lg:mx-10 mx-0">
                         <div class="md:mr-5 text-left phone:flex phone:items-center md:items-start">
                             <a href="{{ route('profile', [$comment->user->avatar]) }}" class="block relative" style="margin-bottom: 3px;">
                                 <img style="max-height: 50px;" class="rounded-full" src="{{ asset('avatar/' . $comment->user->avatar) }}">
@@ -105,7 +105,7 @@
                                 @endif  
                             </div>
 
-                            <div class="comment-wrapper md-wrapper">{{ $comment->text }}</div>
+                            <div class="md-wrapper">@markdown($comment->text)</div>
                         </div>
                     </div>                    
                 @endforeach
@@ -115,14 +115,14 @@
                 <!-- reply -->
                 @if ($discussion->solved_at == null)
                     @auth
-                        <div id="to-reply" class="block bg-indigo-300 p-3 text-center text-white mt-4 mx-10">
+                        <div id="to-reply" class="block bg-indigo-300 p-3 text-center text-white mt-4 mx-0 lg:mx-10">
                             We make reply form with Markdown, you can see markdown 
                             <a class="underline hover:text-blue-400" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">
                                 Markdown Cheatshett
                             </a>
                             for how to write markdown.
                         </div>
-                        <div class="mt-4 bg-white shadow-xl rounded mx-10">
+                        <div class="mt-4 bg-white shadow-xl rounded mx-0 lg:mx-10">
                             <form action="{{ route('comment', [ 'discussion', $discussion->slug ]) }}" method="POST">
                                 @csrf
                                 <div class="flex p-2 pl-4 text-gray-600 font-bold bg-gray-100 border-b border-2ray-400 content-center items-center justify-center">
@@ -161,7 +161,28 @@
             <!-- activity -->
             <div class="mobile:bg-white hidden xl:block forum-sidebar hidden lg:block flex-none border-l border-solid border-gray-100" style="border-color: rgb(239, 239, 239);">
                 <div class="forum-secondary-sidebar sticky">
-                    <div class="block text-right w-auto ml-10">
+                    <div class="block text-right w-auto ml-10" style="padding-top: -1.2rem;">
+                        
+                        @auth
+                            <div class="block mb-2">
+                                <a href="{{ route('discussion.edit', [$discussion->slug]) }}" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-sm block w-full items-center mr-2 text-center">
+                                    Edit
+                                </a>
+                                <form action="{{ route('discussion.destroy', [$discussion->slug]) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-sm block w-full items-center mr-2">
+                                        Delete
+                                    </button>
+                                </form>
+                                @if($discussion->solved_at == null)
+                                    <a href="{{ route('discussion.edit', [$discussion->slug]) . '?set_solved' }}" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-sm block w-full items-center mr-2 text-center">
+                                        Set Solved
+                                    </a>
+                                @endif
+                            </div>
+                        @endauth
+
                         <button id="btn-to-reply" onclick="$('html, body').animate({ scrollTop: $('#to-reply').offset().top }, 1000);" class="btn btn-blue rounded w-full block">
                             Reply
                         </button>
@@ -190,7 +211,7 @@
                                             Newest Reply
                                         </div>
                                         <div class="ml-12 text-sm text-gray-400 text-xs">
-                                            by {{ $discussion->comments[0]->user->name }}
+                                            by {{ $discussion->comments[count($discussion->comments)-1]->user->name }}
                                         </div>
                                     </li>  
                                 @endif
@@ -286,29 +307,6 @@
             preview: function () { this.showPreview = !this.showPreview }
         },
         mounted() {
-            let md = marked($('.content-md').html(), { 
-                gfm: true,
-                tables: true,
-                breaks: true,
-                pedantic: true,
-                sanitize: true,
-                smartLists: true,
-            });
-            $('#wrapper').html(md)
-
-            // comments
-            $('.comment-wrapper').each(function(i, obj) {
-                let output = marked( $(obj).html() , { 
-                    gfm: true,
-                    tables: true,
-                    breaks: true,
-                    pedantic: true,
-                    sanitize: true,
-                    smartLists: true,
-                });
-                $(obj).html(output)
-            });
-
             // reply old content 
             if ($('#content-old').html() != '' && $('#content-old').html() != 'null') this.input = $('#content-old').html()
         }

@@ -32,8 +32,7 @@ class DiscussionController extends Controller
         $filter = request()->get('filter', null);
 
         // orm
-        $discussions = Discussion::with('user', 'tags')
-            ->orderBy('created_at', 'desc');
+        $discussions = Discussion::with('user', 'tags');
 
         // hadlefilter
         $discussions = $this->handleFilter($filter, $discussions);
@@ -72,7 +71,7 @@ class DiscussionController extends Controller
         }
 
         // filter popular all time
-        if ($filter == 'popular_this_week')
+        if ($filter == 'popular')
         {
             $discussions->orderBy('view', 'desc');
         }
@@ -93,6 +92,12 @@ class DiscussionController extends Controller
         if ($filter == 'me' && auth()->check())
         {
             $discussions->whereUserId(auth()->user()->id);
+        }
+
+        // for 
+        if (in_array($filter, ['solved', 'unsolved', 'me']) || $filter == null) 
+        {
+            $discussions->orderBy('created_at', 'desc');
         }
 
 

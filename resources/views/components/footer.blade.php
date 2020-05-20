@@ -1,6 +1,6 @@
 
 <!-- footer -->
-<div class="footer-wrap mobile:text-lg bg-indigo-500 text-white">
+<div class="footer mobile:text-lg bg-indigo-500 text-white">
     {{-- <section class="footer-section top pb-10 pt-10">
         <div class="container">
             <div class="md:w-4/5 lg:w-1/2 mx-auto text-center">
