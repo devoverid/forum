@@ -39,6 +39,9 @@
                                         Delete
                                     </button>
                                 </form>
+                                @if($discussion->solved_at == null)
+                                <a href="{{ route('discussion.edit', [$discussion->slug]) . '?set_solved' }}" class="font-bold text-gray-500 hover:underline hover:text-gray-600 mr-2">Set Solved</a>
+                                @endif
                             </div>                            
                         @endif
                     </div>
@@ -110,41 +113,47 @@
 
 
                 <!-- reply -->
-                @auth
-                    <div id="to-reply" class="block bg-indigo-300 p-3 text-center text-white mt-4 mx-10">
-                        We make reply form with Markdown, you can see markdown 
-                        <a class="underline hover:text-blue-400" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">
-                            Markdown Cheatshett
-                        </a>
-                        for how to write markdown.
-                    </div>
-                    <div class="mt-4 bg-white shadow-xl rounded mx-10">
-                        <form action="{{ route('comment', [ 'discussion', $discussion->slug ]) }}" method="POST">
-                            @csrf
-                            <div class="flex p-2 pl-4 text-gray-600 font-bold bg-gray-100 border-b border-2ray-400 content-center items-center justify-center">
-                                <div class="w-6/12">Reply a discussion...</div>
-                                <div class="w-6/12 text-right">
-                                    <button @click.prevent="preview" class="bg-indigo-500 p-2 text-xs text-white">Show / Hide Preview</button>
+                @if ($discussion->solved_at == null)
+                    @auth
+                        <div id="to-reply" class="block bg-indigo-300 p-3 text-center text-white mt-4 mx-10">
+                            We make reply form with Markdown, you can see markdown 
+                            <a class="underline hover:text-blue-400" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">
+                                Markdown Cheatshett
+                            </a>
+                            for how to write markdown.
+                        </div>
+                        <div class="mt-4 bg-white shadow-xl rounded mx-10">
+                            <form action="{{ route('comment', [ 'discussion', $discussion->slug ]) }}" method="POST">
+                                @csrf
+                                <div class="flex p-2 pl-4 text-gray-600 font-bold bg-gray-100 border-b border-2ray-400 content-center items-center justify-center">
+                                    <div class="w-6/12">Reply a discussion...</div>
+                                    <div class="w-6/12 text-right">
+                                        <button @click.prevent="preview" class="bg-indigo-500 p-2 text-xs text-white">Show / Hide Preview</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="reply-wrapper" class="flex h-full" style="min-height: 50vh;">
-                                <textarea name="content" class="flex-1 h-full" :class="{'w-12/12': showPreview}" :value="input" @input="update"></textarea>
-                                <textarea id="content-old" class="hidden">{{ old('content', 'null') }}</textarea>
-                                <div v-show="showPreview" class="flex-1 h-full md-wrapper" v-html="compiledMarkdown" style="padding: 1.3rem;"></div>
-                            </div>
-                            <div class="block text-right px-4 text-sm border-t border-gray-300 bg-gray-100">
-                                <button type="submit" class="text-center p-3 mt-4 mb-4 bg-indigo-500 text-white rounded shadow hover:bg-indigo-600">
-                                    <i class="fa fa-paper-plane"></i>
-                                    Submit
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                                <div id="reply-wrapper" class="flex h-full" style="min-height: 50vh;">
+                                    <textarea name="content" class="flex-1 h-full" :class="{'w-12/12': showPreview}" :value="input" @input="update"></textarea>
+                                    <textarea id="content-old" class="hidden">{{ old('content', 'null') }}</textarea>
+                                    <div v-show="showPreview" class="flex-1 h-full md-wrapper" v-html="compiledMarkdown" style="padding: 1.3rem;"></div>
+                                </div>
+                                <div class="block text-right px-4 text-sm border-t border-gray-300 bg-gray-100">
+                                    <button type="submit" class="text-center p-3 mt-4 mb-4 bg-indigo-500 text-white rounded shadow hover:bg-indigo-600">
+                                        <i class="fa fa-paper-plane"></i>
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    @else
+                        <div id="to-reply" class="block bg-red-300 p-3 text-center text-white mt-4 mx-10">
+                            You must login to reply this discussion.
+                        </div>      
+                    @endauth
                 @else
-                    <div id="to-reply" class="block bg-red-300 p-3 text-center text-white mt-4 mx-10">
-                        You must login to reply this discussion.
-                    </div>      
-                @endauth
+                    <div id="to-reply" class="block bg-indigo-300 p-3 text-center text-white mt-4 mx-10">
+                        You cannt reply this discussion because authoer set discussion to solved.
+                    </div>
+                @endif
             </div>
             
 
@@ -182,6 +191,17 @@
                                         </div>
                                         <div class="ml-12 text-sm text-gray-400 text-xs">
                                             by {{ $discussion->comments[0]->user->name }}
+                                        </div>
+                                    </li>  
+                                @endif
+                                @if ($discussion->solved_at != null)
+                                    <li class="mb-2">
+                                        <div class="flex items-center mb-1">
+                                            <div class="bg-indigo-500 rounded-full h-8 w-8"></div>
+                                            <div class="flex-1 ml-4 font-medium">{{ $discussion->solved_at }}</div>
+                                        </div>
+                                        <div class="ml-12 text-sm text-gray-400">
+                                            Author set this discussion solved.
                                         </div>
                                     </li>  
                                 @endif

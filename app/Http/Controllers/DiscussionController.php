@@ -173,6 +173,14 @@ class DiscussionController extends Controller
     {
         // get
         $discussion = Discussion::whereSlug($slug)->first();
+
+        // if set solved
+        if (isset($_GET['set_solved'])) {
+            if ($discussion->solved_at == null) $discussion->update(['solved_at' => Carbon::now()]);
+            return redirect()->back();
+        }
+
+        // get
         $tags = Tag::all();
 
         // if not found, return 404
