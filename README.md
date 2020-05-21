@@ -19,17 +19,22 @@ a Forum Website based Laravel with TailwindCss, created by <a href="https://gith
 - Etc.
 
 ### To-do List
-- [x] Discussion Comments
+- [x] Discussion & Comments
 - [x] Delete Discussion Comments
 - [x] Discussion Edit & Delete
-- [ ] Discussion Set Solved
-- [ ] Article Page
-- [ ] Series Page
-- [ ] Error Page
+- [x] Discussion Set Solved
+- [x] Owner Pages
 - [x] Profile Setting
 - [x] Login & Register with Github
 - [x] Email Verification
 - [x] Forgot Password
+- [x] Login & Register with Facebook
+- [x] Minify Page
+- [x] Migrate to scss
+- [ ] Re-design Homepage
+- [ ] Re-design Component
+- [ ] Completing Owners Pages
+- [ ] Error Page
 
 
 ## Install
@@ -67,12 +72,19 @@ MAIL_FROM_NAME="${APP_NAME}"
 GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 GITHUB_CLIENT_URI=
+
+// facebook client oauth
+FACEBOOK_CLIENT_ID=
+FACEBOOK_CLIENT_SECRET=
+FACEBOOK_CLIENT_URI=http://localhost:8000/auth/facebook/callback
 ```
+*note : for facebook callback, must be https
 
 3. **Prepare a website**
 ```bash
 php artisan key:generate
-php artisan migrate --seed
+php artisan migrate:fresh
+php artisan db:seed --class=TagSeeder 
 ```
 
 4.**Run A Web**
@@ -82,6 +94,12 @@ php artisan serve
 
 ## Author
 - Facebook : <a href="https://www.facebook.com/viandwi24"> Alfian Dwi Nugraha</a>
+
+## Thanks For
+- Allah SWT
+- <a href="devover.id">Devover</a>
+- <a href="github.com/zuramai">Ahamad Saugi</a>
+- Everyone whosupports me 
 
 ## Contributing
 Contributions, issues and feature requests you can do..
@@ -94,4 +112,4 @@ Contributions, issues and feature requests you can do..
 ------------
 - **Made with ❤️ by Alfian Dwi Nugraha .**
 - Thanks to <a href="http://devover.id">DevoverID</a>
-- Devover is open-sourced software licensed under the MIT license.
+- **Devover Forum** is open-sourced software licensed under the MIT license.
