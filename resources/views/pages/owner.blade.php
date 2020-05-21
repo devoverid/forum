@@ -5,11 +5,27 @@
 ])
 
 @section('content')
-    <div class="w-full bg-cool-gray-200 min-h-full">
- 
-            <div class="flex w-full mb-4">
-                <div class="flex w-1/2 bg-gray-500">qw</div>
-                <div class="flex w-1/2 bg-indigo-600">awe</div>
+    <div class="w-full bg-gray-100 p-20 min-h-full">        
+            <div class="flex w-full fex-col">
+                @foreach ($owners as $owner)
+                    @php $owner = (object) $owner; @endphp
+                    <div class="flex flex-col w-3/12 mx-4 rounded overflow-hidden shadow-xl bg-white relative">
+                        <img class="w-full" src="{{ $owner->avatar }}" alt="Owner Avatar">
+                        <div class="px-6 py-4 mb-15">
+                            <div class="font-bold text-xl mb-2">{{ $owner->name }}</div>
+                            <p class="text-gray-500 text-base">
+                                {{ $owner->description }}
+                            </p>
+                        </div>
+                        <div class="px-6 py-4 absolute bottom-0">
+                            @foreach ($owner->skills as $skill)
+                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 mb-1 text-sm font-semibold text-gray-700 mr-2">
+                                #{{ str_replace(' ', '_', strtolower($skill)) }}
+                            </span>                                
+                            @endforeach
+                        </div>
+                    </div>                    
+                @endforeach
             </div>
 
     </div>
