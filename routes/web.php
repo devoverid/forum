@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Route::get('/', function () { return view('pages.home'); })->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('discussion', 'DiscussionController');
 Route::post('comment/{type}/{slug}', 'CommentController@comment')->name('comment');

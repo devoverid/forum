@@ -11,20 +11,20 @@
 
     <!-- Styles -->
     <link rel="shortcut icon" href="{{ asset('assets/images/logo_white.png') }}">
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     @stack('css')
 </head>
 <body>
     <!-- loading -->
-    <div class="loading w-full fixed h-full bg-gray-300 flex justify-center items-center">
+    <div class="loading w-full fixed h-full bg-gray-300 flex justify-center items-center z-50">
         <img src="{{ asset('assets/images/logo_white.png') }}" style="height: 100px;">
     </div>
 
     <!-- app -->
-    <div id="app" class="hidden">
+    <div id="app">
         <!-- navbar -->
         @if (isset($navbar) && $navbar) <x-navbar /> @endif
 
@@ -43,6 +43,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
     @stack('js')
-    <script src="{{ asset('js/main.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
     {{-- ^ preload animation, and other script ^ --}}
 </body>

@@ -1,0 +1,15 @@
+.nav:not(.bg-transparent):not(.bg-laracasts-light) {
+    background-image: linear-gradient(90deg,#8796F0,#4261EB);
+    background-position: 0 0;
+}
+.navbar-link {
+    transition: border .2s ease-in;
+    min-width: 5rem;
+    text-align: center;
+}
+.navbar-link.active {
+    color: white;
+    border-color: white!important;
+}
+.link-brand img { transition: all .4s ease-in-out; }
+.link-brand:hover img { transform: rotate(360deg); }
