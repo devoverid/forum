@@ -12,6 +12,14 @@
     @endif
 @endauth
 
+
+@php
+    $links = [
+        [ 'text' => 'Discussion', 'link' => route('discussion.index') ],
+        [ 'text' => 'Owners', 'link' => route('owner') ],
+    ]
+@endphp
+
 <!-- navbar -->
 <nav class="section nav lg:z-20 relative px-2 lg:px-10 lg:py-3 z-30" style="height: 60px;">
     <div class="flex justify-between h-full items-center relative">
@@ -25,13 +33,6 @@
     
             <!-- center menu -->
             <div class="navbar-links xl:flex-grow relative hidden md:flex md:justify-center text-xs lg:text-sm xl:w-1/2">
-                @php
-                    //  dinamyc link
-                    $links = [
-                        [ 'text' => 'Discussion', 'link' => route('discussion.index') ],
-                        [ 'text' => 'Owner', 'link' => route('owner') ],
-                    ]
-                @endphp
                 @foreach ($links as $link)
                     <a href="{{ $link['link'] }}" class="navbar-link text-gray-100 border-b-8 border-transparent hover:border-white m-3 md:px-1 xl:px-0 py-4 pt-6 block uppercase text-transparent-50 font-semibold hover:text-white {{ request()->is( str_replace(url('') . '/', '', $link['link'] ) . '*') ? 'active font-bold' : '' }}">
                         {{ $link['text'] }}
@@ -87,11 +88,14 @@
                         Home
                     </a>
                 </li>
+                {{-- dynamyc link --}}
+                @foreach ($links as $link)
                 <li class="py-2">
-                    <a href="{{ route('discussion.index') }}" class="block hover:text-gray-700 hover:bg-gray-200 rounded py-2 text-gray-500 font-bold uppercase">
-                        Discussion
+                    <a href="{{ $link['link'] }}" class="block hover:text-gray-700 hover:bg-gray-200 rounded py-2 text-gray-500 font-bold uppercase">
+                        {{ $link['text'] }}
                     </a>
                 </li>
+                @endforeach
                 <li class="py-2">
                     <a href="{{ url('/@') . auth()->user()->username }}" class="block hover:text-gray-700 hover:bg-gray-200 rounded py-2 text-gray-500 font-bold uppercase">
                         My Profile
@@ -120,11 +124,14 @@
                         Home
                     </a>
                 </li>
+                {{-- dynamyc link --}}
+                @foreach ($links as $link)
                 <li class="py-2">
-                    <a href="{{ route('discussion.index') }}" class="block hover:text-gray-700 hover:bg-gray-200 rounded py-2 text-gray-500 font-bold uppercase">
-                        Discussion
+                    <a href="{{ $link['link'] }}" class="block hover:text-gray-700 hover:bg-gray-200 rounded py-2 text-gray-500 font-bold uppercase">
+                        {{ $link['text'] }}
                     </a>
                 </li>
+                @endforeach
                 <li class="py-2">
                     <a href="{{ route('login') }}" class="block hover:text-gray-700 hover:bg-gray-200 rounded py-2 text-gray-500 font-bold uppercase">
                         Login
