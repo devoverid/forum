@@ -5,8 +5,8 @@
 ])
 
 @section('content')
-    <div class="w-full bg-gray-100 p-20 min-h-full"> 
-        <div class="grid grid-cols-4 gap-4">       
+    <div class="w-full bg-gray-100 p-4 lg:p-20 min-h-full"> 
+        <div class="grid sm:grid-cols-12 md:grid-cols-2 lg:grid-cols-4 gap-4">       
             @foreach ($owners as $owner)
                 @php $owner = (object) $owner; @endphp
                     <div class="rounded overflow-hidden shadow-xl bg-white relative">

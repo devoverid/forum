@@ -94,5 +94,11 @@
         "avatar"        : "https://scontent.fsub5-1.fna.fbcdn.net/v/t1.0-9/p960x960/55861200_428556381020343_8948069636818075648_o.jpg?_nc_cat=102&_nc_sid=85a577&_nc_eui2=AeHDCbe1H5zaLqVuoiIHRHTA5WXNeEtxMs3lZc14S3Eyze18IYUNWWQf6HkK52lNKQ1wgF5VIhoO-VPRW7JA6kKE&_nc_ohc=rEFwqInMdmYAX8fJUjO&_nc_ht=scontent.fsub5-1.fna&_nc_tp=6&oh=0b4c7d54fbdb6487c960b12dcd6b9a9f&oe=5EEE4804",
         "description"   : null,
         "skills"        : ["Developer"]
+    },
+    {
+        "name"          : "Jan Falih Fadhillah",
+        "avatar"        : "https://scontent.fsub5-2.fna.fbcdn.net/v/t1.0-9/p960x960/94400034_530142407876100_7190499204601479168_o.jpg?_nc_cat=100&_nc_sid=85a577&_nc_eui2=AeFnXIFJtN1pgnLSrryiRvwICgiPYZXH5pIKCI9hlcfmkjWxcMNWgfz644TkuB0E4GLGUpCcDf63i64Vc_VJxtsb&_nc_ohc=eHcK_0NLLR0AX-gjdmd&_nc_ht=scontent.fsub5-2.fna&_nc_tp=6&oh=d92eb4e684aca245f0d382bb279a8119&oe=5EECDA44",
+        "description"   : null,
+        "skills"        : ["Fullstack Developer"]
     }
 ]
