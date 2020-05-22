@@ -76,7 +76,7 @@ GITHUB_CLIENT_URI=
 // facebook client oauth
 FACEBOOK_CLIENT_ID=
 FACEBOOK_CLIENT_SECRET=
-FACEBOOK_CLIENT_URI=http://localhost:8000/auth/facebook/callback
+FACEBOOK_CLIENT_URI=
 ```
 *note : for facebook callback, must be https
 
