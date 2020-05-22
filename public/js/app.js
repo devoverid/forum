@@ -19357,9 +19357,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/viandwi24/code/devover-forum/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/viandwi24/code/devover-forum/resources/scss/app.scss */"./resources/scss/app.scss");
-module.exports = __webpack_require__(/*! /home/viandwi24/code/devover-forum/resources/scss/vendor.scss */"./resources/scss/vendor.scss");
+__webpack_require__(/*! D:\Programmer\Code\Laravel\forum\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\Programmer\Code\Laravel\forum\resources\scss\app.scss */"./resources/scss/app.scss");
+module.exports = __webpack_require__(/*! D:\Programmer\Code\Laravel\forum\resources\scss\vendor.scss */"./resources/scss/vendor.scss");
 
 
 /***/ })

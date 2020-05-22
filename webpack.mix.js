@@ -15,7 +15,7 @@ require('laravel-mix-tailwind');
 
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/scss/app.scss', 'public/css')
-   .sass('resources/scss/vendorp.scss', 'public/css')
+   .sass('resources/scss/vendor.scss', 'public/css')
    .tailwind('./tailwind.config.js');
 
 if (mix.inProduction()) {

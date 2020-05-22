@@ -7,7 +7,7 @@
     <section class="hero">
         <div class="container mx-auto py-32">
             <div class="flex">
-                <div class="w-1/2 px-2">
+                <div class="w-full md:w-1/2 px-2">
                     <h1>FORUM PROGRAMMER INDONESIA</h1>
                     <p class="text-gray-600 font-thin">Mau selesain error tapi gabisa bahasa inggris? Cari disini aja! Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                     <div class="form-inline flex mt-4">
@@ -16,7 +16,7 @@
                         <x-button color="primary" type="button">Cari</x-button>
                     </div>
                 </div>
-                <div class="w-1/2 px-2">
+                <div class="hidden md:block md:w-1/2 px-2">
                     <svg class="bg inline-block"  viewBox="0 0 1018 709" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path opacity="0.1" d="M590.557 114.352C525.837 112.102 464.197 91.212 405.327 68.352C346.457 45.492 288.167 20.162 224.997 8.10197C184.367 0.311966 137.907 -0.788034 105.167 20.992C73.6666 41.992 63.4866 78.142 58.0066 111.712C53.8966 136.982 51.4666 163.562 62.7566 187.212C70.5866 203.632 84.4966 217.432 94.1166 233.162C127.577 287.882 103.927 355.362 67.6566 408.792C50.6566 433.852 30.9166 457.792 17.7866 484.452C4.65664 511.112 -1.41336 541.702 10.0666 568.922C21.4566 595.922 48.5866 616.162 77.9666 630.412C137.657 659.352 207.967 667.642 276.587 672.332C428.407 682.722 581.047 678.222 733.267 673.722C789.607 672.052 846.187 670.362 901.607 661.652C932.387 656.812 964.167 649.132 986.507 630.652C1014.87 607.122 1021.9 567.272 1002.9 537.772C971.017 488.282 882.897 475.982 860.587 422.872C848.317 393.642 860.917 361.072 878.737 333.962C916.977 275.792 981.067 224.772 984.447 158.282C986.767 112.622 955.957 66.892 908.317 45.282C858.377 22.632 789.137 25.482 752.317 62.972C714.357 101.482 647.697 116.332 590.557 114.352Z" fill="#6C63FF"/>
                         <g opacity="0.1">
@@ -104,20 +104,72 @@
     </section>
     <section class="latest-thread">
         <div class="container mx-auto">
-            <div class="section-header text-4xl">
-                <h3>Latest Thread</h3>
+            <div class="section-header text-4xl mb-5">
+                <h3 class='mb-2'>Latest Thread</h3>
                 <div class="divider"></div>
             </div>
             <div class="section-body">
-                <div class="discussions">
-                    @foreach($discussions as $discussion) 
-                    <a href="{{ route('discussion.show', [$discussion->slug])  }}">                        
-                        <div class="discussion">
-                            <h3 class="text-xl">{{ $discussion->title }}</h3>
-                            <p class="text-sm text-gray-600">{{ substr(markdown($discussion->content),0, 100) }}</p>
+                <div class="flex">
+                    <div class="row w-full md:w-2/3">
+                        <div class="discussions">
+                            @foreach($discussions as $discussion) 
+                            <a href="{{ route('discussion.show', $discussion->slug) }}" role="link">
+                                        <div onClick="articelRedirect('{{ route('discussion.show', $discussion->slug) }}')" class="flex flex-col md:flex-row items-center cursor-pointer rounded-lg hover:bg-gray-100 px-6 py-4">
+                                            <div class="avatar w-full md:w-auto md:mr-6 flex items-center md:block mb-4 md:mb-0">
+                                                <a href="" class="block mr-3 md:mr-0">
+                                                    <img style="max-height: 50px;" class="rounded-full" src="{{ asset('avatar/' . $discussion->user->avatar) }}">
+                                                </a>
+                                                
+                                                <div class="flex items-center justify-center md:hidden ml-auto mr-3 md:mr-4 bg-grey-panel rounded-xl py-2">
+                                                    <div class="flex items-center justify-center mr-4">
+                                                        <div class="mr-2"><i class="fa fa-comments"></i></div>
+                                                        <span class="text-xs text-grey-dark font-semibold text-left leading-none relative">{{ $discussion->comments()->count() }}</span>
+                                                    </div>
+                                                    <div class="flex items-center justify-center">
+                                                        <div class="mr-2"><i class="fa fa-eye"></i></div>
+                                                        <span class="text-xs text-grey-dark font-semibold text-left leading-none">{{ $discussion->view }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-full md:pr-10 lg:pr-0 lg:w-5/6 md:mb-0">
+                                                <h4 class="mb-3 md:mb-1 text-base">
+                                                    <a href="{{ route('discussion.show', $discussion->slug) }}" class="font-bold transition-all tracking-tight text-gray-600 hover:text-gray-800 link">
+                                                        {{ $discussion->title }}
+                                                    </a>
+                                                </h4>
+                                                <div class="break-words  text-base md:text-sm mb-3 widescreen:pr-10 text-grey-darker phone:leading-loose" style="word-break: break-word;">
+                                                    {{ substr(strip_tags($discussion->content),0,100) }}
+                                                    <span class="is-muted">...</span>
+                                                </div>
+                                                <div class="text-xs mb-2 text-white">
+                                                    @foreach ($discussion->tags as $tag)
+                                                        <a href="{{ route('discussion.index') . '?tag=' . urlencode($tag->name) }}" class="bg-red-400 rounded-lg px-2 py-1">{{ $tag->name }}</a>
+                                                    @endforeach
+                                                </div>
+                                                <div class="text-grey-dark text-xs">
+                                                    <a href="{{ route('profile', [$discussion->user->username]) }}" class="uppercase font-bold text-blue-400 hover:text-blue-500 hover:underline">
+                                                        {{ $discussion->user->name }} 
+                                                    </a> Posted
+                                                    <span>
+                                                        <span class="font-bold text-gray-500"> {{ $discussion->created_at->diffForHumans() }} </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="hidden md:flex md:items-center md:flex-row-reverse text-center md:ml-auto relative pl-4">
+                                                <div class="flex items-center justify-center ml-4">
+                                                    <div class="mr-2"><i class="fa fa-comments"></i></div>
+                                                    <span class="text-xs text-grey-dark font-semibold text-left leading-none relative">{{ $discussion->comments()->count() }}</span>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <div class="mr-2"><i class="fa fa-eye"></i></div>
+                                                    <span class="text-xs text-grey-dark font-semibold text-left leading-none">{{ $discussion->view }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                            @endforeach
                         </div>
-                    </a>
-                    @endforeach
+                    </div>
                 </div>
             </div>
         </div>
