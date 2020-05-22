@@ -1,6 +1,7 @@
 .nav:not(.bg-transparent):not(.bg-laracasts-light) {
     background-image: linear-gradient(90deg,#8796F0,#4261EB);
     background-position: 0 0;
+    transition: all .2s ease-in-out;
 }
 .navbar-link {
     transition: border .2s ease-in;

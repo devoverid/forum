@@ -13,7 +13,7 @@
 @endauth
 
 <!-- navbar -->
-<nav class="section nav lg:z-20 relative px-2 lg:px-10 lg:py-3" style="height: 60px;">
+<nav class="section nav lg:z-20 relative px-2 lg:px-10 lg:py-3 z-30" style="height: 60px;">
     <div class="flex justify-between h-full items-center relative">
 
             <!-- left menu -->

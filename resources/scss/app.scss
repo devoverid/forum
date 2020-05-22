@@ -1,17 +1,3 @@
-/*-----TABLE OF CONTENTS -------
-1. Init TailwindCSS
-2. Variables
-2. Utilities
-3. Components
-    3.1 Button
-    3.2 Navbar
-4. Layouting 
---------------------------------*/
-
-// 1. Init TailwindCSS
-@tailwind base;
-@tailwind components;
-
 /* 1. Utilities  */
 @import "utilities";
 /* 2. Variables  */
@@ -25,13 +11,3 @@
 
 /* 4 Layouting  */
 @import "main";
-
-/* preload */
-.loading img {
-    -webkit-animation:rotate-center .6s ease-in infinite both;
-    animation:rotate-center 1s ease-out infinite both
-}
-@-webkit-keyframes rotate-center{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes rotate-center{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}
-
-
-@tailwind utilities;

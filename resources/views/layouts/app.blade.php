@@ -43,6 +43,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
     @stack('js')
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ mix('js/main.min.js') }}"></script>
     {{-- ^ preload animation, and other script ^ --}}
 </body>

@@ -19,10 +19,11 @@ mix.js('resources/js/app.js', 'public/js')
    .tailwind('./tailwind.config.js');
 
 if (mix.inProduction()) {
-  mix
-   .version();
+   mix.version();
 }
 
-// minify
-mix.minify('public/js/main.js')
+// custom
+mix.scripts([
+   'resources/js/main.js'
+], 'public/js/main.min.js');
 mix.styles([ 'public/css/main.css' ], 'public/css/main.min.css');
