@@ -145,12 +145,12 @@
                             </form>
                         </div>
                     @else
-                        <div id="to-reply" class="block bg-red-300 p-3 text-center text-white mt-4 mx-10">
+                        <div id="to-reply" class="block bg-red-300 p-3 text-center text-white mt-4 lg:mx-10 mx-0">
                             You must login to reply this discussion.
                         </div>      
                     @endauth
                 @else
-                    <div id="to-reply" class="block bg-indigo-300 p-3 text-center text-white mt-4 mx-10">
+                    <div id="to-reply" class="block bg-indigo-300 p-3 text-center text-white mt-4 lg:mx-10 mx-0">
                         You cannt reply this discussion because authoer set discussion to solved.
                     </div>
                 @endif

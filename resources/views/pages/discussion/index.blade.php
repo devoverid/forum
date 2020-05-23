@@ -31,20 +31,20 @@
                                     </div>
                                 </div>
                                 <div class="flex items-center md:px-4">
-                                    <button class="forum-excerpt-toggle">
+                                    <button id="forumToggleSimple" class="px-2 py-2 bg-gray-100">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="mx-2">
-                                            <g fill="#78909C" fill-rule="evenodd" class="forum-excerpt-toggle-lines">
-                                                <rect width="15" height="6" rx="2" class="forum-excerpt-toggle-line"></rect>
-                                                <rect width="15" height="6" y="9" rx="2" class="forum-excerpt-toggle-line"></rect>
+                                            <g fill="#78909C" fill-rule="evenodd">
+                                                <rect width="15" height="6" rx="2"></rect>
+                                                <rect width="15" height="6" y="9" rx="2"></rect>
                                             </g>
                                         </svg>
                                     </button>
-                                    <button class="forum-excerpt-toggle is-active" disabled="disabled">
+                                    <button id="forumToggleFull" class="px-2 py-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="mx-2">
-                                            <g fill="#78909C" fill-rule="evenodd" class="forum-excerpt-toggle-lines">
-                                                <rect width="15" height="4" rx="2" class="forum-excerpt-toggle-line"></rect>
-                                                <rect width="8" height="4" y="11" rx="2" class="forum-excerpt-toggle-line"></rect>
-                                                <rect width="15" height="4" y="5.5" rx="2" class="forum-excerpt-toggle-line"></rect>
+                                            <g fill="#78909C" fill-rule="evenodd">
+                                                <rect width="15" height="4" rx="2"></rect>
+                                                <rect width="8" height="4" y="11" rx="2"></rect>
+                                                <rect width="15" height="4" y="5.5" rx="2"></rect>
                                             </g>
                                         </svg>
                                     </button>
@@ -95,7 +95,7 @@
                                                         {{ $discussion->title }}
                                                     </a>
                                                 </h4>
-                                                <div class="break-words  text-base md:text-sm mb-3 widescreen:pr-10 text-grey-darker phone:leading-loose" style="word-break: break-word;">
+                                                <div class="discussion-description break-words hidden text-base md:text-sm mb-3 widescreen:pr-10 text-grey-darker phone:leading-loose" style="word-break: break-word;">
                                                     {{ $description }}
                                                     <span class="is-muted">...</span>
                                                 </div>
@@ -147,9 +147,26 @@
         $('#select-tags').on('change', () => {
             window.location.href = "{{ route('discussion.index') }}?tag=" + $('#select-tags').val()
         })
-        function articelRedirect(link)
-        {
+        function articelRedirect(link) {
             location.href = link;
         }
+        $('#forumToggleSimple').on("click", toggleDiscussion);
+        $('#forumToggleFull').on("click", toggleDiscussion);
+        function toggleDiscussion() {
+            let elf = $('#forumToggleFull');
+            let els = $('#forumToggleSimple');
+            if (els.hasClass('bg-gray-100')) {
+                els.removeClass('bg-gray-100');
+                elf.addClass('bg-gray-100');
+                $('.discussion-description').removeClass('hidden');
+            } else {
+                els.addClass('bg-gray-100')
+                elf.removeClass('bg-gray-100');
+                $('.discussion-description').addClass('hidden');
+            }
+        }
     </script>
+@endpush
+
+@push('css')
 @endpush

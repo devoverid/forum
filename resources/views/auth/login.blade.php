@@ -16,7 +16,10 @@
                     Pemrogaman IT.
                 </p>
                 <a href="{{ route('discussion.index') }}" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                    <span>Discussion</span>
+                    <span>Browse Discussion</span>
+                </a>
+                <a href="{{ route('owner') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                    <span>Devover Owner</span>
                 </a>
             </div>
 

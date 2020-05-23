@@ -1,9 +1,9 @@
 <div class="forum-sidebar hidden lg:block flex-none border-r border-solid pr-10" style="border-color: rgb(239, 239, 239);">
     <div class="sticky">
-        <a href="{{ route('discussion.create') }}" class="btn btn-blue rounded">
+        <a href="{{ route('discussion.create') }}" class="btn btn-blue rounded py-4 px-8 block font-semibold">
             New Discussion
         </a>
-        <ul class="pt-2 mt-10 mobile:hidden">
+        <ul class="pt-2 mt-6 mobile:hidden">
             @auth
                 <li class="mt-4 block">
                     <a href="{{ route('discussion.index') . '?filter=me' }}" class="text-grey-dark text-sm mb-1 hover:text-indigo-600 hover:bg-gray-100 rounded py-2 px-3 {{ (request()->get('filter', null) == 'me') ? 'text-indigo-600 font-bold ' : '' }}">
