@@ -163,7 +163,7 @@
                 <div class="forum-secondary-sidebar sticky">
                     <div class="block text-right w-auto ml-10" style="padding-top: -1.2rem;">
                         
-                        @auth
+                        @if(auth()->check() && auth()->user()->id == $discussion->user_id)
                             <div class="block mb-2">
                                 <a href="{{ route('discussion.edit', [$discussion->slug]) }}" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-sm block w-full items-center mr-2 text-center">
                                     Edit
@@ -181,7 +181,7 @@
                                     </a>
                                 @endif
                             </div>
-                        @endauth
+                        @endif
 
                         <button id="btn-to-reply" onclick="$('html, body').animate({ scrollTop: $('#to-reply').offset().top }, 1000);" class="btn btn-blue rounded w-full block">
                             Reply

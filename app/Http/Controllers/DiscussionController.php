@@ -59,7 +59,7 @@ class DiscussionController extends Controller
         return view('pages.discussion.index', compact('discussions', 'tags'));
     }
 
-    public function handleFilter($filter, $discussions) 
+    private function handleFilter($filter, $discussions) 
     {
 
         // filter by this week

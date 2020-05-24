@@ -15,11 +15,12 @@ class CreateDiscussionTable extends Migration
     {
         Schema::create('discussions', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();            
+            $table->bigInteger('user_id')->unsigned();
             $table->string('slug');
             $table->string('title');
             $table->longText('content');
             $table->bigInteger('view')->default(0);
+            $table->bigInteger('best_answer')->unsigned()->nullable();
 
             $table->timestamp('solved_at')->nullable();
             $table->timestamps();
