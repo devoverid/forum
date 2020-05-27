@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Discussion;
 use App\Models\Tag;
 use Carbon\Carbon;
@@ -250,5 +251,36 @@ class DiscussionController extends Controller
 
         // return
         return redirect()->route('discussion.index');
+    }
+
+
+    /**
+     * Set Best Answer Discussion
+     */
+    public function best_answer_set($discussion, Comment $comment)
+    {
+        $discussion = Discussion::whereSlug($discussion)->first();
+        
+        // 
+        if (!$discussion) return abort(404);
+
+        // 
+        $update = $discussion->update(['best_answer' => $comment->id]);
+        return redirect()->route('discussion.show', [$discussion->slug]);
+    }
+
+    /**
+     * Delete Best Answer Discussion
+     */
+    public function best_answer_delete($discussion)
+    {
+        $discussion = Discussion::whereSlug($discussion)->first();
+        
+        // 
+        if (!$discussion) return abort(404);
+
+        //
+        $update = $discussion->update(['best_answer' => null]);
+        return redirect()->route('discussion.show', [$discussion->slug]);
     }
 }

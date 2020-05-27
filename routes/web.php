@@ -1,11 +1,8 @@
 <?php
 
-use App\Models\Discussion;
-use HTMLMin\HTMLMin\Facades\HTMLMin;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +15,21 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
+/** pages */
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('owner', 'OwnerController@index')->name('owner');
 
+
+/** discussion */
 Route::resource('discussion', 'DiscussionController');
+Route::put('discussion/best-answer/{discussion}/{comment}', 'DiscussionController@best_answer_set')->name('discussion.best_answer');
+Route::delete('discussion/best-answer/{discussion}', 'DiscussionController@best_answer_delete')->name('discussion.best_answer.delete');
+
+
+/** comment */
 Route::post('comment/{type}/{slug}', 'CommentController@comment')->name('comment');
 Route::delete('comment/{comment}', 'CommentController@delete')->name('comment.delete');
 
-Route::get('owner', 'OwnerController@index')->name('owner');
 
 /** avatar image from storage */
 Route::get('avatar/{name}', function ($name) {
@@ -36,10 +41,12 @@ Route::get('avatar/{name}', function ($name) {
     return $response;
 });
 
+
 /** profile */
 Route::get('/@{username}', 'ProfileController@index')->name('profile');
 Route::get('/setting', 'SettingController@index')->name('setting');
 Route::post('/setting', 'SettingController@update')->name('setting.update');
+
 
 /** auth */
 Auth::routes(['verify' => true]);

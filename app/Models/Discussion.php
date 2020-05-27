@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Discussion extends Model
 {
-    protected $fillable = [ 'user_id', 'title', 'content', 'slug', 'view', 'solved_at' ];
+    protected $fillable = [
+        'user_id', 'title', 'content', 
+        'slug', 'view', 'solved_at', 'best_answer'
+    ];
 
     public function user()
     {
@@ -22,5 +25,10 @@ class Discussion extends Model
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable')->orderBy('created_at', 'ASC');
+    }
+
+    public function comment_best_answer()
+    {
+        return $this->belongsTo(Comment::class, 'best_answer', 'id');
     }
 }

@@ -28,6 +28,10 @@ class CreateDiscussionTable extends Migration
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->foreign('best_answer')
+                ->references('id')->on('comments')
+                ->onUpdate('cascade')->onDelete('set null');
         });
     }
 

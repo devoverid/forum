@@ -45,7 +45,7 @@
                         </nav>
                     </div>
                     @if (count($activities) == 0)
-                        <div class="text-center">
+                        <div class="text-center mt-4">
                             No Activity
                         </div>
                     @else
