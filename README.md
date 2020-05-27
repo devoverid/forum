@@ -33,8 +33,11 @@ a Forum Website based Laravel with TailwindCss, created by <a href="https://gith
 - [x] Migrate to scss
 - [ ] Re-design Homepage
 - [ ] Re-design Component
-- [ ] Completing Owners Pages
+- [x] Completing Owners Pages
 - [ ] Error Page
+- [x] Set / Unset Best Answer Discussion
+- [ ] Re-design Discussion Comment
+- [ ] Re-design Discussion Create Page
 
 
 ## Install
