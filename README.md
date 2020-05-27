@@ -38,6 +38,7 @@ a Forum Website based Laravel with TailwindCss, created by <a href="https://gith
 - [x] Set / Unset Best Answer Discussion
 - [ ] Re-design Discussion Comment
 - [ ] Re-design Discussion Create Page
+- [ ] Discussion Auth Guard
 
 
 ## Install
