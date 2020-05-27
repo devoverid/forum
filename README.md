@@ -101,8 +101,9 @@ php artisan serve
 
 ## Thanks For
 - Allah SWT
-- <a href="devover.id">Devover</a>
-- <a href="github.com/zuramai">Ahmad Saugi</a>
+- <a href="https://devover.id">Devover</a>
+- <a href="https://github.com/rezkym">Rezky Maulana</a>
+- <a href="https://github.com/zuramai">Ahmad Saugi</a>
 - Everyone whosupports me 
 
 ## Contributing
