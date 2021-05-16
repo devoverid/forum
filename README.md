@@ -106,7 +106,7 @@ You can follow the contributing guide listed [here](./CONTRIBUTING.md)
 
 ## License
 
-Devover Forum is open-sourced software licensed under the MIT license.
+Devover Forum is open-sourced software licensed under the [MIT license](./LICENSE.md).
 
 ---
 
