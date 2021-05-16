@@ -91,7 +91,7 @@ FACEBOOK_CLIENT_URI=
 ```bash
 php artisan key:generate
 php artisan migrate:fresh
-php artisan db:seed --class=TagSeeder
+php artisan db:seed
 ```
 
 4. **Run A Web**
