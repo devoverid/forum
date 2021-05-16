@@ -80,12 +80,11 @@ GITHUB_CLIENT_SECRET=
 GITHUB_CLIENT_URI=
 
 # facebook client oauth
+# facebook callback require SSL protocol.
 FACEBOOK_CLIENT_ID=
 FACEBOOK_CLIENT_SECRET=
 FACEBOOK_CLIENT_URI=
 ```
-
-\*note : for facebook callback, must be https
 
 3. **Prepare a website**
 
