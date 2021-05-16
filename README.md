@@ -34,7 +34,8 @@ Devover Forum is a laravel-based forum website with TailwindCSS.
     -   [x] Migrate to scss
     -   [x] Set / Unset Best Answer Discussion
 - *V2*
-    -   [ ] Upgrade Laravel 8
+    -   [x] Upgrade Laravel 8
+    -   [x] Adding Docker for easy development (with laravel sail)
     -   [ ] Re-design Homepage
     -   [ ] Re-design Component
     -   [ ] Re-design Discussion Comment
@@ -44,65 +45,8 @@ Devover Forum is a laravel-based forum website with TailwindCSS.
     -   [ ] Implement Laravel Modules
     -   [ ] Implement Unit Testing
 
-## Install
-
-1. **Clone Repository**
-
-```bash
-git clone https://github.com/devoverid/forum
-cd forum
-composer install
-npm install
-copy .env.example .env
-
-# for dev :
-npm install && npm run dev
-```
-
-2. **Open `.env` and change configuration database**
-
-```env
-# database configuration
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=root
-DB_PASSWORD=
-
-# email configuration - verify user register
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME=null
-MAIL_PASSWORD=null
-MAIL_ENCRYPTION=null
-MAIL_FROM_ADDRESS=null
-MAIL_FROM_NAME="${APP_NAME}"
-
-# github client oauth
-GITHUB_CLIENT_ID=
-GITHUB_CLIENT_SECRET=
-GITHUB_CLIENT_URI=
-
-# facebook client oauth
-# facebook callback require SSL protocol.
-FACEBOOK_CLIENT_ID=
-FACEBOOK_CLIENT_SECRET=
-FACEBOOK_CLIENT_URI=
-```
-
-3. **Prepare a website**
-
-```bash
-php artisan key:generate
-php artisan migrate:fresh
-php artisan db:seed
-```
-
-4. **Run A Web**
-
-```bash
-php artisan serve
-```
+## Development Guide
+You can follow step by step for prepare the development guide in [here](./DEVELOPMENT.md)
 
 ## Contributors
 <a href="https://github.com/devoverid/forum/graphs/contributors">
@@ -110,7 +54,6 @@ php artisan serve
 </a>
 
 ## How to contribute
-
 You can follow the contributing guide listed [here](./CONTRIBUTING.md)
 
 ## Donate
@@ -120,7 +63,6 @@ You can support the development of this project at :
 - [Ko-fi](https://ko-fi.com/viandwi24)
 
 ## License
-
 Devover Forum is open-sourced software licensed under the [MIT license](./LICENSE.md).
 
 ---
