@@ -1,117 +1,115 @@
-
 $buttons: (
-	'primary': (
-		"color": #eee,
-		"background-color": map-get($theme-colors, 'primary'),
-		"background-color-hover": #1169d6,
-		"box-shadow": 1px 3px 8px rgba(48, 128, 227, .4),
-		"box-shadow-hover": 1px 3px 8px rgba(48, 128, 227, .7),
-	),
-	'secondary': (
-		"color": #eee,
-		"background-color": #7f848a,
-		"background-color-hover": #63666b,
-		"box-shadow": 1px 3px 8px rgba(100, 100, 100, .4),
-		"box-shadow-hover": 1px 3px 8px rgba(100, 100, 100, .7),
-	),
-	'success': (
-		"color": #eee,
-		"background-color": #10ac84,
-		"background-color-hover": #0b9270,
-		"box-shadow": 1px 3px 8px rgba(11, 148, 114, .4),
-		"box-shadow-hover": 1px 3px 8px rgba(14, 170, 131, 0.7),
-	),
-	'danger': (
-		"color": #eee,
-		"background-color": #e03f3f,
-		"background-color-hover": #c73535,
-		"box-shadow": 1px 3px 8px rgba(199, 47, 47,.4),
-		"box-shadow-hover": 1px 3px 8px rgba(199, 47, 47, .7),
-	),
-	'warning': (
-		"color": #eee,
-		"background-color": #ff9f43,
-		"background-color-hover": #ec9039,
-		"box-shadow": 1px 3px 8px rgba(230, 131, 40, 0.4),
-		"box-shadow-hover": 1px 3px 8px rgba(230, 131, 40, 0.7),
-	),
-	'info': (
-		"color": #eee,
-		"background-color": #0abde3,
-		"background-color-hover": #09afd4,
-		"box-shadow": 1px 3px 8px rgba(14, 166, 201, .4),
-		"box-shadow-hover": 1px 3px 8px rgba(14, 166, 201, .7),
-	),
-	'dark': (
-		"color": #eee,
-		"background-color": #222f3e,
-		"background-color-hover": #1a2430,
-		"box-shadow": 1px 3px 8px rgba(34, 47, 62,.4),
-		"box-shadow-hover": 1px 3px 8px rgba(34, 47, 62,.9),
-	),
-	'light': (
-		"color": #555,
-		"background-color": #efefef,
-		"background-color-hover": #dedede,
-		"box-shadow": 1px 3px 8px rgba(220, 220, 220,.4),
-		"box-shadow-hover": 1px 3px 8px rgba(220, 220, 220,.7),
-	),
-	'transparent': (
-		"color": #222,
-		"background-color": transparent,
-		"background-color-hover": transparent,
-		"box-shadow": none,
-		"box-shadow-hover": none,
-	)
+    "primary": (
+        "color": #eee,
+        "background-color": map-get($theme-colors, "primary"),
+        "background-color-hover": #1169d6,
+        "box-shadow": 1px 3px 8px rgba(48, 128, 227, 0.4),
+        "box-shadow-hover": 1px 3px 8px rgba(48, 128, 227, 0.7)
+    ),
+    "secondary": (
+        "color": #eee,
+        "background-color": #7f848a,
+        "background-color-hover": #63666b,
+        "box-shadow": 1px 3px 8px rgba(100, 100, 100, 0.4),
+        "box-shadow-hover": 1px 3px 8px rgba(100, 100, 100, 0.7)
+    ),
+    "success": (
+        "color": #eee,
+        "background-color": #10ac84,
+        "background-color-hover": #0b9270,
+        "box-shadow": 1px 3px 8px rgba(11, 148, 114, 0.4),
+        "box-shadow-hover": 1px 3px 8px rgba(14, 170, 131, 0.7)
+    ),
+    "danger": (
+        "color": #eee,
+        "background-color": #e03f3f,
+        "background-color-hover": #c73535,
+        "box-shadow": 1px 3px 8px rgba(199, 47, 47, 0.4),
+        "box-shadow-hover": 1px 3px 8px rgba(199, 47, 47, 0.7)
+    ),
+    "warning": (
+        "color": #eee,
+        "background-color": #ff9f43,
+        "background-color-hover": #ec9039,
+        "box-shadow": 1px 3px 8px rgba(230, 131, 40, 0.4),
+        "box-shadow-hover": 1px 3px 8px rgba(230, 131, 40, 0.7)
+    ),
+    "info": (
+        "color": #eee,
+        "background-color": #0abde3,
+        "background-color-hover": #09afd4,
+        "box-shadow": 1px 3px 8px rgba(14, 166, 201, 0.4),
+        "box-shadow-hover": 1px 3px 8px rgba(14, 166, 201, 0.7)
+    ),
+    "dark": (
+        "color": #eee,
+        "background-color": #222f3e,
+        "background-color-hover": #1a2430,
+        "box-shadow": 1px 3px 8px rgba(34, 47, 62, 0.4),
+        "box-shadow-hover": 1px 3px 8px rgba(34, 47, 62, 0.9)
+    ),
+    "light": (
+        "color": #555,
+        "background-color": #efefef,
+        "background-color-hover": #dedede,
+        "box-shadow": 1px 3px 8px rgba(220, 220, 220, 0.4),
+        "box-shadow-hover": 1px 3px 8px rgba(220, 220, 220, 0.7)
+    ),
+    "transparent": (
+        "color": #222,
+        "background-color": transparent,
+        "background-color-hover": transparent,
+        "box-shadow": none,
+        "box-shadow-hover": none
+    )
 );
 
 $outline-buttons: (
-	"primary": (
-		"border": map-get($theme-colors, 'primary'),
-		"color": map-get($theme-colors, 'primary'),
-		"hover-bg": map-get($theme-colors, 'primary'),
-	),
-	"secondary": (
-		"border": map-get($theme-colors, 'secondary'),
-		"color": map-get($theme-colors, 'secondary'),
-		"hover-bg": map-get($theme-colors, 'secondary'),
-	),
-	"success": (
-		"border": map-get($theme-colors, 'success'),
-		"color": map-get($theme-colors, 'success'),
-		"hover-bg": map-get($theme-colors, 'success'),
-	),
-	"danger": (
-		"border": map-get($theme-colors, 'danger'),
-		"color": map-get($theme-colors, 'danger'),
-		"hover-bg": map-get($theme-colors, 'danger'),
-	),
-	"warning": (
-		"border": map-get($theme-colors, 'warning'),
-		"color": map-get($theme-colors, 'warning'),
-		"hover-bg": map-get($theme-colors, 'warning'),
-	),
-	"info": (
-		"border": map-get($theme-colors, 'info'),
-		"color": map-get($theme-colors, 'info'),
-		"hover-bg": map-get($theme-colors, 'info'),
-	),
-	"dark": (
-		"border": map-get($theme-colors, 'dark'),
-		"color": map-get($theme-colors, 'dark'),
-		"hover-bg": map-get($theme-colors, 'dark'),
-	),
-	"light": (
-		"border": map-get($theme-colors, 'light'),
-		"color": map-get($theme-colors, 'light'),
-		"hover-bg": map-get($theme-colors, 'light'),
-	),
+    "primary": (
+        "border": map-get($theme-colors, "primary"),
+        "color": map-get($theme-colors, "primary"),
+        "hover-bg": map-get($theme-colors, "primary")
+    ),
+    "secondary": (
+        "border": map-get($theme-colors, "secondary"),
+        "color": map-get($theme-colors, "secondary"),
+        "hover-bg": map-get($theme-colors, "secondary")
+    ),
+    "success": (
+        "border": map-get($theme-colors, "success"),
+        "color": map-get($theme-colors, "success"),
+        "hover-bg": map-get($theme-colors, "success")
+    ),
+    "danger": (
+        "border": map-get($theme-colors, "danger"),
+        "color": map-get($theme-colors, "danger"),
+        "hover-bg": map-get($theme-colors, "danger")
+    ),
+    "warning": (
+        "border": map-get($theme-colors, "warning"),
+        "color": map-get($theme-colors, "warning"),
+        "hover-bg": map-get($theme-colors, "warning")
+    ),
+    "info": (
+        "border": map-get($theme-colors, "info"),
+        "color": map-get($theme-colors, "info"),
+        "hover-bg": map-get($theme-colors, "info")
+    ),
+    "dark": (
+        "border": map-get($theme-colors, "dark"),
+        "color": map-get($theme-colors, "dark"),
+        "hover-bg": map-get($theme-colors, "dark")
+    ),
+    "light": (
+        "border": map-get($theme-colors, "light"),
+        "color": map-get($theme-colors, "light"),
+        "hover-bg": map-get($theme-colors, "light")
+    )
 );
-
 
 .btn {
     @apply px-3 py-2 rounded-sm transition duration-200 font-medium text-sm;
-    
+
     &.btn-sm {
         @apply text-xs px-2 py-2;
     }
@@ -121,10 +119,11 @@ $outline-buttons: (
 }
 @each $color, $map in $buttons {
     .btn-#{$color} {
-        background: map-get($map, 'background-color'); 
+        background: map-get($map, "background-color");
         box-shadow: map-get($map, "box-shadow");
-        &:active:hover, &:hover:not([disabled]) {
-            background: map-get($map, "background-color-hover"); 
+        &:active:hover,
+        &:hover:not([disabled]) {
+            background: map-get($map, "background-color-hover");
             box-shadow: map-get($map, "box-shadow-hover");
         }
         color: map-get($map, "color");
@@ -134,29 +133,41 @@ $outline-buttons: (
     .btn-outline-#{$color} {
         border: 1px solid map-get($map, "border");
         color: map-get($map, "color");
-        &:active:hover, &:hover:not([disabled]) {
-            background: map-get($map, "hover-bg"); 
+        &:active:hover,
+        &:hover:not([disabled]) {
+            background: map-get($map, "hover-bg");
             color: #fff;
         }
         color: map-get($map, "color");
     }
 }
 .buttons .btn {
-    @apply mr-3 mb-2
+    @apply mr-3 mb-2;
 }
 button:active {
     outline: none;
     border: none;
 }
 
-a, button:-moz-focusring, [type="button"]:-moz-focusring {outline:0;}
-
-
-// 
-a > i.fa, a > i.far, a > i.fas,
-button > i.fa, button > i.far, button > i.fas {
-    font-size: 1rem;
-    margin-right: .6rem;
+a,
+button:-moz-focusring,
+[type="button"]:-moz-focusring {
+    outline: 0;
 }
-.button-transparent { background: rgba(255, 255, 255, 0.3); }
-.button-transparent:hover { background: rgba(255, 255, 255, 0.5); }
+
+//
+a > i.fa,
+a > i.far,
+a > i.fas,
+button > i.fa,
+button > i.far,
+button > i.fas {
+    font-size: 1rem;
+    margin-right: 0.6rem;
+}
+.button-transparent {
+    background: rgba(255, 255, 255, 0.3);
+}
+.button-transparent:hover {
+    background: rgba(255, 255, 255, 0.5);
+}

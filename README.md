@@ -49,6 +49,7 @@ Devover Forum is a laravel-based forum website with TailwindCSS.
 git clone https://github.com/devoverid/forum
 cd forum
 composer install
+npm install
 copy .env.example .env
 
 # for dev :

@@ -36,7 +36,7 @@
     <section class="footer-section bottom text-center md:text-left py-0">
         <footer class="container mx-auto">
             {{-- <div class="md:flss --}}
-            <div class="py-4 mobile:text-lg" style="border-color: rgba(255,255,255, 0.5)">
+            <div class="py-4 mb-2 mobile:text-lg" style="border-color: rgba(255,255,255, 0.5)">
                 <div class="text-gray-300 text-base md:text-xs text-center">
                     <p class="mb-5 md:mb-2 tracking-normal">
                         © Devover 2020. All rights reserved. <br class="md:hidden" />

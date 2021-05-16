@@ -32,7 +32,7 @@
             </div>
     
             <!-- center menu -->
-            <div class="navbar-links xl:flex-grow relative hidden md:flex md:justify-center text-xs lg:text-sm xl:w-1/2">
+            <div class="navbar-links relative hidden md:flex md:justify-center text-xs lg:text-sm">
                 @foreach ($links as $link)
                     <a href="{{ $link['link'] }}" class="navbar-link text-gray-100 border-b-8 border-transparent hover:border-white m-3 md:px-1 xl:px-0 py-4 pt-6 block uppercase text-transparent-50 font-semibold hover:text-white {{ request()->is( str_replace(url('') . '/', '', $link['link'] ) . '*') ? 'active font-bold' : '' }}">
                         {{ $link['text'] }}
@@ -53,7 +53,7 @@
                         <i class="fa fa-bars p-0"></i>
                     </a>
                 @else
-                    <a href="{{ route('register') }}" class="hidden lg:inline-flex md:inline-flex sm:inline-flex text-gray-100 font-semibold mr-4 mt-2 lg:mt-0">
+                    <a href="{{ route('register') }}" class="navbar-link hidden lg:inline-flex md:inline-flex sm:inline-flex text-gray-100 font-semibold border-b-8 border-transparent hover:border-white mr-4 mt-2 py-4 pt-6 lg:mt-0">
                         <span>Register</span>
                     </a>
                     <a href="{{ route('login') }}" class="hidden lg:inline-flex md:inline-flex sm:inline-flex bg-gray-100 text-gray-700 font-bold py-2 px-4 rounded items-center hover:bg-gray-200">
