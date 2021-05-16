@@ -10,7 +10,7 @@
             @foreach ($owners as $owner)
                 @php $owner = (object) $owner; @endphp
                     <div class="rounded overflow-hidden shadow-xl bg-white relative">
-                        <img class="w-full" src="{{ $owner->avatar ? $owner->avatar : "https://ui-avatars.com/api/?name=" . implode("+", explode(" ", $owner->name)) }}" alt="Owner Avatar">
+                        <img class="w-full" src="{{ $owner->avatar ? $owner->avatar : "https://ui-avatars.com/api/?name=" . $owner->name }}" alt="Owner Avatar">
                         <div class="px-6 py-4 mb-15">
                             <div class="font-bold text-xl mb-2">{{ $owner->name }}</div>
                             <p class="text-gray-500 text-base">
