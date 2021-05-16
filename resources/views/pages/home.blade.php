@@ -110,7 +110,7 @@
             </div>
             <div class="section-body">
                 <div class="flex">
-                    <div class="row w-full md:w-2/3">
+                    <div class="row w-full md:w-2/3 mb-20">
                         <div class="discussions">
                             @foreach($discussions as $discussion) 
                             <a href="{{ route('discussion.show', $discussion->slug) }}" role="link">

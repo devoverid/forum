@@ -319,7 +319,7 @@ body {
 }
 
 .hero {
-  min-height: 600px;
+  min-height: 500px;
   height: 70vh;
 }
 
@@ -335,14 +335,16 @@ body {
 
 /* section */
 
-.section, section {
+.section,
+section {
   position: relative;
   padding-left: 20px;
   padding-right: 20px;
 }
 
 @media (min-width: 768px) {
-  .section, section {
+  .section,
+section {
     padding-left: 40px;
     padding-right: 40px;
   }
