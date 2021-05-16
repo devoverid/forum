@@ -1,104 +1,104 @@
 [
     {
-        "name"          : "Ahmad Saugi",
-        "avatar"        : "https://scontent.fcgk1-1.fna.fbcdn.net/v/t1.0-9/p960x960/94120104_2741905005935296_4514988832667467776_o.jpg?_nc_cat=102&_nc_sid=85a577&_nc_eui2=AeGUF8cVqroyWUL-Mpb3N0aYrybxREIzAq6vJvFEQjMCrg0iubmG8oolu9yBG4QRyqA059TApj_tC8QOosTkVeqw&_nc_ohc=RQA7PH2VDBoAX8deLz7&_nc_ht=scontent.fcgk1-1.fna&_nc_tp=6&oh=253f4167ef78f91b78f2880879631888&oe=5EEA96A9",
-        "description"   : null,
-        "skills"        : ["Fullstack Web"]
+        "name": "Ahmad Saugi",
+        "avatar": "",
+        "description": null,
+        "skills": ["Fullstack Web"]
     },
     {
-        "name"          : "Muhammad Fauzan",
-        "avatar"        : "https://scontent.fcgk1-1.fna.fbcdn.net/v/t1.0-9/p960x960/94702648_222186895756278_6539845550844411904_o.jpg?_nc_cat=105&_nc_sid=7aed08&_nc_eui2=AeE90Bpgnz8jXikxKxfUyrVY7Q23DLrOf6_tDbcMus5_r8Bp46-zBUqhh3VyknIJ13dCy2JCRV0DsiKp33yAR-3a&_nc_ohc=kVIeytitN-wAX81LDHA&_nc_ht=scontent.fcgk1-1.fna&_nc_tp=6&oh=ef35d413cd7273efdb4dfc52e04002c5&oe=5EED6894",
-        "description"   : null,
-        "skills"        : ["Fullstack Web"]
+        "name": "Muhammad Fauzan",
+        "avatar": "",
+        "description": null,
+        "skills": ["Fullstack Web"]
     },
     {
-        "name"          : "Mrezkys Rezky",
-        "avatar"        : "https://scontent.fcgk1-1.fna.fbcdn.net/v/t1.0-9/p960x960/94443019_2830770090369561_2906798767460057088_o.jpg?_nc_cat=107&_nc_sid=85a577&_nc_eui2=AeHPZUwM9n9SL8PK8tzOhTWhuHXZkmEQdhi4ddmSYRB2GAM5l6pJOlnLDWhgwoeEs7jKm8eqFTYTjv5fVmhvo4om&_nc_ohc=dne6FbGLzwcAX8_9mkn&_nc_ht=scontent.fcgk1-1.fna&_nc_tp=6&oh=f23de8ddd80e73b3673f68132da28db9&oe=5EEAE7F2",
-        "description"   : null,
-        "skills"        : ["Graphic Designer"]
+        "name": "Mrezkys Rezky",
+        "avatar": "",
+        "description": null,
+        "skills": ["Graphic Designer"]
     },
     {
-        "name"          : "Yudistira Arya",
-        "avatar"        : "https://scontent.fcgk1-1.fna.fbcdn.net/v/t1.0-9/p960x960/96390021_262605901609703_3369416553974988800_o.jpg?_nc_cat=101&_nc_sid=85a577&_nc_eui2=AeGIWNwGW3cS4Nb_Nkh5Cu5ZHGUeqz782eocZR6rPvzZ6onT3OSZodrSZ0fy89GU0bm1W0bKw5s3hqg8al9F6pzC&_nc_ohc=jo0KCJZA_OcAX_rzxHC&_nc_ht=scontent.fcgk1-1.fna&_nc_tp=6&oh=f0681de67f2f31504b459ce184e0a032&oe=5EEC049C",
-        "description"   : null,
-        "skills"        : ["Frontend Web"]
+        "name": "Yudistira Arya",
+        "avatar": "",
+        "description": null,
+        "skills": ["Frontend Web"]
     },
     {
-        "name"          : "Alfian Dwi Nugraha",
-        "avatar"        : "https://i.ibb.co/kQZjJ9x/result.png",
-        "description"   : null,
-        "skills"        : ["Fullstack Web"]
+        "name": "Alfian Dwi Nugraha",
+        "avatar": "https://i.ibb.co/kQZjJ9x/result.png",
+        "description": null,
+        "skills": ["Fullstack Web"]
     },
     {
-        "name"          : "Fery",
-        "avatar"        : "https://scontent.fsub5-1.fna.fbcdn.net/v/t1.0-9/p960x960/94377480_2844456602276997_5725914218499145728_o.jpg?_nc_cat=104&_nc_sid=85a577&_nc_eui2=AeH1qW0GjRiVLWBXgUEhLSVYP-PTMwvRE3Y_49MzC9ETdnl4nu0EFPKFhM4Yr7pCA_5zpxQnHhFIB_xm4uH1bw-T&_nc_ohc=-iC3jdCI50EAX-958SU&_nc_ht=scontent.fsub5-1.fna&_nc_tp=6&oh=8d8b21bc981c6bd33e055f548b59aee2&oe=5EEE16B7",
-        "description"   : null,
-        "skills"        : ["Fullstack Web"]
+        "name": "Fery",
+        "avatar": "",
+        "description": null,
+        "skills": ["Fullstack Web"]
     },
     {
-        "name"          : "Amal Ma`ruf",
-        "avatar"        : "https://scontent.fsub5-2.fna.fbcdn.net/v/t1.0-1/94483495_916728835433430_5746729433901826048_n.jpg?_nc_cat=108&_nc_sid=dbb9e7&_nc_eui2=AeHvdqvQ1hL5Kl4qmfDlFywbxf8XI8Hj-svF_xcjweP6y2R6wOTFrIhCBHHSxVg1XGUf1n7mxcnnsBuJNA4KW1Nc&_nc_ohc=NZLMwlWuZjkAX-FEBc1&_nc_ht=scontent.fsub5-2.fna&oh=8ae0f84467aa36696f572b19f35bfe83&oe=5EED11C8",
-        "description"   : null,
-        "skills"        : ["Web Developer"]
+        "name": "Amal Ma`ruf",
+        "avatar": "",
+        "description": null,
+        "skills": ["Web Developer"]
     },
     {
-        "name"          : "Syauqi Zaidan",
-        "avatar"        : "https://scontent.fsub5-2.fna.fbcdn.net/v/t1.0-1/p100x100/95881973_1550873335088030_3526686891871043584_n.jpg?_nc_cat=101&_nc_sid=dbb9e7&_nc_eui2=AeEoLX6pPK3u2DUEJXvKt7_murH04wcojFS6sfTjByiMVOafGe2Ac7pz-9EiIEMBQxmfYcJtZ_sx2EAWr66eKldo&_nc_ohc=o6usPSiqRX4AX9qDO9s&_nc_ht=scontent.fsub5-2.fna&_nc_tp=6&oh=b395521e38f99b5a052d6a0d9cb635cc&oe=5EEE26AC",
-        "description"   : null,
-        "skills"        : ["Web Developer"]
+        "name": "Syauqi Zaidan",
+        "avatar": "",
+        "description": null,
+        "skills": ["Web Developer"]
     },
     {
-        "name"          : "Aldi Pra Febrian",
-        "avatar"        : "https://scontent.fsub5-1.fna.fbcdn.net/v/t1.0-9/p960x960/94351075_1944628399000536_8678031565311180800_o.jpg?_nc_cat=103&_nc_sid=85a577&_nc_aid=0&_nc_eui2=AeHpgg49HEsIfYK4yt_VPjcBhsjTC5Z4jyqGyNMLlniPKinGwpv4fP8kV3cmQb5AeDhzb_aYGHwmu_Yliw4IVPV_&_nc_ohc=0AJB7wo6GGkAX-Qn8sO&_nc_ht=scontent.fsub5-1.fna&_nc_tp=6&oh=d7c02352ff04853f0e40621330d9bdb3&oe=5EEE12BE",
-        "description"   : null,
-        "skills"        : ["Bot Developer"]
+        "name": "Aldi Pra Febrian",
+        "avatar": "",
+        "description": null,
+        "skills": ["Bot Developer"]
     },
     {
-        "name"          : "Rezky Maulana",
-        "avatar"        : "https://scontent.fsub5-1.fna.fbcdn.net/v/t1.0-1/p960x960/60309601_1042610559459747_7253443621066637312_o.jpg?_nc_cat=107&_nc_sid=dbb9e7&_nc_eui2=AeF2MEYx9id2vESOgu2B4e1K4R5IICCKuWrhHkggIIq5aieHmieYmSnqeFAkoz0-gtPmkIO7QgMrdx1zqcf4FglK&_nc_ohc=OE4pIUdRDJMAX83yOyp&_nc_ht=scontent.fsub5-1.fna&_nc_tp=6&oh=a42280f8cc747996b1e54c09f0418f4c&oe=5EED0F99",
-        "description"   : null,
-        "skills"        : ["Web Developer"]
+        "name": "Rezky Maulana",
+        "avatar": "",
+        "description": null,
+        "skills": ["Web Developer"]
     },
     {
-        "name"          : "Alfy Adinata",
-        "avatar"        : "https://scontent.fsub5-2.fna.fbcdn.net/v/t1.30497-1/c282.0.960.960a/p960x960/84241059_189132118950875_4138507100605120512_n.jpg?_nc_cat=1&_nc_sid=dbb9e7&_nc_eui2=AeFYufHGzovxf17ob4KQ5L4_LYw35eBBIRQtjDfl4EEhFA1ZSokpkgHKeSp5sW7rqQQWMv8ciLkOfBQKtUuXyuEA&_nc_ohc=iOqvZ1pMEPoAX_FDGJ5&_nc_ht=scontent.fsub5-2.fna&oh=4fe6136272f5c53f59888a42b410f2b2&oe=5EEAE45E",
-        "description"   : null,
-        "skills"        : ["Developer"]
+        "name": "Alfy Adinata",
+        "avatar": "",
+        "description": null,
+        "skills": ["Developer"]
     },
     {
-        "name"          : "Virdio Samuel",
-        "avatar"        : "https://scontent.fsub5-2.fna.fbcdn.net/v/t1.0-9/97464879_725736674904075_5918052243365429248_n.jpg?_nc_cat=101&_nc_sid=85a577&_nc_eui2=AeFPjuvJ3Mgvmse2e6Fgx24-eF9Zp0v8Dk94X1mnS_wOT2vwq5dUKUU078dZGax1nWaZb0So_bx5C30bTaCs9aom&_nc_ohc=8_bGw-wsYusAX_ELWZY&_nc_ht=scontent.fsub5-2.fna&oh=e7141996104837517bcc955aca7ba023&oe=5EEDDBC4",
-        "description"   : null,
-        "skills"        : ["Web Developer"]
+        "name": "Virdio Samuel",
+        "avatar": "",
+        "description": null,
+        "skills": ["Web Developer"]
     },
     {
-        "name"          : "Renaldy P",
-        "avatar"        : "https://scontent.fsub5-2.fna.fbcdn.net/v/t1.30497-1/c282.0.960.960a/p960x960/84241059_189132118950875_4138507100605120512_n.jpg?_nc_cat=1&_nc_sid=dbb9e7&_nc_eui2=AeFYufHGzovxf17ob4KQ5L4_LYw35eBBIRQtjDfl4EEhFA1ZSokpkgHKeSp5sW7rqQQWMv8ciLkOfBQKtUuXyuEA&_nc_ohc=iOqvZ1pMEPoAX_FDGJ5&_nc_ht=scontent.fsub5-2.fna&oh=4fe6136272f5c53f59888a42b410f2b2&oe=5EEAE45E",
-        "description"   : null,
-        "skills"        : ["Web Developer"]
+        "name": "Renaldy P",
+        "avatar": "",
+        "description": null,
+        "skills": ["Web Developer"]
     },
     {
-        "name"          : "Fakhri Alauddin",
-        "avatar"        : "https://scontent.fsub5-1.fna.fbcdn.net/v/t1.0-9/p960x960/94831716_2654556141487712_1673723681232125952_o.jpg?_nc_cat=103&_nc_sid=85a577&_nc_eui2=AeFKd6Wn4qSxUcf0N_W1gTYuxbUrJ9pwh1vFtSsn2nCHWwqTHiiL8HotM6CIgLIVw1oloHkytWIjLOiXGlwia0JT&_nc_ohc=UsGFqGningMAX8KQ_fN&_nc_ht=scontent.fsub5-1.fna&_nc_tp=6&oh=1dc777c5924f3a60ef9f8e4ebb55824e&oe=5EEB06C8",
-        "description"   : null,
-        "skills"        : ["Web Developer"]
+        "name": "Fakhri Alauddin",
+        "avatar": "",
+        "description": null,
+        "skills": ["Web Developer"]
     },
     {
-        "name"          : "Michael William Jonathan",
-        "avatar"        : "https://scontent.fsub5-2.fna.fbcdn.net/v/t1.0-9/p960x960/93034199_2749890898463308_3805068006069895168_o.jpg?_nc_cat=109&_nc_sid=7aed08&_nc_eui2=AeEX6Lthl_cyCyyVZJop5HJfNppqdBmUnVE2mmp0GZSdUbJmaY956a-jI5ad-v81uSk6oVohxov_cInD5pe7ZAK3&_nc_ohc=tRN9gOK90b4AX9qMmkL&_nc_ht=scontent.fsub5-2.fna&_nc_tp=6&oh=0f2045f9a4aa605609165a298aa9d1da&oe=5EECB100",
-        "description"   : null,
-        "skills"        : ["Fullstack Developer"]
+        "name": "Michael William Jonathan",
+        "avatar": "",
+        "description": null,
+        "skills": ["Fullstack Developer"]
     },
     {
-        "name"          : "Sharen Alicia",
-        "avatar"        : "https://scontent.fsub5-1.fna.fbcdn.net/v/t1.0-9/p960x960/55861200_428556381020343_8948069636818075648_o.jpg?_nc_cat=102&_nc_sid=85a577&_nc_eui2=AeHDCbe1H5zaLqVuoiIHRHTA5WXNeEtxMs3lZc14S3Eyze18IYUNWWQf6HkK52lNKQ1wgF5VIhoO-VPRW7JA6kKE&_nc_ohc=rEFwqInMdmYAX8fJUjO&_nc_ht=scontent.fsub5-1.fna&_nc_tp=6&oh=0b4c7d54fbdb6487c960b12dcd6b9a9f&oe=5EEE4804",
-        "description"   : null,
-        "skills"        : ["Developer"]
+        "name": "Sharen Alicia",
+        "avatar": "",
+        "description": null,
+        "skills": ["Developer"]
     },
     {
-        "name"          : "Jan Falih Fadhillah",
-        "avatar"        : "https://scontent.fsub5-2.fna.fbcdn.net/v/t1.0-9/p960x960/94400034_530142407876100_7190499204601479168_o.jpg?_nc_cat=100&_nc_sid=85a577&_nc_eui2=AeFnXIFJtN1pgnLSrryiRvwICgiPYZXH5pIKCI9hlcfmkjWxcMNWgfz644TkuB0E4GLGUpCcDf63i64Vc_VJxtsb&_nc_ohc=eHcK_0NLLR0AX-gjdmd&_nc_ht=scontent.fsub5-2.fna&_nc_tp=6&oh=d92eb4e684aca245f0d382bb279a8119&oe=5EECDA44",
-        "description"   : null,
-        "skills"        : ["Fullstack Developer"]
+        "name": "Jan Falih Fadhillah",
+        "avatar": "",
+        "description": null,
+        "skills": ["Fullstack Developer"]
     }
 ]
