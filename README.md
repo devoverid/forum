@@ -7,7 +7,7 @@
 
 ### What is Devover Forum ?
 
-a Forum Website based Laravel with TailwindCss, created by <a href="https://github.com/viandwi24"> Alfian Dwi </a>.
+Devover Forum is a laravel-based forum website with TailwindCSS.
 
 ### Features
 
@@ -94,7 +94,7 @@ php artisan migrate:fresh
 php artisan db:seed --class=TagSeeder
 ```
 
-4.**Run A Web**
+4. **Run A Web**
 
 ```bash
 php artisan serve
