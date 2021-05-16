@@ -19,27 +19,30 @@ Devover Forum is a laravel-based forum website with TailwindCSS.
 -   Etc.
 
 ### To-do List
-
--   [x] Discussion & Comments
--   [x] Delete Discussion Comments
--   [x] Discussion Edit & Delete
--   [x] Discussion Set Solved
--   [x] Owner Pages
--   [x] Profile Setting
--   [x] Login & Register with Github
--   [x] Email Verification
--   [x] Forgot Password
--   [x] Login & Register with Facebook
--   [x] Minify Page
--   [x] Migrate to scss
--   [ ] Re-design Homepage
--   [ ] Re-design Component
--   [x] Completing Owners Pages
--   [ ] Error Page
--   [x] Set / Unset Best Answer Discussion
--   [ ] Re-design Discussion Comment
--   [ ] Re-design Discussion Create Page
--   [ ] Discussion Auth Guard
+- *V1*
+    -   [x] Discussion & Comments
+    -   [x] Delete Discussion Comments
+    -   [x] Discussion Edit & Delete
+    -   [x] Discussion Set Solved
+    -   [x] Owner Pages
+    -   [x] Profile Setting
+    -   [x] Login & Register with Github
+    -   [x] Email Verification
+    -   [x] Forgot Password
+    -   [x] Login & Register with Facebook
+    -   [x] Minify Page
+    -   [x] Migrate to scss
+    -   [x] Set / Unset Best Answer Discussion
+- *V2*
+    -   [ ] Upgrade Laravel 8
+    -   [ ] Re-design Homepage
+    -   [ ] Re-design Component
+    -   [ ] Re-design Discussion Comment
+    -   [ ] Re-design Discussion Create Page
+    -   [ ] Re-design Completing Owners Pages
+    -   [ ] Re-design Error Page
+    -   [ ] Implement Laravel Modules
+    -   [ ] Implement Unit Testing
 
 ## Install
 
@@ -101,9 +104,20 @@ php artisan db:seed
 php artisan serve
 ```
 
-## Contributing
+## Contributors
+<a href="https://github.com/devoverid/forum/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=devoverid/forum"/>
+</a>
+
+## How to contribute
 
 You can follow the contributing guide listed [here](./CONTRIBUTING.md)
+
+## Donate
+You can support the development of this project at :
+- [Saweria](https://saweria.co/viandwi24)
+- [Trakteer](https://trakteer.id/viandwi24)
+- [Ko-fi](https://ko-fi.com/viandwi24)
 
 ## License
 

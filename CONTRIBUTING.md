@@ -13,13 +13,18 @@ Example :
 ```bash
 git checkout -b bug/comment
 ```
+```bash
+git checkout -b features/snippet-tools
+```
 
-Step 5. Commit your changes\
-Step 6. Push your changes the the feature/bug branch\
+Step 5. Commit your changes
+```bash
+git commit -am 'Add some feature'
+```
+
+Step 6. Push your changes the the feature/bug branch
+```bash
+git push origin my-new-feature
+```
+
 Step 7. Create new pull request from your forked repo branch
-
-## Additional
-
-1. Don't forget to use semantic commit usage when commit your changes or the changes will be rejected.
-
-<!-- 2. Any changes need to be passing CI build -->
