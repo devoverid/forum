@@ -1,5 +1,10 @@
+.nav {
+    &.sticky-nav {
+        position: sticky;
+        top: 0;
+    }
+}
 .nav:not(.bg-transparent):not(.bg-laracasts-light) {
-    background: #6875f5;
     background-position: 0 0;
     transition: all 0.2s ease-in-out;
 }

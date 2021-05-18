@@ -24,3 +24,13 @@
 .button-transparent:hover {
     background: rgba(255, 255, 255, 0.5);
 }
+
+@each $key, $hex in $theme-colors {
+    .bg-#{$key} {
+        background-color: $hex;
+    }
+    .text-#{$key} {
+        color: $hex;
+    }
+    
+}
