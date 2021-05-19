@@ -9,16 +9,15 @@
             <div class="flex h-full justify-center items-center flex-col text-center">
                 <div>
                     <img src="{{ asset('assets/images/logo_white.svg') }}" class="h-24 mx-auto mb-8">
-                    <h5 class='text-4xl text-white'>KOMUNITAS IT GEN Z INDONESIA</h5>
-                    <p class='text-white font-light opacity-75'>Komunitas yang berisikan anak² muda yang ber-antusias
-                        seputar Teknologi dan Informasi.</p>
+                    <h5 class='text-4xl text-white'>INDONESIA'S IT GEN-Z COMMUNITY</h5>
+                    <p class='text-white font-light opacity-75'>A place where the youth are being enthusiastic in Information and Technology.</p>
                     <div class="form-inline flex mt-4">
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="latest-thread py-32">
+    <section class="latest-thread py-24">
         <div class="container mx-auto">
             <div class="section-header text-4xl mb-5">
                 <h3 class='mb-2'>Latest Thread</h3>

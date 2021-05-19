@@ -270,7 +270,7 @@ button > i.fas {
 }
 
 .navbar-link.active {
-  color: white;
+  color: #5170F1;
   border-color: white !important;
 }
 

@@ -25,7 +25,7 @@
 
             <!-- alert -->
             @if ($errors->any())
-            <div class="bg-red-300 p-4 mt-4 text-white">
+            <div class="bg-red-500 p-4 mt-4 text-white">
                 <b>Error,</b> {{ $errors->first() }}
             </div>                
             @endif

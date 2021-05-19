@@ -61,7 +61,7 @@
                             <!-- list -->                      
                             <div class="post-list">
                                 @if (count($discussions) == 0)
-                                <div class="block bg-red-300 p-3 text-center text-white mx-4">
+                                <div class="block bg-blue-500 opacity-75 p-3 text-center text-white mx-4">
                                     No Discussion Found.
                                 </div>                                    
                                 @endif
