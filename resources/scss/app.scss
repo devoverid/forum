@@ -1,5 +1,4 @@
-/* 1. Utilities  */
-@import "utilities";
+
 /* 2. Variables  */
 @import "variables";
 
@@ -11,3 +10,9 @@
 
 /* 4 Layouting  */
 @import "main";
+
+/* 4 Pages  */
+@import "pages/home";
+
+/* 4. Utilities  */
+@import "utilities";

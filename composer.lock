@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "87e4aae12ecda4a783b555eb74d7b3a8",
+    "content-hash": "945dab189660f985ca33b919cd52d517",
     "packages": [
         {
             "name": "arcanedev/laravel-markdown",
@@ -7922,7 +7922,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3.0"
+        "php": "^7.3.0|^8.0.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"

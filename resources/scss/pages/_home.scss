@@ -1,0 +1,8 @@
+section {
+    &.hero {
+        background: url(/assets/images/Background.svg), linear-gradient(to right, map-get($theme-colors, 'primary'), map-get($theme-colors, 'primary'));
+        background-repeat: no-repeat;
+        background-position: bottom;
+        height: max(70vh, 600px);
+    }
+}

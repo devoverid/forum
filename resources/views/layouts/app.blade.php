@@ -19,9 +19,9 @@
 </head>
 <body>
     <!-- loading -->
-    <div class="loading w-full fixed h-full bg-gray-300 flex justify-center items-center z-50">
+    {{-- <div class="loading w-full fixed h-full bg-gray-300 flex justify-center items-center z-50">
         <img src="{{ asset('assets/images/logo_white.png') }}" style="height: 100px;">
-    </div>
+    </div> --}}
 
     <!-- app -->
     <div id="app">
