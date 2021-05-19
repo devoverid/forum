@@ -21,7 +21,7 @@
                                 <div class="flex flex-1">
                                     <div>
                                         <div class="select-wrap">
-                                            <select id="select-tags" class="text-grey-dark text-sm bg-grey-panel rounded-full px-8 cursor-pointer py-2">
+                                            <select id="select-tags" class="border border-gray-200 text-grey-dark text-sm bg-grey-panel rounded-full px-8 cursor-pointer py-2">
                                                 <option value="" {{ request()->get('tag', null) == null ? '' : 'selected' }}>All</option>
                                                 @foreach ($tags as $tag)
                                                     <option value="{{ urlencode($tag->name) }}" {{ request()->get('tag', null) == $tag->name ? 'selected' : '' }}>{{ $tag->name }}</option>
@@ -51,9 +51,9 @@
                                 </div>
 
                                 <form action="" autocomplete="off" class="search-form hidden md:block md:w-52">
-                                    <div class="bg-gray-200 hover:bg-gray-300 rounded-full relative">
+                                    <div class="border border-gray-200 rounded-full relative">
                                         <i class="fa fa-search absolute mt-3 ml-3"></i>
-                                        <input value="{{ request()->get('q', '') }}" name="q" placeholder="What you looking for?" class="ml-4 px-5 py-3 text-sm w-full h-full bg-gray-200 hover:bg-gray-300 rounded-full" />
+                                        <input value="{{ request()->get('q', '') }}" name="q" placeholder="What you looking for?" class="px-5 pl-10 py-3 text-sm w-full h-full bg-white rounded-full focus:shadow-lg transition duration-200" />
                                     </div>
                                 </form>
                             </div>
@@ -61,7 +61,7 @@
                             <!-- list -->                      
                             <div class="post-list">
                                 @if (count($discussions) == 0)
-                                <div class="block bg-red-300 p-3 text-center text-white mx-4">
+                                <div class="block bg-blue-500 opacity-75 p-3 text-center text-white mx-4">
                                     No Discussion Found.
                                 </div>                                    
                                 @endif

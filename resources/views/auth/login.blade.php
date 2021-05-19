@@ -8,22 +8,7 @@
     <div class="flex bg-cool-gray-200 font-sans text-gray-700 content-center items-center self-center min-h-full">
         <div class="flex items-center lg:p-20 w-full">
 
-            <div class="lg:w-8/12 md:w-full hidden pr-20 md:block text-center">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="">
-                <p class="mt-4 leading-relaxed mb-4 text-center">
-                    <b>{{ env('APP_NAME', 'Devover') }}</b> merupakan situs forum yang
-                    bisa mebantu anda dalam bertanya, berdiskusi bersama di seputar teknologi
-                    Pemrogaman IT.
-                </p>
-                <a href="{{ route('discussion.index') }}" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                    <span>Browse Discussion</span>
-                </a>
-                <a href="{{ route('owner') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                    <span>Devover Owner</span>
-                </a>
-            </div>
-
-            <div class="lg:w-4/12 w-full p-4 lg:p-0">    
+            <div class="lg:w-4/12 mx-auto w-full p-4 lg:p-0">    
                 <div class="bg-white rounded-lg overflow-hidden shadow-2xl">
                     <div class="font-semibold text-gray-700 pt-4 px-6 mb-0 text-xl">
                         Login
@@ -34,7 +19,7 @@
                             
                             <div class="mb-5">
                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-600">Email</label>
-                                <input type="email" name="email" class="block w-full p-3 rounded bg-gray-200 border-transparent focus:outline-none hover:bg-gray-300 focus:bg-gray-300 @error('email') border-4 border-red-300 @enderror" required autocomplete="email" autofocus>
+                                <input type="email" name="email" class="block w-full p-3 rounded bg-gray-100 border-transparent focus:outline-none transition duration-200 focus:bg-gray-200 @error('email') border-4 border-red-300 @enderror" required autocomplete="email" autofocus>
                             </div>
 
                             @error('email')
@@ -45,7 +30,7 @@
                     
                             <div class="mb-5">
                                 <label for="password" class="block mb-2 text-sm font-medium text-gray-600">Password</label>
-                                <input type="password" name="password" class="block w-full p-3 rounded bg-gray-200 border-transparent focus:outline-none hover:bg-gray-300 focus:bg-gray-300 @error('password') border-4 border-red-300 @enderror" required autocomplete="password">
+                                <input type="password" name="password" class="block w-full p-3 rounded bg-gray-100 border-transparent focus:outline-none transition duration-200 focus:bg-gray-200 @error('password') border-4 border-red-300 @enderror" required autocomplete="password">
                             </div>
 
                             @error('password')
