@@ -36,7 +36,7 @@ Devover Forum is a laravel-based forum website with TailwindCSS.
 - *V2*
     -   [x] Upgrade Laravel 8
     -   [x] Adding Docker for easy development (with laravel sail)
-    -   [ ] Re-design Homepage
+    -   [x] Re-design Homepage
     -   [ ] Re-design Component
     -   [ ] Re-design Discussion Comment
     -   [ ] Re-design Discussion Create Page
