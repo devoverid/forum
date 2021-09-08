@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -54,14 +54,14 @@ class SettingController extends Controller
              * Set Role for avatar image upload
              * Poho extensions that can be used are
              * jpeg - png - gif -webp - jpg
-             * 
-             * Max size are 
+             *
+             * Max size are
              * 2048kb
-             * 
+             *
              * @var     | array
              * @return  | array
              */
-        
+
             $request->validate(['avatar' => 'required|file|mimes:jpeg,png,gif,webp,jpg|max:2048']);
 
             /**
@@ -79,7 +79,7 @@ class SettingController extends Controller
             $path = storage_path('app/public/avatar/');
             $image = Image::make($avatar->getRealPath())
                 ->fit(460, 460)->save($path . $generate_name);
-                
+
             /**
              * Set avatar variable
              */
@@ -91,8 +91,8 @@ class SettingController extends Controller
          */
         $update = $user->update($data);
 
-        
-        /** 
+
+        /**
          * Redirect to setting route
          */
         return redirect()->route('setting');

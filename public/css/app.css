@@ -252,10 +252,21 @@ button > i.fas {
 
 /* 3.1 Navbar  */
 
+.nav {
+  min-height: 86px;
+  display: flex;
+}
+
 .nav.sticky-nav {
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
+}
+
+@media (min-width: 640px) {
+  .nav {
+    display: block;
+    min-height: auto;
+  }
 }
 
 .nav:not(.bg-transparent):not(.bg-laracasts-light) {
@@ -353,10 +364,45 @@ section {
 /* 4 Pages  */
 
 section.hero {
-  background: url(/assets/images/Background.svg), linear-gradient(to right, #5170F1, #5170F1);
-  background-repeat: no-repeat;
-  background-position: bottom;
-  height: max(70vh, 600px);
+  overflow: hidden;
+  position: relative;
+  background-color: #5170F1;
+  height: calc(100vh - 86px);
+}
+
+section.hero .layer {
+  position: absolute;
+  transform: scale(1.02);
+  display: none;
+}
+
+@media (min-width: 640px) {
+  section.hero .layer {
+    display: block;
+  }
+}
+
+section.hero .layer-1,
+section.hero .layer-2 {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+section.hero .layer-1 {
+  z-index: 10;
+}
+
+section.hero .layer-2 {
+  z-index: 9;
+}
+
+section.hero .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 /* 4. Utilities  */

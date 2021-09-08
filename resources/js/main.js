@@ -18,24 +18,22 @@
     $('.app-drawer-bg').on('click', handleAppDrawer);
     $('.app-drawer-btn').on('click', handleAppDrawer);
 
-    
     // sticky
     $(document).on("scroll", () => {
         let sticky = $('.sticky')
         let offset = 50;
-        if (sticky.length == 0) return 
+        if (sticky.length == 0) return
         if( $(document).scrollTop() >= sticky.offset().top - offset ) {
             sticky.css({ position: 'sticky', top: offset })
         }
     })
-
 
     // reloaded animation
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             $('#app').removeClass('hidden');
             $('.loading').fadeOut();
-            
+
             // set
             $('.min-h-full').each((index, el) => {
                 let outer = $('.footer').height() + $('nav.nav').height();
@@ -44,8 +42,31 @@
             });
         }, 1000)
     });
-    $(window).bind('beforeunload', function(){
+    $(window).bind('beforeunload', function(e){
         $('#app').addClass('hidden');
         $('.loading').css('display', 'flex');
-    }); 
+    });
+
+    // pages
+    if (document.querySelector('section.hero')) {
+        document.addEventListener('mousemove', function (e) {
+            document.querySelectorAll('section.hero .layer').forEach(el => {
+                const speed = el.getAttribute('data-speed');
+                const direction = el.getAttribute('data-direction');
+                let applyX = true
+                let applyY = true
+                if (direction == 'x') applyY = false
+                if (direction == 'y') applyX = false
+                let x = 0
+                let y = 0
+                if (applyX) {
+                    x = ((window.innerWidth - e.pageX * speed) / 100) + 30;
+                }
+                if (applyY) {
+                    y = ((window.innerHeight - e.pageY * speed) / 100) + 30;
+                }
+                el.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+        });
+    }
 })();

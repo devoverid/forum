@@ -25,7 +25,7 @@ class DiscussionController extends Controller
      */
     public function index()
     {
-        
+
         // params
         $query = request()->get('q', null);
         $tag = request()->get('tag', null);
@@ -52,7 +52,7 @@ class DiscussionController extends Controller
 
         // show all tags
         $tags = Cache::remember('all_tag_in_discussion_tag', now()->addMinute(5), function () {
-            $tags_id = DB::table('discussion_tag')->get()->pluck('tag_id')->flatten()->unique();
+            $tags_id = DB::table('discussion_tags')->get()->pluck('tag_id')->flatten()->unique();
             return Tag::whereIn('id', $tags_id)->get();
         });
 
@@ -60,7 +60,7 @@ class DiscussionController extends Controller
         return view('pages.discussion.index', compact('discussions', 'tags'));
     }
 
-    private function handleFilter($filter, $discussions) 
+    private function handleFilter($filter, $discussions)
     {
 
         // filter by this week
@@ -95,8 +95,8 @@ class DiscussionController extends Controller
             $discussions->whereUserId(auth()->user()->id);
         }
 
-        // for 
-        if (in_array($filter, ['solved', 'unsolved', 'me']) || $filter == null) 
+        // for
+        if (in_array($filter, ['solved', 'unsolved', 'me']) || $filter == null)
         {
             $discussions->orderBy('created_at', 'desc');
         }
@@ -131,7 +131,7 @@ class DiscussionController extends Controller
             'content' => 'required|min:10',
         ]);
 
-        // 
+        //
         $slug = Str::slug($request->title . '-' . rand(1000,9999));
 
         // create
@@ -192,7 +192,7 @@ class DiscussionController extends Controller
         // if not found, return 404
         if (!$discussion) abort(404);
 
-        // 
+        //
         return view('pages.discussion.edit', compact('tags', 'discussion'));
     }
 
@@ -260,11 +260,11 @@ class DiscussionController extends Controller
     public function best_answer_set($discussion, Comment $comment)
     {
         $discussion = Discussion::whereSlug($discussion)->first();
-        
-        // 
+
+        //
         if (!$discussion) return abort(404);
 
-        // 
+        //
         $update = $discussion->update(['best_answer' => $comment->id]);
         return redirect()->route('discussion.show', [$discussion->slug]);
     }
@@ -275,8 +275,8 @@ class DiscussionController extends Controller
     public function best_answer_delete($discussion)
     {
         $discussion = Discussion::whereSlug($discussion)->first();
-        
-        // 
+
+        //
         if (!$discussion) return abort(404);
 
         //

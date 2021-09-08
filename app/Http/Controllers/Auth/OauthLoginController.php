@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -46,7 +46,7 @@ class OauthLoginController extends Controller
         // create account
         $authUser = $this->findOrCreateUser($user, $driver);
 
-        // auto login user 
+        // auto login user
         Auth::login($authUser, true);
 
         // redirect

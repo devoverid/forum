@@ -3,6 +3,12 @@
         position: sticky;
         top: 0;
     }
+    min-height: $navbar-height;
+    display: flex;
+    @screen sm {
+        display: block;
+        min-height: auto;
+    }
 }
 .nav:not(.bg-transparent):not(.bg-laracasts-light) {
     background-position: 0 0;
