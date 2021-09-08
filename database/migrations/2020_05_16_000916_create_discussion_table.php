@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\User;
+
 class CreateDiscussionTable extends Migration
 {
     /**
@@ -15,23 +17,15 @@ class CreateDiscussionTable extends Migration
     {
         Schema::create('discussions', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
+            $table->foreignIdFor(User::class)->constrained()->onUpdate('cascade')->onDelete('cascade');
+
             $table->string('slug');
             $table->string('title');
             $table->longText('content');
             $table->bigInteger('view')->default(0);
-            $table->bigInteger('best_answer')->unsigned()->nullable();
 
             $table->timestamp('solved_at')->nullable();
             $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onUpdate('cascade')->onDelete('cascade');
-
-            $table->foreign('best_answer')
-                ->references('id')->on('comments')
-                ->onUpdate('cascade')->onDelete('set null');
         });
     }
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Discussion;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -13,7 +13,7 @@ class ProfileController extends Controller
     {
         // activites show
         $activity_tab = request()->get('activity', 'discussion');
-        
+
 
         // get user by get username
         $user = User::whereUsername($username)->first();

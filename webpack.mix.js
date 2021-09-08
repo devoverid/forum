@@ -27,3 +27,16 @@ mix.scripts([
    'resources/js/main.js'
 ], 'public/js/main.min.js');
 mix.styles([ 'public/css/main.css' ], 'public/css/main.min.css');
+
+//
+mix.webpackConfig({
+    module: {
+      rules: [{
+        test: /\.js?$/,
+        use: [{
+          loader: 'babel-loader',
+          options: mix.config.babel()
+        }]
+      }]
+    }
+});

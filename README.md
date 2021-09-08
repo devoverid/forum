@@ -1,6 +1,6 @@
 # Devover Forum
 
-![Login Page](https://github.com/devoverid/forum/blob/master/public/assets/images/ss2.png?raw=true)
+![Login Page](https://github.com/devoverid/forum/blob/master/public/assets/images/forum-preview.gif?raw=true)
 
 [![](https://img.shields.io/github/issues/devoverid/forum?style=flat-square)](https://img.shields.io/github/issues/devoverid/forum?style=flat-square) ![](https://img.shields.io/github/stars/devoverid/forum?style=flat-square)
 ![](https://img.shields.io/github/forks/devoverid/forum?style=flat-square) [](http://makeapullrequest.com) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![GitHub Followers](https://img.shields.io/github/followers/viandwi24.svg?style=flat-square&label=Follow&maxAge=2592000)](https://github.com/viandwi24?tab=followers)
@@ -20,30 +20,30 @@ Devover Forum is a laravel-based forum website with TailwindCSS.
 
 ### To-do List
 - *V1*
-    -   [x] Discussion & Comments
-    -   [x] Delete Discussion Comments
-    -   [x] Discussion Edit & Delete
-    -   [x] Discussion Set Solved
-    -   [x] Owner Pages
-    -   [x] Profile Setting
-    -   [x] Login & Register with Github
-    -   [x] Email Verification
-    -   [x] Forgot Password
-    -   [x] Login & Register with Facebook
-    -   [x] Minify Page
-    -   [x] Migrate to scss
-    -   [x] Set / Unset Best Answer Discussion
+    - [x] Discussion & Comments
+    - [x] Delete Discussion Comments
+    - [x] Discussion Edit & Delete
+    - [x] Discussion Set Solved
+    - [x] Owner Pages
+    - [x] Profile Setting
+    - [x] Login & Register with Github
+    - [x] Email Verification
+    - [x] Forgot Password
+    - [x] Login & Register with Facebook
+    - [x] Minify Page
+    - [x] Migrate to scss
+    - [x] Set / Unset Best Answer Discussion
 - *V2*
-    -   [x] Upgrade Laravel 8
-    -   [x] Adding Docker for easy development (with laravel sail)
-    -   [x] Re-design Homepage
-    -   [ ] Re-design Component
-    -   [ ] Re-design Discussion Comment
-    -   [ ] Re-design Discussion Create Page
-    -   [ ] Re-design Completing Owners Pages
-    -   [ ] Re-design Error Page
-    -   [ ] Implement Laravel Modules
-    -   [ ] Implement Unit Testing
+    - [x] Upgrade Laravel 8
+    - [x] Adding Docker for easy development (with laravel sail)
+    - [x] Re-design Homepage
+    - [ ] Re-design Component
+    - [ ] Re-design Discussion Comment
+    - [ ] Re-design Discussion Create Page
+    - [ ] Re-design Completing Owners Pages
+    - [ ] Re-design Error Page
+    - [ ] Implement Laravel Modules
+    - [ ] Implement Unit Testing
 
 ## Development Guide
 You can follow step by step for prepare the development guide in [here](./DEVELOPMENT.md)

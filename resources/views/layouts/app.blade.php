@@ -19,9 +19,9 @@
 </head>
 <body>
     <!-- loading -->
-    {{-- <div class="loading w-full fixed h-full bg-gray-300 flex justify-center items-center z-50">
-        <img src="{{ asset('assets/images/logo_white.png') }}" style="height: 100px;">
-    </div> --}}
+    <div class="loading w-full fixed h-full bg-gray-300 flex justify-center items-center z-50">
+        <img src="{{ asset('assets/images/logo_blue_square.svg') }}" style="height: 100px;">
+    </div>
 
     <!-- app -->
     <div id="app">
@@ -36,13 +36,13 @@
         <!-- footer -->
         @if (isset($footer) && $footer) <x-footer /> @endif
     </div>
-    
+
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
-    @stack('js')
     <script src="{{ mix('js/main.min.js') }}"></script>
+    @stack('js')
     {{-- ^ preload animation, and other script ^ --}}
 </body>
