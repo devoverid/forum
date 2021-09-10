@@ -42,7 +42,7 @@
     }
 @endphp
 
-<div class="forum-sidebar flex-none pr-10">
+<div class="forum-sidebar flex-none sticky" data-sticky-offset="100">
     <div class="mt-6">
         <ul class="mobile:hidden">
             @foreach ($menu as $item)
@@ -50,7 +50,7 @@
                     <a
                         href="{{ $item['route'] }}"
                         class="
-                            py-2 px-3 rounded-xs inline-block w-full text-gray-700
+                            text-sm py-2 px-3 rounded-xs inline-block w-full text-gray-700
                             hover:bg-gray-100
                             {{ $item['activated'] ? 'pl-3 shadow-sm bg-gray-100 border-l-4 border-blue-500  text-blue-600' : 'pl-4' }}
                         "

@@ -91,7 +91,7 @@
   !*** ./resources/js/app.js ***!
   \*****************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 (function () {
   var _this = this; // drawer
@@ -131,15 +131,20 @@
   $('.app-drawer-btn').on('click', handleAppDrawer); // sticky
 
   $(document).on("scroll", function () {
-    var sticky = $('.sticky');
-    var offset = 50;
-    if (sticky.length == 0) return;
+    var items = document.querySelectorAll('.sticky');
+    if (items.length == 0) return;
 
-    if ($(document).scrollTop() >= sticky.offset().top - offset) {
-      sticky.css({
-        position: 'sticky',
-        top: offset
-      });
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      var offset = item.getAttribute('data-sticky-offset') || 50;
+
+      if ($(document).scrollTop() >= item.offsetTop - offset) {
+        item.style.position = 'sticky';
+        item.style.top = offset + 'px';
+        item.setAttribute('data-sticky-position', item.style.position);
+      } else {
+        item.style.position = item.getAttribute('data-sticky-position') || 'static';
+      }
     }
   }); // reloaded animation
 
@@ -159,6 +164,7 @@
     $('#app').addClass('hidden');
     $('.loading').css('display', 'flex');
   }); // pages
+  // home
 
   if (document.querySelector('section.hero')) {
     document.addEventListener('mousemove', function (e) {
@@ -184,7 +190,90 @@
       });
     });
   }
+
+  __webpack_require__(/*! ./pages/discussion */ "./resources/js/pages/discussion.js");
 })();
+
+/***/ }),
+
+/***/ "./resources/js/pages/discussion.js":
+/*!******************************************!*\
+  !*** ./resources/js/pages/discussion.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+document.addEventListener('DOMContentLoaded', main);
+
+function main() {
+  // discussion
+  if (document.querySelectorAll('.discussion-item').length > 0) {
+    var items = document.querySelectorAll('.discussion-item');
+
+    var _loop = function _loop(i) {
+      var item = items[i];
+      var btnUpvote = item.querySelector('.vote-up');
+      var btnDownvote = item.querySelector('.vote-down');
+      var vote = item.querySelector('.vote-count');
+      btnUpvote.addEventListener('click', function (e) {
+        var voteup = item.getAttribute('data-vote-up');
+        var votedown = item.getAttribute('data-vote-down');
+
+        if (votedown) {
+          vote.innerHTML = parseInt(vote.innerHTML) + 1;
+          item.removeAttribute('data-vote-down');
+        }
+
+        if (!voteup) {
+          item.setAttribute('data-vote-up', 1);
+          btnUpvote.classList.add('text-blue-500');
+          btnDownvote.classList.remove('text-blue-500');
+          vote.innerHTML = parseInt(vote.innerHTML) + 1;
+        } else {
+          item.removeAttribute('data-vote-up');
+          btnUpvote.classList.remove('text-blue-500');
+          vote.innerHTML = parseInt(vote.innerHTML) - 1;
+        }
+
+        console.log({
+          voteup: voteup,
+          votedown: votedown,
+          vote: parseInt(vote.innerHTML)
+        });
+      });
+      btnDownvote.addEventListener('click', function (e) {
+        var voteup = item.getAttribute('data-vote-up');
+        var votedown = item.getAttribute('data-vote-down');
+
+        if (voteup) {
+          vote.innerHTML = parseInt(vote.innerHTML) - 1;
+          item.removeAttribute('data-vote-up');
+        }
+
+        if (!votedown) {
+          item.setAttribute('data-vote-down', 1);
+          btnDownvote.classList.add('text-blue-500');
+          btnUpvote.classList.remove('text-blue-500');
+          vote.innerHTML = parseInt(vote.innerHTML) - 1;
+        } else {
+          item.removeAttribute('data-vote-down');
+          btnDownvote.classList.remove('text-blue-500');
+          vote.innerHTML = parseInt(vote.innerHTML) + 1;
+        }
+
+        console.log({
+          voteup: voteup,
+          votedown: votedown,
+          vote: parseInt(vote.innerHTML)
+        });
+      });
+    };
+
+    for (var i = 0; i < items.length; i++) {
+      _loop(i);
+    }
+  }
+}
 
 /***/ }),
 

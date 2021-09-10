@@ -1,6 +1,6 @@
-/* 2. Variables  */
+/* 1. Variables  */
 
-/* 3.1 Button  */
+/* 2.1 Button  */
 
 .btn {
   padding-left: 0.75rem;
@@ -250,7 +250,7 @@ button > i.fas {
   background: rgba(255, 255, 255, 0.5);
 }
 
-/* 3.1 Navbar  */
+/* 2.2 Navbar  */
 
 .nav {
   border-top: 4px solid #3f83f8;
@@ -296,7 +296,13 @@ button > i.fas {
   transform: rotate(360deg);
 }
 
-/* 4 Layouting  */
+/* 2.3 Footer  */
+
+.footer {
+  max-height: 80px;
+}
+
+/* 3 Layouting  */
 
 body {
   background-color: #e5e7eb;
@@ -305,19 +311,16 @@ body {
   line-height: 1.4285714286;
 }
 
-.hero {
-  min-height: 500px;
-  height: 70vh;
-}
-
-.hero h1 {
-  font-size: 3rem;
-}
-
 .divider {
   width: 70px;
   height: 3px;
   background-color: #5170F1;
+}
+
+/* wrapper */
+
+.wrapper {
+  min-height: calc(100vh - 80px);
 }
 
 /* section */
@@ -408,7 +411,7 @@ section.hero .content {
   text-align: center;
 }
 
-/* 4. Utilities  */
+/* 5 Utilities  */
 
 *:focus {
   outline: none;

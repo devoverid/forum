@@ -20,11 +20,18 @@
 
     // sticky
     $(document).on("scroll", () => {
-        let sticky = $('.sticky')
-        let offset = 50;
-        if (sticky.length == 0) return
-        if( $(document).scrollTop() >= sticky.offset().top - offset ) {
-            sticky.css({ position: 'sticky', top: offset })
+        const items = document.querySelectorAll('.sticky')
+        if (items.length == 0) return
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i]
+            const offset = item.getAttribute('data-sticky-offset') || 50
+            if ($(document).scrollTop() >= item.offsetTop - offset) {
+                item.style.position = 'sticky'
+                item.style.top = offset + 'px'
+                item.setAttribute('data-sticky-position', item.style.position)
+            } else {
+                item.style.position = (item.getAttribute('data-sticky-position') || 'static')
+            }
         }
     })
 
@@ -48,6 +55,7 @@
     });
 
     // pages
+    // home
     if (document.querySelector('section.hero')) {
         document.addEventListener('mousemove', function (e) {
             document.querySelectorAll('section.hero .layer').forEach(el => {
@@ -69,4 +77,5 @@
             });
         });
     }
+    require('./pages/discussion')
 })();

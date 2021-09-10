@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Discussion extends Model
 {
@@ -40,5 +41,15 @@ class Discussion extends Model
     public function comment_best_answer()
     {
         return $this->belongsTo(Comment::class, 'best_answer', 'id');
+    }
+
+    /**
+     * Get reactions for the discussion.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reactions()
+    {
+        return $this->hasMany(DiscussionReaction::class);
     }
 }

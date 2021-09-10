@@ -29,7 +29,7 @@
         @if (isset($navbar) && $navbar) <x-navbar /> @endif
 
         <!-- content -->
-        <div class="wrapper pt-8 lg:pt-16">
+        <div class="wrapper pt-8 lg:pt-10">
             @yield('content')
         </div>
 

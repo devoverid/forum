@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'footer' => false,
+    // 'footer' => true,
     'navbar' => true,
 ])
 

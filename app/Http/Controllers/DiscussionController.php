@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Discussion;
+use App\Models\DiscussionReaction;
 use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -33,7 +35,9 @@ class DiscussionController extends Controller
         $filter = request()->get('filter', null);
 
         // orm
-        $discussions = Discussion::with('user', 'tags');
+        $discussions = Discussion::with([
+            'user', 'tags'
+        ])->withCount('comments');
 
         // hadlefilter
         $discussions = $this->handleFilter($filter, $discussions);
@@ -50,6 +54,9 @@ class DiscussionController extends Controller
         // pagination
         $discussions = $discussions->simplePaginate($perpage);
 
+        // final
+        $discussions_reactions = $this->getReactions($discussions);
+
         // show all tags
         $tags = Cache::remember('all_tag_in_discussion_tag', now()->addMinute(5), function () {
             $tags_id = DB::table('discussion_tags')->get()->pluck('tag_id')->flatten()->unique();
@@ -57,9 +64,16 @@ class DiscussionController extends Controller
         });
 
         // return
-        return view('pages.discussion.index', compact('discussions', 'tags'));
+        return view('pages.discussion.index', compact('discussions', 'tags', 'discussions_reactions'));
     }
 
+    /**
+     * handleFilter
+     *
+     * @param  mixed $filter
+     * @param  mixed $discussions
+     * @return Illuminate\Database\Eloquent\Builder
+     */
     private function handleFilter($filter, $discussions)
     {
 
@@ -104,6 +118,32 @@ class DiscussionController extends Controller
 
         // return obj
         return $discussions;
+    }
+
+    private function getReactions($discussions)
+    {
+        $discussions = new Collection($discussions->toArray()['data']);
+        $discussions_id = $discussions->pluck('id');
+        $reactions = DiscussionReaction::select('discussion_id', 'reaction', 'user_id')
+            ->whereIn('discussion_id', $discussions_id)
+            ->get();
+
+        $result = [];
+        foreach ($discussions_id as $discussion)
+        {
+            $upvote = $reactions->filter(function ($value, $key) use ($discussion) {
+                return $value->discussion_id == $discussion && $value->reaction == 'upvote';
+            });
+            $downvote = $reactions->filter(function ($value, $key) use ($discussion) {
+                return $value->discussion_id == $discussion && $value->reaction == 'downvote';
+            });
+            array_push($result, (object) [
+                'id' => $discussion,
+                'vote' => count($upvote) - count($downvote)
+            ]);
+        }
+
+        return $result;
     }
 
     /**

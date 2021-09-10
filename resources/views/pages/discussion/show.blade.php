@@ -190,8 +190,8 @@
 
 
             <!-- sidebar:right -->
-            <div class="mobile:bg-white hidden xl:block forum-sidebar hidden lg:block flex-none border-l border-solid border-gray-100" style="border-color: rgb(239, 239, 239);">
-                <div class="forum-secondary-sidebar sticky">
+            <div class="mobile:bg-white xl:block forum-sidebar hidden lg:block flex-none border-l border-solid border-gray-100" style="border-color: rgb(239, 239, 239);">
+                <div class="forum-secondary-sidebar sticky" data-sticky-offset="100">
                     <div class="block text-right w-auto ml-10" style="padding-top: -1.2rem;">
 
                         @if(auth()->check() && auth()->user()->id == $discussion->user_id)

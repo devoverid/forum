@@ -22,6 +22,7 @@
         "laravel/ui": "^3.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.6",
         "facade/ignition": "^2.3.6",
         "laravel-frontend-presets/tailwindcss": "^4.3.1",
         "laravel/sail": "^1.5",

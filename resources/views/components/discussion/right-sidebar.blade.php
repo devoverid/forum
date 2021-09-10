@@ -1,4 +1,6 @@
-<a href="{{ route('discussion.create') }}" class="btn btn-blue rounded text-sm text-center py-4 px-8 block font-semibold">
-    <i class="far fa-plus"></i>
-    Create a New Discussion
-</a>
+<div class="forum-sidebar-right flex-none sticky" data-sticky-offset="100">
+    <a href="{{ route('discussion.create') }}" class="btn btn-blue rounded text-sm text-center py-4 px-4 block font-semibold">
+        <i class="fas fa-plus"></i>
+        New Discussion
+    </a>
+</div>

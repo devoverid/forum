@@ -1,18 +1,21 @@
 
-/* 2. Variables  */
+/* 1. Variables  */
 @import "variables";
 
-/* 3.1 Button  */
+/* 2.1 Button  */
 @import "components/button";
 
-/* 3.1 Navbar  */
+/* 2.2 Navbar  */
 @import "components/navbar";
 
-/* 4 Layouting  */
+/* 2.3 Footer  */
+@import "components/footer";
+
+/* 3 Layouting  */
 @import "main";
 
 /* 4 Pages  */
 @import "pages/home";
 
-/* 4. Utilities  */
+/* 5 Utilities  */
 @import "utilities";

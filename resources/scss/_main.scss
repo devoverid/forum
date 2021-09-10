@@ -4,17 +4,15 @@ body {
     font-weight: 500;
     line-height: 1.428571428571429;
 }
-.hero {
-    min-height: 500px;
-    height: 70vh;
-}
-.hero h1 {
-    font-size: 3rem;
-}
 .divider {
     width: 70px;
     height: 3px;
     background-color: map-get($theme-colors, "primary");
+}
+
+/* wrapper */
+.wrapper {
+    min-height: calc(100vh - #{$footer-height});
 }
 
 /* section */
