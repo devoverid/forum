@@ -253,8 +253,11 @@ button > i.fas {
 /* 3.1 Navbar  */
 
 .nav {
-  min-height: 86px;
-  display: flex;
+  border-top: 4px solid #3f83f8;
+  padding-top: 0.25rem;
+  min-height: 64px;
+  display: block;
+  background: #f4f5f7;
 }
 
 .nav.sticky-nav {
@@ -262,10 +265,10 @@ button > i.fas {
   top: 0;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
   .nav {
-    display: block;
-    min-height: auto;
+    min-height: 64px;
+    display: flex;
   }
 }
 
@@ -296,7 +299,7 @@ button > i.fas {
 /* 4 Layouting  */
 
 body {
-  color: #4d545d;
+  background-color: #e5e7eb;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.4285714286;
@@ -367,7 +370,7 @@ section.hero {
   overflow: hidden;
   position: relative;
   background-color: #5170F1;
-  height: calc(100vh - 86px);
+  height: calc(100vh - 64px);
 }
 
 section.hero .layer {

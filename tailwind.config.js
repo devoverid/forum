@@ -8,7 +8,11 @@ module.exports = {
       fontFamily: { sans: ['Inter var'] },
     }
   },
-  variants: {},
+  variants: {
+    extend: {
+        borderWidth: ['hover'],
+    }
+  },
   plugins: [
     require('@tailwindcss/ui'),
     require('@tailwindcss/custom-forms'),

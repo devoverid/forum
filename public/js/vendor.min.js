@@ -81,121 +81,54 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/app.js":
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
+/***/ "./resources/js/vendor.js":
+/*!********************************!*\
+  !*** ./resources/js/vendor.js ***!
+  \********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-(function () {
-  var _this = this; // drawer
-
-
-  var appDrawerState = false;
-
-  var handleAppDrawer = function handleAppDrawer(e) {
-    e.preventDefault();
-    appDrawerState = !appDrawerState;
-    var appDrawer = $('.app-drawer');
-
-    if (appDrawerState) {
-      appDrawer.css('right', 0 - appDrawer.width()).removeClass('hidden').animate({
-        right: 0
-      });
-      $('.app-drawer-bg').fadeIn(1000, function () {
-        return $(_this).removeClass('hidden');
-      });
-      $('body').css('overflow', 'hidden');
-    } else {
-      appDrawer.animate({
-        right: 0 - appDrawer.width()
-      }, {
-        complete: function complete() {
-          return appDrawer.addClass('hidden');
-        }
-      });
-      $('.app-drawer-bg').fadeOut(500, function () {
-        return $(_this).addClass('hidden');
-      });
-      $('body').css('overflow', 'auto');
-    }
-  };
-
-  $('.app-drawer-bg').on('click', handleAppDrawer);
-  $('.app-drawer-btn').on('click', handleAppDrawer); // sticky
-
-  $(document).on("scroll", function () {
-    var sticky = $('.sticky');
-    var offset = 50;
-    if (sticky.length == 0) return;
-
-    if ($(document).scrollTop() >= sticky.offset().top - offset) {
-      sticky.css({
-        position: 'sticky',
-        top: offset
-      });
-    }
-  }); // reloaded animation
-
-  document.addEventListener('DOMContentLoaded', function () {
-    setTimeout(function () {
-      $('#app').removeClass('hidden');
-      $('.loading').fadeOut(); // set
-
-      $('.min-h-full').each(function (index, el) {
-        var outer = $('.footer').height() + $('nav.nav').height();
-        var total = $(window).height() - outer;
-        $('.min-h-full').css('min-height', total + 'px');
-      });
-    }, 100);
-  });
-  $(window).bind('beforeunload', function (e) {
-    $('#app').addClass('hidden');
-    $('.loading').css('display', 'flex');
-  }); // pages
-
-  if (document.querySelector('section.hero')) {
-    document.addEventListener('mousemove', function (e) {
-      document.querySelectorAll('section.hero .layer').forEach(function (el) {
-        var speed = el.getAttribute('data-speed');
-        var direction = el.getAttribute('data-direction');
-        var applyX = true;
-        var applyY = true;
-        if (direction == 'x') applyY = false;
-        if (direction == 'y') applyX = false;
-        var x = 0;
-        var y = 0;
-
-        if (applyX) {
-          x = (window.innerWidth - e.pageX * speed) / 100 + 30;
-        }
-
-        if (applyY) {
-          y = (window.innerHeight - e.pageY * speed) / 100 + 30;
-        }
-
-        el.style.transform = "translateX(".concat(x, "px) translateY(").concat(y, "px)");
-      });
-    });
-  }
-})();
+// require('./bootstrap');
 
 /***/ }),
 
-/***/ 1:
-/*!***********************************!*\
-  !*** multi ./resources/js/app.js ***!
-  \***********************************/
+/***/ "./resources/scss/app.scss":
+/*!*********************************!*\
+  !*** ./resources/scss/app.scss ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/scss/vendor.scss":
+/*!************************************!*\
+  !*** ./resources/scss/vendor.scss ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 0:
+/*!*********************************************************************************************!*\
+  !*** multi ./resources/js/vendor.js ./resources/scss/app.scss ./resources/scss/vendor.scss ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/viandwi24/Project/Dev/forum/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/viandwi24/Project/Dev/forum/resources/js/vendor.js */"./resources/js/vendor.js");
+__webpack_require__(/*! /Users/viandwi24/Project/Dev/forum/resources/scss/app.scss */"./resources/scss/app.scss");
+module.exports = __webpack_require__(/*! /Users/viandwi24/Project/Dev/forum/resources/scss/vendor.scss */"./resources/scss/vendor.scss");
 
 
 /***/ })

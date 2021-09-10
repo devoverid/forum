@@ -13,30 +13,36 @@ require('laravel-mix-tailwind');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix
+//    .js('resources/js/app.js', 'public/js')
    .sass('resources/scss/app.scss', 'public/css')
    .sass('resources/scss/vendor.scss', 'public/css')
    .tailwind('./tailwind.config.js');
 
-if (mix.inProduction()) {
-   mix.version();
-}
+// scripts
+mix.js('resources/js/vendor.js', 'public/js/vendor.js');
+mix.js('resources/js/app.js', 'public/js/app.js');
 
-// custom
-mix.scripts([
-   'resources/js/main.js'
-], 'public/js/main.min.js');
-mix.styles([ 'public/css/main.css' ], 'public/css/main.min.css');
+// styles
+mix.styles([ 'public/css/main.css' ], 'public/css/main.css');
+
+// minify
+mix.minify('public/js/vendor.js')
+mix.minify('public/js/app.js')
+mix.minify('public/css/main.css')
 
 //
+if (mix.inProduction()) {
+    mix.version();
+}
 mix.webpackConfig({
     module: {
-      rules: [{
-        test: /\.js?$/,
-        use: [{
-          loader: 'babel-loader',
-          options: mix.config.babel()
+        rules: [{
+            test: /\.js?$/,
+            use: [{
+                loader: 'babel-loader',
+                options: mix.config.babel()
+            }]
         }]
-      }]
     }
 });

@@ -29,7 +29,7 @@
         @if (isset($navbar) && $navbar) <x-navbar /> @endif
 
         <!-- content -->
-        <div class="wrapper">
+        <div class="wrapper pt-8 lg:pt-16">
             @yield('content')
         </div>
 
@@ -38,11 +38,11 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
-    <script src="{{ mix('js/main.min.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
     @stack('js')
     {{-- ^ preload animation, and other script ^ --}}
 </body>

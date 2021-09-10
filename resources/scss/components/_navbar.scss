@@ -1,14 +1,19 @@
 .nav {
+    border-top: 4px solid theme('colors.blue.500');
+    padding-top: 0.25rem;
     &.sticky-nav {
         position: sticky;
         top: 0;
     }
     min-height: $navbar-height;
-    display: flex;
-    @screen sm {
-        display: block;
-        min-height: auto;
+    // min-height: auto;
+    // display: flex;
+    display: block;
+    @screen lg {
+        min-height: $navbar-height;
+        display: flex;
     }
+    background: theme('colors.gray.100');
 }
 .nav:not(.bg-transparent):not(.bg-laracasts-light) {
     background-position: 0 0;

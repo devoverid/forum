@@ -5,168 +5,83 @@
 ])
 
 @section('content')
-    <div class="section py-10 min-h-full">
-        <div class="disscussion-wrapper">
-            <div class="flex flex-col flex-col-reverse md:flex-row mx-auto">
-                <!-- Menu -->
-                <x-sidebar-discussion />
-
-                <!-- Content -->
-                <div class="flex-1">
-                    <div class="forum-main lg:ml-10 lg:flex">
-                        <div class="lg:flex-1">
-
-                            <!-- panel -->
-                            <div class="flex justify-center md:justify-between mb-8 md:mb-4 px-6" style="height: 40px;">
-                                <div class="flex flex-1">
-                                    <div>
-                                        <div class="select-wrap">
-                                            <select id="select-tags" class="border border-gray-200 text-grey-dark text-sm bg-grey-panel rounded-full px-8 cursor-pointer py-2">
-                                                <option value="" {{ request()->get('tag', null) == null ? '' : 'selected' }}>All</option>
-                                                @foreach ($tags as $tag)
-                                                    <option value="{{ urlencode($tag->name) }}" {{ request()->get('tag', null) == $tag->name ? 'selected' : '' }}>{{ $tag->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
+    <div class="container mx-auto px-4 py-8 flex flex-col-reverse space-y-6 justify-between lg:flex-row lg:space-x-6 lg:space-x-8 lg:space-x-12 lg:px-0">
+        {{-- panel filters --}}
+        <div class="w-full lg:w-3/12 hidden lg:block">
+            <x-discussion.left-sidebar />
+        </div>
+        {{-- discussion list --}}
+        <div class="w-full lg:w-6/12">
+            @foreach ($discussions as $discussion)
+                @php
+                    $stringCut = substr(strip_tags(markdown($discussion->content)), 0, 440);
+                    $endPoint = strrpos($stringCut, ' ');
+                    $description = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                @endphp
+                <div class="flex space-x-3 lg:space-x-8 rounded-sm shadow p-8 bg-gray-100 mb-6 relative overflow-hidden">
+                    <div class="mt-2 flex flex-col space-y-2 text-center">
+                        <div class="flex flex-row justify-center text-sm">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <div>
+                            100
+                        </div>
+                        <div class="flex flex-row justify-center text-sm">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <a href="{{ route('discussion.show', $discussion->slug) }}" class="block text-xl font-bold text-gray-800 mb-3">
+                            {{ $discussion->title }}
+                        </a>
+                        <div class="text-xs text-gray-600 mb-4">
+                            {{ $description }}...
+                        </div>
+                        <div class="border-t border-gray-300 mb-3"></div>
+                        <div class="flex flex-col text-center lg:text-left lg:flex-row lg:space-x-4">
+                            <div class="lg:w-7/12 flex justify-center space-x-1 lg:justify-start">
+                                <img style="max-height: 20px;" class="rounded-full border border-blue-300" src="{{ asset('avatar/' . $discussion->user->avatar) }}">
+                                <div class="truncate max-w-full self-center text-xs">
+                                    <span class="text-gray-500">Posted by</span>
+                                    <a href="#" class="text-blue-500">{{ $discussion->user->name }}</a>
                                 </div>
-                                <div class="flex items-center md:px-4">
-                                    <button id="forumToggleSimple" class="px-2 py-2 bg-gray-100">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="mx-2">
-                                            <g fill="#78909C" fill-rule="evenodd">
-                                                <rect width="15" height="6" rx="2"></rect>
-                                                <rect width="15" height="6" y="9" rx="2"></rect>
-                                            </g>
-                                        </svg>
-                                    </button>
-                                    <button id="forumToggleFull" class="px-2 py-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="mx-2">
-                                            <g fill="#78909C" fill-rule="evenodd">
-                                                <rect width="15" height="4" rx="2"></rect>
-                                                <rect width="8" height="4" y="11" rx="2"></rect>
-                                                <rect width="15" height="4" y="5.5" rx="2"></rect>
-                                            </g>
-                                        </svg>
-                                    </button>
+                            </div>
+                            <div class="lg:w-3/12 text-xs text-gray-500">
+                                {{ $discussion->created_at->diffForHumans() }}
+                            </div>
+                            <div class="lg:w-2/12 flex space-x-2 justify-center lg:justify-end text-xs text-gray-500">
+                                <div>
+                                    <i class="fas fa-eye"></i>
+                                    {{ $discussion->view }}
                                 </div>
-
-                                <form action="" autocomplete="off" class="search-form hidden md:block md:w-52">
-                                    <div class="border border-gray-200 rounded-full relative">
-                                        <i class="fa fa-search absolute mt-3 ml-3"></i>
-                                        <input value="{{ request()->get('q', '') }}" name="q" placeholder="What you looking for?" class="px-5 pl-10 py-3 text-sm w-full h-full bg-white rounded-full focus:shadow-lg transition duration-200" />
-                                    </div>
-                                </form>
-                            </div>
-
-                            <!-- list -->                      
-                            <div class="post-list">
-                                @if (count($discussions) == 0)
-                                <div class="block bg-blue-500 opacity-75 p-3 text-center text-white mx-4">
-                                    No Discussion Found.
-                                </div>                                    
-                                @endif
-                                @foreach ($discussions as $discussion)
-                                    @php
-                                        $stringCut = substr(strip_tags(markdown($discussion->content)), 0, 220);
-                                        $endPoint = strrpos($stringCut, ' ');
-                                        $description = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-                                    @endphp
-                                    <a href="{{ route('discussion.show', $discussion->slug) }}" role="link">
-                                        <div onClick="articelRedirect('{{ route('discussion.show', $discussion->slug) }}')" class="flex flex-col md:flex-row items-center cursor-pointer rounded-lg hover:bg-gray-100 px-6 py-4">
-                                            <div class="avatar w-full md:w-auto md:mr-6 flex items-center md:block mb-4 md:mb-0">
-                                                <a href="" class="block mr-3 md:mr-0">
-                                                    <img style="max-height: 50px;" class="rounded-full" src="{{ asset('avatar/' . $discussion->user->avatar) }}">
-                                                </a>
-                                                
-                                                <div class="flex items-center justify-center md:hidden ml-auto mr-3 md:mr-4 bg-grey-panel rounded-xl py-2">
-                                                    <div class="flex items-center justify-center mr-4">
-                                                        <div class="mr-2"><i class="fa fa-comments"></i></div>
-                                                        <span class="text-xs text-grey-dark font-semibold text-left leading-none relative">{{ $discussion->comments()->count() }}</span>
-                                                    </div>
-                                                    <div class="flex items-center justify-center">
-                                                        <div class="mr-2"><i class="fa fa-eye"></i></div>
-                                                        <span class="text-xs text-grey-dark font-semibold text-left leading-none">{{ $discussion->view }}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full md:pr-10 lg:pr-0 lg:w-5/6 md:mb-0">
-                                                <h4 class="mb-3 md:mb-1 text-base">
-                                                    <a href="{{ route('discussion.show', $discussion->slug) }}" class="font-bold transition-all tracking-tight text-gray-600 hover:text-gray-800 hover:underline link">
-                                                        {{ $discussion->title }}
-                                                    </a>
-                                                </h4>
-                                                <div class="discussion-description break-words hidden text-base md:text-sm mb-3 widescreen:pr-10 text-grey-darker phone:leading-loose" style="word-break: break-word;">
-                                                    {{ $description }}
-                                                    <span class="is-muted">...</span>
-                                                </div>
-                                                <div class="text-xs mb-2 text-white">
-                                                    @foreach ($discussion->tags as $tag)
-                                                        <a href="{{ route('discussion.index') . '?tag=' . urlencode($tag->name) }}" class="bg-red-400 rounded-lg px-2 py-1">{{ $tag->name }}</a>
-                                                    @endforeach
-                                                </div>
-                                                <div class="text-grey-dark text-xs">
-                                                    <a href="{{ route('profile', [$discussion->user->username]) }}" class="uppercase font-bold text-blue-400 hover:text-blue-500 hover:underline">
-                                                        {{ $discussion->user->name }} 
-                                                    </a> Posted
-                                                    <span>
-                                                        <span class="font-bold text-gray-500"> {{ $discussion->created_at->diffForHumans() }} </span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="hidden md:flex md:items-center md:flex-row-reverse text-center md:ml-auto relative pl-4">
-                                                <div class="flex items-center justify-center ml-4">
-                                                    <div class="mr-2"><i class="fa fa-comments"></i></div>
-                                                    <span class="text-xs text-grey-dark font-semibold text-left leading-none relative">{{ $discussion->comments()->count() }}</span>
-                                                </div>
-                                                <div class="flex items-center justify-center">
-                                                    <div class="mr-2"><i class="fa fa-eye"></i></div>
-                                                    <span class="text-xs text-grey-dark font-semibold text-left leading-none">{{ $discussion->view }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                @endforeach
-                            </div>
-
-                            <!-- paginate -->
-                            <div class="mt-4">
-                                {{ $discussions->links() }}
+                                <div>
+                                    <i class="fas fa-comment-alt"></i>
+                                    {{ $discussion->comments()->count() }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-
+            @endforeach
+        </div>
+        {{-- right sidebar --}}
+        <div class="w-full lg:w-3/12">
+            <x-discussion.right-sidebar />
         </div>
     </div>
 @stop
 
-@push('js')
-    <script>
-        $('#select-tags').on('change', () => {
-            window.location.href = "{{ route('discussion.index') }}?tag=" + $('#select-tags').val()
-        })
-        function articelRedirect(link) {
-            location.href = link;
-        }
-        $('#forumToggleSimple').on("click", toggleDiscussion);
-        $('#forumToggleFull').on("click", toggleDiscussion);
-        function toggleDiscussion() {
-            let elf = $('#forumToggleFull');
-            let els = $('#forumToggleSimple');
-            if (els.hasClass('bg-gray-100')) {
-                els.removeClass('bg-gray-100');
-                elf.addClass('bg-gray-100');
-                $('.discussion-description').removeClass('hidden');
-            } else {
-                els.addClass('bg-gray-100')
-                elf.removeClass('bg-gray-100');
-                $('.discussion-description').addClass('hidden');
-            }
-        }
-    </script>
-@endpush
-
-@push('css')
+@push('app.navbar.center')
+    <div style="max-width: 400px;" class="w-full relative">
+        <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Search... Topics, Tags, User"
+            class="w-full block pr-6 py-3 pl-11 text-sm rounded-lg transition-all duration-200 hover:bg-gray-300 bg-gray-200 text-gray-600"
+        >
+        <span class="absolute left-0 top-0.5 ml-2">
+            <i class="fas fa-search m-3 text-sm text-gray-400"></i>
+        </span>
+    </div>
 @endpush

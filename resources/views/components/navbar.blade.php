@@ -20,7 +20,7 @@ $links = [['text' => 'Discussion', 'link' => route('discussion.index')], ['text'
 @endphp
 
 {{-- Navbar --}}
-<nav class="section nav lg:z-20 relative px-2 lg:px-10 lg:py-1 z-30">
+<nav class="section nav shadow-sm lg:z-20 px-2 lg:px-10 lg:py-1 z-30 fixed top-0 w-screen">
     <div class="container mx-auto">
         <div class="flex justify-between h-full items-center relative px-2">
             <!-- left menu -->
@@ -41,6 +41,8 @@ $links = [['text' => 'Discussion', 'link' => route('discussion.index')], ['text'
                 </div>
 
             </div>
+            <!-- center menu -->
+            @stack('app.navbar.center')
             <!-- right menu -->
             <div class="pl-4 py-2 ml-2 md:block flex text-right">
                 @auth
@@ -49,10 +51,10 @@ $links = [['text' => 'Discussion', 'link' => route('discussion.index')], ['text'
                         <span class="text-sm mr-3 hidden md:inline">Menu</span>
                     </a>
                 @else
-                    <a href="{{ route('register') }}" class="navbar-link hidden lg:inline-flex md:inline-flex sm:inline-flex text-gray-600 hover:border-white mr-4 mt-2 py-4 pt-6 lg:mt-0">
+                    <a href="{{ route('register') }}" class="navbar-link hidden lg:inline-flex md:inline-flex sm:inline-flex text-gray-800 py-2 px-6 rounded items-center">
                         <span>Register</span>
                     </a>
-                    <a href="{{ route('login') }}" class="hidden lg:inline-flex md:inline-flex sm:inline-flex bg-blue-500 text-white py-2 px-6 rounded items-center hover:bg-blue-600">
+                    <a href="{{ route('login') }}" class="navbar-link hidden lg:inline-flex md:inline-flex sm:inline-flex bg-blue-500 text-white py-2 px-6 rounded items-center hover:bg-blue-600">
                         <span>Login</span>
                     </a>
                     <a href="javascript:void()" class="app-drawer-btn bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 px-4 rounded inline-flex items-center pr-2 lg:hidden md:hidden sm:hidden">

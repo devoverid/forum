@@ -7,9 +7,9 @@
 @section('content')
 <div class="section py-10 min-h-full">
     <div class="disscussion-wrapper">
-        <div class="flex flex-col flex-col-reverse md:flex-row mx-auto" style="max-width: 1400px;">
+        <div class="flex flex-col-reverse md:flex-row mx-auto" style="max-width: 1400px;">
             <!-- sidebar:left -->
-            <x-sidebar-discussion />
+            <x-discussion.left-sidebar />
 
 
             <!-- Content -->
@@ -23,8 +23,8 @@
                     </div>
                     <div class="flex-1 relative text-xs ml-2">
                         <a href="{{ route('profile', [$discussion->user->username]) }}" class="block uppercase font-bold text-blue-400 hover:text-blue-500 hover:underline mr-2">
-                            {{ $discussion->user->name }} 
-                        </a> 
+                            {{ $discussion->user->name }}
+                        </a>
                         <div class="block">
                             Posted
                             <span class="font-bold text-gray-500"> {{ $discussion->created_at->diffForHumans() }} </span>
@@ -42,11 +42,11 @@
                                 @if($discussion->solved_at == null)
                                 <a href="{{ route('discussion.edit', [$discussion->slug]) . '?set_solved' }}" class="font-bold text-gray-500 hover:underline hover:text-gray-600 mr-2">Set Solved</a>
                                 @endif
-                            </div>                            
+                            </div>
                         @endif
                     </div>
                 </div>
-                
+
                 <!-- main -->
                 <div>
                     <div class="mx-1 lg:mx-10 mb-5">
@@ -73,7 +73,7 @@
                     @if (count($discussion->comments) == 0)
                         <div class="block bg-red-300 p-3 text-center text-white mt-4 lg:mx-10 mx-0">
                             No reply found.
-                        </div>                    
+                        </div>
                     @endif
                     @foreach ($discussion->comments as $comment)
                         @php $isBestAnswer = ($comment->id == $discussion->best_answer) ? true : false; @endphp
@@ -102,7 +102,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                    
+
                                     <!-- user comment menu -->
                                     @if (auth()->check())
                                         <div class="user-comment-menu text-xs flex">
@@ -130,13 +130,13 @@
                                                     </form>
                                                 </div>
                                             @endif
-                                        </div>    
-                                    @endif  
+                                        </div>
+                                    @endif
                                 </div>
 
                                 <div class="md-wrapper">@markdown($comment->text)</div>
                             </div>
-                        </div>                    
+                        </div>
                     @endforeach
                 </div>
 
@@ -146,7 +146,7 @@
                     @if ($discussion->solved_at == null)
                         @auth
                             <div id="to-reply" class="block bg-indigo-300 p-3 text-center text-white mt-4 mx-0 lg:mx-10">
-                                We make reply form with Markdown, you can see markdown 
+                                We make reply form with Markdown, you can see markdown
                                 <a class="underline hover:text-blue-400" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">
                                     Markdown Cheatshett
                                 </a>
@@ -177,7 +177,7 @@
                         @else
                             <div id="to-reply" class="block bg-red-300 p-3 text-center text-white mt-4 lg:mx-10 mx-0">
                                 You must login to reply this discussion.
-                            </div>      
+                            </div>
                         @endauth
                     @else
                         <div id="to-reply" class="block bg-indigo-300 p-3 text-center text-white mt-4 lg:mx-10 mx-0">
@@ -187,13 +187,13 @@
                 </div>
 
             </div>
-            
+
 
             <!-- sidebar:right -->
             <div class="mobile:bg-white hidden xl:block forum-sidebar hidden lg:block flex-none border-l border-solid border-gray-100" style="border-color: rgb(239, 239, 239);">
                 <div class="forum-secondary-sidebar sticky">
                     <div class="block text-right w-auto ml-10" style="padding-top: -1.2rem;">
-                        
+
                         @if(auth()->check() && auth()->user()->id == $discussion->user_id)
                             <div class="block mb-2">
                                 <a href="{{ route('discussion.edit', [$discussion->slug]) }}" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-sm block w-full items-center mr-2 text-center">
@@ -218,7 +218,7 @@
                                         <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-sm block w-full items-center mr-2">
                                             Clear Best Answer
                                         </button>
-                                    </form>                                    
+                                    </form>
                                 @endif
                             </div>
                         @endif
@@ -228,7 +228,7 @@
                         </button>
                     </div>
                     <div class="flex md:h-full mb-8 md:mb-0">
-                        
+
                         <div class="relative m-8">
                             <div class="border-r-2 border-indigo-500 absolute h-full top-0" style="left: 15px"></div>
                             <ul class="list-none m-0 p-0">
@@ -253,7 +253,7 @@
                                         <div class="ml-12 text-sm text-gray-400 text-xs">
                                             by {{ $discussion->comments[count($discussion->comments)-1]->user->name }}
                                         </div>
-                                    </li>  
+                                    </li>
                                 @endif
                                 @if ($discussion->solved_at != null)
                                     <li class="mb-2">
@@ -264,7 +264,7 @@
                                         <div class="ml-12 text-sm text-gray-400">
                                             Author set this discussion solved.
                                         </div>
-                                    </li>  
+                                    </li>
                                 @endif
                             </ul>
                         </div>
@@ -279,14 +279,14 @@
 @stop
 
 @push('css')
-@include('assets.markdown-css')    
+@include('assets.markdown-css')
 <style>
     html, body, #reply-wrapper {
         margin: 0;
         height: 100%;
         font-family: "Helvetica Neue", Arial, sans-serif;
         color: #333;
-        max-height: 
+        max-height:
     }
     #reply-wrapper div {
         overflow-y: scroll;
@@ -334,7 +334,7 @@
         },
         computed: {
             compiledMarkdown: function() {
-                return marked(this.input, { 
+                return marked(this.input, {
                     gfm: true,
                     tables: true,
                     breaks: false,
@@ -349,7 +349,7 @@
             preview: function () { this.showPreview = !this.showPreview }
         },
         mounted() {
-            // reply old content 
+            // reply old content
             if ($('#content-old').html() != '' && $('#content-old').html() != 'null') this.input = $('#content-old').html()
         }
     });
