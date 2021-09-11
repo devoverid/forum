@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 class Discussion extends Model
 {
+    use HasFactory;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -46,10 +49,10 @@ class Discussion extends Model
     /**
      * Get reactions for the discussion.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return void
      */
     public function reactions()
     {
-        return $this->hasMany(DiscussionReaction::class);
+        return $this->morphMany(Reaction::class, 'reactionable');
     }
 }

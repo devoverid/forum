@@ -14,7 +14,6 @@ class ProfileController extends Controller
         // activites show
         $activity_tab = request()->get('activity', 'discussion');
 
-
         // get user by get username
         $user = User::whereUsername($username)->first();
 

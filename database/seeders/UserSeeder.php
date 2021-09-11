@@ -1,9 +1,11 @@
 <?php
 
-use App\Models\Discussion;
+namespace Database\Seeders;
+
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class DiscussionSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +14,6 @@ class DiscussionSeeder extends Seeder
      */
     public function run()
     {
-        factory(Discussion::class, 12)->create();
+        User::factory()->count(1)->create();
     }
 }

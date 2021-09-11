@@ -9,7 +9,9 @@
     <div class="disscussion-wrapper">
         <div class="flex flex-col-reverse md:flex-row mx-auto" style="max-width: 1400px;">
             <!-- sidebar:left -->
-            <x-discussion.left-sidebar />
+            <div>
+                <x-discussion.left-sidebar />
+            </div>
 
 
             <!-- Content -->

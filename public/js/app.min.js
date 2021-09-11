@@ -164,8 +164,114 @@
     $('#app').addClass('hidden');
     $('.loading').css('display', 'flex');
   }); // pages
-  // home
 
+  __webpack_require__(/*! ./pages/home */ "./resources/js/pages/home.js");
+
+  __webpack_require__(/*! ./pages/discussion */ "./resources/js/pages/discussion.js");
+})();
+
+/***/ }),
+
+/***/ "./resources/js/pages/discussion.js":
+/*!******************************************!*\
+  !*** ./resources/js/pages/discussion.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+document.addEventListener('DOMContentLoaded', main);
+
+function main() {
+  // discussion
+  if (document.querySelectorAll('.discussion-item').length > 0) {
+    var items = document.querySelectorAll('.discussion-item');
+
+    var _loop = function _loop(i) {
+      var item = items[i];
+      var id = item.getAttribute('data-id');
+      var btnUpvote = item.querySelector('.vote-up');
+      var btnDownvote = item.querySelector('.vote-down');
+      var vote = item.querySelector('.vote-count');
+      if (btnUpvote) btnUpvote.addEventListener('click', function (e) {
+        var voteup = item.getAttribute('data-vote-up');
+        var votedown = item.getAttribute('data-vote-down');
+
+        if (votedown) {
+          vote.innerHTML = parseInt(vote.innerHTML) + 1;
+          item.removeAttribute('data-vote-down');
+        }
+
+        if (!voteup) {
+          item.setAttribute('data-vote-up', 1);
+          btnUpvote.classList.add('text-blue-500');
+          btnDownvote.classList.remove('text-blue-500');
+          vote.innerHTML = parseInt(vote.innerHTML) + 1;
+          sendVote(id, 'upvote');
+        } else {
+          item.removeAttribute('data-vote-up');
+          btnUpvote.classList.remove('text-blue-500');
+          vote.innerHTML = parseInt(vote.innerHTML) - 1;
+          sendVote(id, 'netral');
+        }
+      });
+      if (btnDownvote) btnDownvote.addEventListener('click', function (e) {
+        var voteup = item.getAttribute('data-vote-up');
+        var votedown = item.getAttribute('data-vote-down');
+
+        if (voteup) {
+          vote.innerHTML = parseInt(vote.innerHTML) - 1;
+          item.removeAttribute('data-vote-up');
+        }
+
+        if (!votedown) {
+          item.setAttribute('data-vote-down', 1);
+          btnDownvote.classList.add('text-blue-500');
+          btnUpvote.classList.remove('text-blue-500');
+          vote.innerHTML = parseInt(vote.innerHTML) - 1;
+          sendVote(id, 'downvote');
+        } else {
+          item.removeAttribute('data-vote-down');
+          btnDownvote.classList.remove('text-blue-500');
+          vote.innerHTML = parseInt(vote.innerHTML) + 1;
+          sendVote(id, 'netral');
+        }
+      });
+    };
+
+    for (var i = 0; i < items.length; i++) {
+      _loop(i);
+    }
+  }
+}
+
+function sendVote(id, vote) {
+  var url = window.location.href;
+  var data = {
+    id: id,
+    vote: vote
+  };
+  fetch('api/discussion', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/pages/home.js":
+/*!************************************!*\
+  !*** ./resources/js/pages/home.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+document.addEventListener('DOMContentLoaded', main);
+
+function main() {
+  // home
   if (document.querySelector('section.hero')) {
     document.addEventListener('mousemove', function (e) {
       document.querySelectorAll('section.hero .layer').forEach(function (el) {
@@ -189,89 +295,6 @@
         el.style.transform = "translateX(".concat(x, "px) translateY(").concat(y, "px)");
       });
     });
-  }
-
-  __webpack_require__(/*! ./pages/discussion */ "./resources/js/pages/discussion.js");
-})();
-
-/***/ }),
-
-/***/ "./resources/js/pages/discussion.js":
-/*!******************************************!*\
-  !*** ./resources/js/pages/discussion.js ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-document.addEventListener('DOMContentLoaded', main);
-
-function main() {
-  // discussion
-  if (document.querySelectorAll('.discussion-item').length > 0) {
-    var items = document.querySelectorAll('.discussion-item');
-
-    var _loop = function _loop(i) {
-      var item = items[i];
-      var btnUpvote = item.querySelector('.vote-up');
-      var btnDownvote = item.querySelector('.vote-down');
-      var vote = item.querySelector('.vote-count');
-      btnUpvote.addEventListener('click', function (e) {
-        var voteup = item.getAttribute('data-vote-up');
-        var votedown = item.getAttribute('data-vote-down');
-
-        if (votedown) {
-          vote.innerHTML = parseInt(vote.innerHTML) + 1;
-          item.removeAttribute('data-vote-down');
-        }
-
-        if (!voteup) {
-          item.setAttribute('data-vote-up', 1);
-          btnUpvote.classList.add('text-blue-500');
-          btnDownvote.classList.remove('text-blue-500');
-          vote.innerHTML = parseInt(vote.innerHTML) + 1;
-        } else {
-          item.removeAttribute('data-vote-up');
-          btnUpvote.classList.remove('text-blue-500');
-          vote.innerHTML = parseInt(vote.innerHTML) - 1;
-        }
-
-        console.log({
-          voteup: voteup,
-          votedown: votedown,
-          vote: parseInt(vote.innerHTML)
-        });
-      });
-      btnDownvote.addEventListener('click', function (e) {
-        var voteup = item.getAttribute('data-vote-up');
-        var votedown = item.getAttribute('data-vote-down');
-
-        if (voteup) {
-          vote.innerHTML = parseInt(vote.innerHTML) - 1;
-          item.removeAttribute('data-vote-up');
-        }
-
-        if (!votedown) {
-          item.setAttribute('data-vote-down', 1);
-          btnDownvote.classList.add('text-blue-500');
-          btnUpvote.classList.remove('text-blue-500');
-          vote.innerHTML = parseInt(vote.innerHTML) - 1;
-        } else {
-          item.removeAttribute('data-vote-down');
-          btnDownvote.classList.remove('text-blue-500');
-          vote.innerHTML = parseInt(vote.innerHTML) + 1;
-        }
-
-        console.log({
-          voteup: voteup,
-          votedown: votedown,
-          vote: parseInt(vote.innerHTML)
-        });
-      });
-    };
-
-    for (var i = 0; i < items.length; i++) {
-      _loop(i);
-    }
   }
 }
 

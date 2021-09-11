@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Discussion;
-use App\Models\DiscussionReaction;
 use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -27,7 +27,6 @@ class DiscussionController extends Controller
      */
     public function index()
     {
-
         // params
         $query = request()->get('q', null);
         $tag = request()->get('tag', null);
@@ -36,7 +35,9 @@ class DiscussionController extends Controller
 
         // orm
         $discussions = Discussion::with([
-            'user', 'tags'
+            'user',
+            'tags',
+            'reactions',
         ])->withCount('comments');
 
         // hadlefilter
@@ -45,17 +46,22 @@ class DiscussionController extends Controller
         // search
         if ($query != null) $discussions->where('title', 'LIKE', "%$query%");
 
-
         // filter tag
         if ($tag != null) $discussions->whereHas('tags', function ($q) use ($tag) {
             return $q->whereName($tag);
         });
 
         // pagination
+        // dd($discussions->get());
         $discussions = $discussions->simplePaginate($perpage);
 
         // final
-        $discussions_reactions = $this->getReactions($discussions);
+        $discussions_reactions = [];
+        $user_reactions = [];
+        // $detail_reactions = $this->getReactions($discussions);
+        // $discussions_reactions = $detail_reactions[0];
+        // $user_reactions = $detail_reactions[1];
+
 
         // show all tags
         $tags = Cache::remember('all_tag_in_discussion_tag', now()->addMinute(5), function () {
@@ -64,7 +70,7 @@ class DiscussionController extends Controller
         });
 
         // return
-        return view('pages.discussion.index', compact('discussions', 'tags', 'discussions_reactions'));
+        return view('pages.discussion.index', compact('discussions', 'tags', 'discussions_reactions', 'user_reactions'));
     }
 
     /**
@@ -120,31 +126,48 @@ class DiscussionController extends Controller
         return $discussions;
     }
 
-    private function getReactions($discussions)
-    {
-        $discussions = new Collection($discussions->toArray()['data']);
-        $discussions_id = $discussions->pluck('id');
-        $reactions = DiscussionReaction::select('discussion_id', 'reaction', 'user_id')
-            ->whereIn('discussion_id', $discussions_id)
-            ->get();
+    // private function getReactions($discussions)
+    // {
+    //     $discussions = new Collection($discussions->toArray()['data']);
+    //     $discussions_id = $discussions->pluck('id');
+    //     $reactions = DiscussionReaction::select('discussion_id', 'reaction', 'user_id')
+    //         ->whereIn('discussion_id', $discussions_id)
+    //         ->get();
 
-        $result = [];
-        foreach ($discussions_id as $discussion)
-        {
-            $upvote = $reactions->filter(function ($value, $key) use ($discussion) {
-                return $value->discussion_id == $discussion && $value->reaction == 'upvote';
-            });
-            $downvote = $reactions->filter(function ($value, $key) use ($discussion) {
-                return $value->discussion_id == $discussion && $value->reaction == 'downvote';
-            });
-            array_push($result, (object) [
-                'id' => $discussion,
-                'vote' => count($upvote) - count($downvote)
-            ]);
-        }
 
-        return $result;
-    }
+    //     //
+    //     $discussionReactions = [];
+    //     $userReaction = [];
+
+    //     //
+    //     foreach ($discussions_id as $discussion)
+    //     {
+    //         $user = Auth::user();
+
+    //         // get all reaction for each discussion
+    //         $upvote = $reactions->filter(function ($value, $key) use ($discussion) {
+    //             return $value->discussion_id == $discussion && $value->reaction == 'upvote';
+    //         });
+    //         $downvote = $reactions->filter(function ($value, $key) use ($discussion) {
+    //             return $value->discussion_id == $discussion && $value->reaction == 'downvote';
+    //         });
+    //         array_push($discussionReactions, (object) [
+    //             'id' => $discussion,
+    //             'vote' => count($upvote) - count($downvote)
+    //         ]);
+
+    //         // get user reaction in discussion
+    //         if ($user && $user != null) {
+    //             $user_reaction = $reactions->filter(function ($value, $key) use ($discussion, $user) {
+    //                 return $value->discussion_id == $discussion;
+    //             });
+    //             array_push($userReaction, $user_reaction);
+    //         }
+    //     }
+
+    //     //
+    //     return [$discussionReactions, $userReaction];
+    // }
 
     /**
      * Show the form for creating a new resource.

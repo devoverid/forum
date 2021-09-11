@@ -19,15 +19,18 @@
                         $endPoint = strrpos($stringCut, ' ');
                         $description = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
                     @endphp
-                    <div class="discussion-item flex group transition-all duration-200 space-x-2 rounded-sm shadow p-8 bg-gray-100 mb-6 relative overflow-hidden hover:shadow-xl">
+                    <div
+                        class="discussion-item flex group transition-all duration-200 space-x-2 rounded-sm shadow p-8 bg-gray-100 mb-6 relative overflow-hidden hover:shadow-xl"
+                        data-id="{{ $discussion->id }}"
+                    >
                         <div class="w-1/12 mt-2 flex flex-col space-y-2 text-center">
-                            <div class="cursor-pointer flex flex-row justify-center text-sm vote-up">
+                            <div class="flex flex-row justify-center text-sm @auth cursor-pointer vote-up @endauth">
                                 <i class="fas fa-arrow-up"></i>
                             </div>
-                            <div class="vote-count">
-                                {{ $discussions_reactions[$discussion_index]->vote }}
+                            <div class="@auth vote-count @endauth">
+                                {{ @$discussions_reactions[$discussion_index]->vote }}
                             </div>
-                            <div class="cursor-pointer flex flex-row justify-center text-sm vote-down">
+                            <div class="flex flex-row justify-center text-sm @auth cursor-pointer vote-down @endauth">
                                 <i class="fas fa-arrow-down"></i>
                             </div>
                         </div>

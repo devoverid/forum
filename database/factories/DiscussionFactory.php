@@ -1,17 +1,44 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Discussion;
-use Faker\Generator as Faker;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Discussion::class, function (Faker $faker) {
-    $title = $faker->text(100);
-    return [
-        'user_id' => rand(1, 4),
-        'title' => $title,
-        'slug' => Str::slug($title, '-'),
-        'content' => $faker->text(10000),
-    ];
-});
+class DiscussionFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Discussion::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'title' => $this->faker->sentence,
+            'content' => $this->faker->paragraph,
+            'slug' => $this->faker->slug,
+            'user_id' => 1,
+        ];
+    }
+
+    /**
+     * Define the model's state for the "published" factory.
+     *
+     * @param  mixed $id
+     * @return static
+     */
+    public function setUserId($id)
+    {
+        return $this->state([
+            'user_id' => $id
+        ]);
+    }
+}

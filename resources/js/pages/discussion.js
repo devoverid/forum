@@ -5,10 +5,11 @@ function main() {
         const items = document.querySelectorAll('.discussion-item');
         for (let i = 0; i < items.length; i++) {
             const item = items[i];
+            const id = item.getAttribute('data-id');
             const btnUpvote = item.querySelector('.vote-up');
             const btnDownvote = item.querySelector('.vote-down');
             const vote = item.querySelector('.vote-count');
-            btnUpvote.addEventListener('click', function (e) {
+            if (btnUpvote) btnUpvote.addEventListener('click', function (e) {
                 const voteup = item.getAttribute('data-vote-up');
                 const votedown = item.getAttribute('data-vote-down');
                 if (votedown) {
@@ -20,18 +21,15 @@ function main() {
                     btnUpvote.classList.add('text-blue-500');
                     btnDownvote.classList.remove('text-blue-500');
                     vote.innerHTML = parseInt(vote.innerHTML) + 1;
+                    sendVote(id, 'upvote');
                 } else {
                     item.removeAttribute('data-vote-up');
                     btnUpvote.classList.remove('text-blue-500');
                     vote.innerHTML = parseInt(vote.innerHTML) - 1;
+                    sendVote(id, 'netral');
                 }
-                console.log({
-                    voteup,
-                    votedown,
-                    vote: parseInt(vote.innerHTML)
-                })
             });
-            btnDownvote.addEventListener('click', function (e) {
+            if (btnDownvote) btnDownvote.addEventListener('click', function (e) {
                 const voteup = item.getAttribute('data-vote-up');
                 const votedown = item.getAttribute('data-vote-down');
                 if (voteup) {
@@ -43,17 +41,29 @@ function main() {
                     btnDownvote.classList.add('text-blue-500');
                     btnUpvote.classList.remove('text-blue-500');
                     vote.innerHTML = parseInt(vote.innerHTML) - 1;
+                    sendVote(id, 'downvote');
                 } else {
                     item.removeAttribute('data-vote-down');
                     btnDownvote.classList.remove('text-blue-500');
                     vote.innerHTML = parseInt(vote.innerHTML) + 1;
+                    sendVote(id, 'netral');
                 }
-                console.log({
-                    voteup,
-                    votedown,
-                    vote: parseInt(vote.innerHTML)
-                })
             });
         }
     }
+}
+
+function sendVote(id, vote) {
+    const url = window.location.href;
+    const data = {
+        id: id,
+        vote: vote
+    };
+    fetch('api/discussion', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
 }
