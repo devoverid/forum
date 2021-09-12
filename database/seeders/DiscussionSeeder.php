@@ -16,7 +16,7 @@ class DiscussionSeeder extends Seeder
     public function run()
     {
         Discussion::factory()
-            ->count(10)
+            ->count(2)
             ->setUserId(1)
             ->create();
         Reaction::factory()

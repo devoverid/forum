@@ -176,8 +176,12 @@
 /*!******************************************!*\
   !*** ./resources/js/pages/discussion.js ***!
   \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/http */ "./resources/js/utils/http.js");
 
 document.addEventListener('DOMContentLoaded', main);
 
@@ -193,47 +197,39 @@ function main() {
       var btnDownvote = item.querySelector('.vote-down');
       var vote = item.querySelector('.vote-count');
       if (btnUpvote) btnUpvote.addEventListener('click', function (e) {
-        var voteup = item.getAttribute('data-vote-up');
-        var votedown = item.getAttribute('data-vote-down');
+        var dataVote = item.getAttribute('data-vote');
 
-        if (votedown) {
-          vote.innerHTML = parseInt(vote.innerHTML) + 1;
-          item.removeAttribute('data-vote-down');
-        }
-
-        if (!voteup) {
-          item.setAttribute('data-vote-up', 1);
-          btnUpvote.classList.add('text-blue-500');
-          btnDownvote.classList.remove('text-blue-500');
-          vote.innerHTML = parseInt(vote.innerHTML) + 1;
-          sendVote(id, 'upvote');
-        } else {
-          item.removeAttribute('data-vote-up');
-          btnUpvote.classList.remove('text-blue-500');
+        if (dataVote === 'upvote') {
+          sendVote(id, 'unvote');
+          item.setAttribute('data-vote', 'false');
           vote.innerHTML = parseInt(vote.innerHTML) - 1;
-          sendVote(id, 'netral');
+          btnUpvote.classList.remove('text-blue-500');
+          btnDownvote.classList.add('text-red-500');
+        } else {
+          if (dataVote === 'downvote') vote.innerHTML = parseInt(vote.innerHTML) + 1;
+          sendVote(id, 'upvote');
+          item.setAttribute('data-vote', 'upvote');
+          vote.innerHTML = parseInt(vote.innerHTML) + 1;
+          btnUpvote.classList.add('text-blue-500');
+          btnDownvote.classList.remove('text-red-500');
         }
       });
       if (btnDownvote) btnDownvote.addEventListener('click', function (e) {
-        var voteup = item.getAttribute('data-vote-up');
-        var votedown = item.getAttribute('data-vote-down');
+        var dataVote = item.getAttribute('data-vote');
 
-        if (voteup) {
-          vote.innerHTML = parseInt(vote.innerHTML) - 1;
-          item.removeAttribute('data-vote-up');
-        }
-
-        if (!votedown) {
-          item.setAttribute('data-vote-down', 1);
-          btnDownvote.classList.add('text-blue-500');
-          btnUpvote.classList.remove('text-blue-500');
-          vote.innerHTML = parseInt(vote.innerHTML) - 1;
-          sendVote(id, 'downvote');
-        } else {
-          item.removeAttribute('data-vote-down');
-          btnDownvote.classList.remove('text-blue-500');
+        if (dataVote === 'downvote') {
+          sendVote(id, 'unvote');
+          item.setAttribute('data-vote', 'false');
           vote.innerHTML = parseInt(vote.innerHTML) + 1;
-          sendVote(id, 'netral');
+          btnDownvote.classList.remove('text-red-500');
+          btnUpvote.classList.add('text-blue-500');
+        } else {
+          if (dataVote === 'upvote') vote.innerHTML = parseInt(vote.innerHTML) - 1;
+          sendVote(id, 'downvote');
+          item.setAttribute('data-vote', 'downvote');
+          vote.innerHTML = parseInt(vote.innerHTML) - 1;
+          btnDownvote.classList.add('text-red-500');
+          btnUpvote.classList.remove('text-blue-500');
         }
       });
     };
@@ -247,15 +243,13 @@ function main() {
 function sendVote(id, vote) {
   var url = window.location.href;
   var data = {
-    id: id,
-    vote: vote
+    action: vote,
+    discussion_id: id
   };
-  fetch('api/discussion', {
+  Object(_utils_http__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: 'discussion/actions',
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
+    data: data
   });
 }
 
@@ -296,6 +290,68 @@ function main() {
       });
     });
   }
+}
+
+/***/ }),
+
+/***/ "./resources/js/utils/http.js":
+/*!************************************!*\
+  !*** ./resources/js/utils/http.js ***!
+  \************************************/
+/*! exports provided: defaultOptions, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultOptions", function() { return defaultOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return createHttp; });
+var defaultOptions = {
+  url: '',
+  method: 'GET',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  data: {}
+};
+function createHttp() {
+  var instanceOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {}; // merge config
+
+  var options = Object.assign({}, defaultOptions, instanceOptions); // prepare
+
+  var data = JSON.stringify(options.data); // create http instance
+
+  var http = new XMLHttpRequest();
+  return new Promise(function (resolve, reject) {
+    // open request
+    http.open(options.method, options.url, true); //
+
+    options.headers['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content'); // apply headers
+
+    Object.keys(options.headers).forEach(function (key) {
+      http.setRequestHeader(key, options.headers[key]);
+    }); // events
+
+    http.onreadystatechange = function () {
+      if (http.readyState === 4 && http.status === 200) {
+        var response;
+
+        try {
+          response = JSON.parse(http.responseText);
+        } catch (e) {
+          response = http.responseText;
+        }
+
+        resolve(response);
+      }
+    }; //
+
+
+    callback(http); // send request
+
+    http.send(data);
+  });
 }
 
 /***/ }),

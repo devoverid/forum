@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DiscussionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,9 @@ Route::get('owner', 'OwnerController@index')->name('owner');
 
 /** discussion */
 Route::resource('discussion', 'DiscussionController');
-Route::put('discussion/best-answer/{discussion}/{comment}', 'DiscussionController@best_answer_set')->name('discussion.best_answer');
-Route::delete('discussion/best-answer/{discussion}', 'DiscussionController@best_answer_delete')->name('discussion.best_answer.delete');
+Route::post('discussion/actions', [DiscussionController::class, 'actions'])->name('discussion.actions');
+Route::put('discussion/best-answer/{discussion}/{comment}', [DiscussionController::class, 'best_answer_set'])->name('discussion.best_answer');
+Route::delete('discussion/best-answer/{discussion}', [DiscussionController::class, 'best_answer_delete'])->name('discussion.best_answer.delete');
 
 
 /** comment */

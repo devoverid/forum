@@ -1,16 +1,21 @@
 {{-- Verification Alert --}}
 @auth
     @if (!auth()->user()->hasVerifiedEmail())
-        <div class="block bg-red-300 p-2 text-center text-white">
-            Hey {{ auth()->user()->name }}, Your Email isn't verified!
-            <a class="underline hover:text-indigo-500" href="{{ route('verification.resend') }}"
-                onclick="event.preventDefault(); document.getElementById('resend-verification-form').submit();">
-                Click Here
-            </a> to Resend.
-            <form id="resend-verification-form" method="POST" action="{{ route('verification.resend') }}"
-                class="hidden">
-                @csrf
-            </form>
+        <div class="fixed bottom-0 left-0 z-30 ml-4 mb-8 p-4 shadow-xl border-blue-200 bg-gray-100 w-full text-center flex" style="max-width: 600px;transform: translateX(-50%);left: 50%;">
+            <div>
+                <i class="fas fa-exclamation-circle text-blue-500 mr-2"></i>
+            </div>
+            <div>
+                Hey {{ auth()->user()->name }}, Your Email isn't verified!
+                <a class="underline hover:text-indigo-500" href="{{ route('verification.resend') }}"
+                    onclick="event.preventDefault(); document.getElementById('resend-verification-form').submit();">
+                    Click Here
+                </a> to Resend.
+                <form id="resend-verification-form" method="POST" action="{{ route('verification.resend') }}"
+                    class="hidden">
+                    @csrf
+                </form>
+            </div>
         </div>
     @endif
 @endauth

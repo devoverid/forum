@@ -18,19 +18,48 @@
                         $stringCut = substr(strip_tags(markdown($discussion->content)), 0, 440);
                         $endPoint = strrpos($stringCut, ' ');
                         $description = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                        $voteable_up = true;
+                        $voteable_down = true;
+                        $user_react = false;
+                        if (Auth::check()) {
+                            $react = $user_reactions[$discussion_index];
+                            if ($react) {
+                                if ($react['type'] == 'upvote') {
+                                    $user_react = 'upvote';
+                                } else {
+                                    $user_react = 'downvote';
+                                }
+                            }
+                        } else {
+                            $voteable_up = false;
+                            $voteable_down = false;
+                        }
                     @endphp
                     <div
                         class="discussion-item flex group transition-all duration-200 space-x-2 rounded-sm shadow p-8 bg-gray-100 mb-6 relative overflow-hidden hover:shadow-xl"
                         data-id="{{ $discussion->id }}"
+                        data-vote="{{ $user_react }}"
                     >
                         <div class="w-1/12 mt-2 flex flex-col space-y-2 text-center">
-                            <div class="flex flex-row justify-center text-sm @auth cursor-pointer vote-up @endauth">
+                            <div
+                                class="
+                                    flex flex-row justify-center text-sm
+                                    @if ($voteable_up) cursor-pointer vote-up @endif
+                                    @if ($user_react == 'upvote') text-blue-500 @endif
+                                "
+                            >
                                 <i class="fas fa-arrow-up"></i>
                             </div>
                             <div class="@auth vote-count @endauth">
                                 {{ @$discussions_reactions[$discussion_index]->vote }}
                             </div>
-                            <div class="flex flex-row justify-center text-sm @auth cursor-pointer vote-down @endauth">
+                            <div
+                                class="
+                                    flex flex-row justify-center text-sm
+                                    @if ($voteable_down) cursor-pointer vote-down @endif
+                                    @if ($user_react == 'downvote') text-red-500 @endif
+                                "
+                            >
                                 <i class="fas fa-arrow-down"></i>
                             </div>
                         </div>

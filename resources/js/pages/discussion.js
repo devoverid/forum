@@ -1,3 +1,5 @@
+import http from '../utils/http'
+
 document.addEventListener('DOMContentLoaded', main);
 function main() {
     // discussion
@@ -10,43 +12,37 @@ function main() {
             const btnDownvote = item.querySelector('.vote-down');
             const vote = item.querySelector('.vote-count');
             if (btnUpvote) btnUpvote.addEventListener('click', function (e) {
-                const voteup = item.getAttribute('data-vote-up');
-                const votedown = item.getAttribute('data-vote-down');
-                if (votedown) {
-                    vote.innerHTML = parseInt(vote.innerHTML) + 1;
-                    item.removeAttribute('data-vote-down');
-                }
-                if (!voteup) {
-                    item.setAttribute('data-vote-up', 1);
-                    btnUpvote.classList.add('text-blue-500');
-                    btnDownvote.classList.remove('text-blue-500');
-                    vote.innerHTML = parseInt(vote.innerHTML) + 1;
-                    sendVote(id, 'upvote');
-                } else {
-                    item.removeAttribute('data-vote-up');
-                    btnUpvote.classList.remove('text-blue-500');
+                const dataVote = item.getAttribute('data-vote')
+                if (dataVote === 'upvote') {
+                    sendVote(id, 'unvote');
+                    item.setAttribute('data-vote', 'false');
                     vote.innerHTML = parseInt(vote.innerHTML) - 1;
-                    sendVote(id, 'netral');
+                    btnUpvote.classList.remove('text-blue-500');
+                    btnDownvote.classList.add('text-red-500');
+                } else {
+                    if (dataVote === 'downvote') vote.innerHTML = parseInt(vote.innerHTML) + 1;
+                    sendVote(id, 'upvote');
+                    item.setAttribute('data-vote', 'upvote');
+                    vote.innerHTML = parseInt(vote.innerHTML) + 1;
+                    btnUpvote.classList.add('text-blue-500');
+                    btnDownvote.classList.remove('text-red-500');
                 }
             });
             if (btnDownvote) btnDownvote.addEventListener('click', function (e) {
-                const voteup = item.getAttribute('data-vote-up');
-                const votedown = item.getAttribute('data-vote-down');
-                if (voteup) {
-                    vote.innerHTML = parseInt(vote.innerHTML) - 1;
-                    item.removeAttribute('data-vote-up');
-                }
-                if (!votedown) {
-                    item.setAttribute('data-vote-down', 1);
-                    btnDownvote.classList.add('text-blue-500');
-                    btnUpvote.classList.remove('text-blue-500');
-                    vote.innerHTML = parseInt(vote.innerHTML) - 1;
-                    sendVote(id, 'downvote');
-                } else {
-                    item.removeAttribute('data-vote-down');
-                    btnDownvote.classList.remove('text-blue-500');
+                const dataVote = item.getAttribute('data-vote')
+                if (dataVote === 'downvote') {
+                    sendVote(id, 'unvote');
+                    item.setAttribute('data-vote', 'false');
                     vote.innerHTML = parseInt(vote.innerHTML) + 1;
-                    sendVote(id, 'netral');
+                    btnDownvote.classList.remove('text-red-500');
+                    btnUpvote.classList.add('text-blue-500');
+                } else {
+                    if (dataVote === 'upvote') vote.innerHTML = parseInt(vote.innerHTML) - 1;
+                    sendVote(id, 'downvote');
+                    item.setAttribute('data-vote', 'downvote');
+                    vote.innerHTML = parseInt(vote.innerHTML) - 1;
+                    btnDownvote.classList.add('text-red-500');
+                    btnUpvote.classList.remove('text-blue-500');
                 }
             });
         }
@@ -56,14 +52,12 @@ function main() {
 function sendVote(id, vote) {
     const url = window.location.href;
     const data = {
-        id: id,
-        vote: vote
+        action: vote,
+        discussion_id: id,
     };
-    fetch('api/discussion', {
+    http({
+        url: 'discussion/actions',
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+        data
     });
 }

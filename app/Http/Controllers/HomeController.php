@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $discussions = Discussion::orderBy('id','desc')->limit(10)->get();
-        return view('pages.home', compact('discussions'));
+        // $discussions = Discussion::orderBy('id','desc')->limit(10)->get();
+        return view('pages.home');
     }
 }

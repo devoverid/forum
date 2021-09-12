@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Discussion;
+use App\Models\Reaction;
 use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -25,13 +26,13 @@ class DiscussionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // params
-        $query = request()->get('q', null);
-        $tag = request()->get('tag', null);
-        $perpage = request()->get('perpage', 10);
-        $filter = request()->get('filter', null);
+        $query = $request->get('q', null);
+        $tag = $request->get('tag', null);
+        $perpage = $request->get('perpage', 10);
+        $filter = $request->get('filter', null);
 
         // orm
         $discussions = Discussion::with([
@@ -52,15 +53,12 @@ class DiscussionController extends Controller
         });
 
         // pagination
-        // dd($discussions->get());
+        // dd($discussions->get()->toArray());
         $discussions = $discussions->simplePaginate($perpage);
 
         // final
-        $discussions_reactions = [];
-        $user_reactions = [];
-        // $detail_reactions = $this->getReactions($discussions);
-        // $discussions_reactions = $detail_reactions[0];
-        // $user_reactions = $detail_reactions[1];
+        $discussions_reactions = $this->getReactions($discussions)[0];
+        $user_reactions = $this->getReactions($discussions)[1];
 
 
         // show all tags
@@ -126,48 +124,56 @@ class DiscussionController extends Controller
         return $discussions;
     }
 
-    // private function getReactions($discussions)
-    // {
-    //     $discussions = new Collection($discussions->toArray()['data']);
-    //     $discussions_id = $discussions->pluck('id');
-    //     $reactions = DiscussionReaction::select('discussion_id', 'reaction', 'user_id')
-    //         ->whereIn('discussion_id', $discussions_id)
-    //         ->get();
+    /**
+     * Get reactions for discussion
+     *
+     * @param  mixed $discussions
+     * @return void
+     */
+    private function getReactions($discussions)
+    {
+        $discussions = new Collection($discussions->toArray()['data']);
 
+        //
+        $discussionReactions = [];
+        $userReaction = [];
 
-    //     //
-    //     $discussionReactions = [];
-    //     $userReaction = [];
+        //
+        foreach ($discussions as $discussion)
+        {
+            $user = Auth::user();
+            $reactions = new Collection($discussion['reactions']);
 
-    //     //
-    //     foreach ($discussions_id as $discussion)
-    //     {
-    //         $user = Auth::user();
+            // // get all reaction for each discussion
+            $upvote = $reactions->filter(function ($value, $key) use ($discussion) {
+                return @$value['type'] == 'upvote';
+            });
+            $downvote = $reactions->filter(function ($value, $key) use ($discussion) {
+                return @$value['type'] == 'downvote';
+            });
+            $votecount = count($upvote) - count($downvote);
+            array_push($discussionReactions, (object) [
+                'id' => $discussion,
+                'vote' => $votecount
+            ]);
 
-    //         // get all reaction for each discussion
-    //         $upvote = $reactions->filter(function ($value, $key) use ($discussion) {
-    //             return $value->discussion_id == $discussion && $value->reaction == 'upvote';
-    //         });
-    //         $downvote = $reactions->filter(function ($value, $key) use ($discussion) {
-    //             return $value->discussion_id == $discussion && $value->reaction == 'downvote';
-    //         });
-    //         array_push($discussionReactions, (object) [
-    //             'id' => $discussion,
-    //             'vote' => count($upvote) - count($downvote)
-    //         ]);
+            // get user reaction in discussion
+            if ($user && $user != null) {
+                $user_reaction = $reactions->filter(function ($value, $key) use ($user) {
+                    return @$value['user_id'] == $user->id;
+                });
+                if (count($user_reaction) > 0) {
+                    $react = $user_reaction->first();
+                    array_push($userReaction, $react);
+                } else {
+                    array_push($userReaction, false);
+                }
+            }
+        }
 
-    //         // get user reaction in discussion
-    //         if ($user && $user != null) {
-    //             $user_reaction = $reactions->filter(function ($value, $key) use ($discussion, $user) {
-    //                 return $value->discussion_id == $discussion;
-    //             });
-    //             array_push($userReaction, $user_reaction);
-    //         }
-    //     }
-
-    //     //
-    //     return [$discussionReactions, $userReaction];
-    // }
+        //
+        return [$discussionReactions, $userReaction];
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -316,6 +322,37 @@ class DiscussionController extends Controller
         return redirect()->route('discussion.index');
     }
 
+    public function actions(Request $request)
+    {
+        $request->validate(['action' => 'required|in:upvote,downvote,unvote']);
+        if (
+            ($request->action == 'upvote') ||
+            ($request->action == 'downvote') ||
+            ($request->action == 'unvote')
+        ) {
+            $request->validate(['discussion_id' => 'required']);
+            $discussion = Discussion::findOrFail($request->discussion_id);
+            $hasReactionBefore = Reaction::where('user_id', auth()->user()->id)
+                ->where('reactionable_id', $request->discussion_id)
+                ->where('reactionable_type', 'App\Models\Discussion')
+                ->first();
+
+            if ($hasReactionBefore || $request->action == 'unvote') {
+                $hasReactionBefore->delete();
+                if ($request->action == 'unvote') {
+                    return response()->json(['status' => 'success', 'message' => 'Unvote success']);
+                }
+            }
+
+            if ($request->action == 'upvote' || $request->action == 'downvote') {
+                $react = new Reaction([
+                    'user_id' => auth()->user()->id,
+                    'type' => $request->action
+                ]);
+                $discussion->reactions()->save($react);
+            }
+        }
+    }
 
     /**
      * Set Best Answer Discussion
