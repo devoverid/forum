@@ -204,7 +204,7 @@ function main() {
           item.setAttribute('data-vote', 'false');
           vote.innerHTML = parseInt(vote.innerHTML) - 1;
           btnUpvote.classList.remove('text-blue-500');
-          btnDownvote.classList.add('text-red-500');
+          btnDownvote.classList.remove('text-red-500');
         } else {
           if (dataVote === 'downvote') vote.innerHTML = parseInt(vote.innerHTML) + 1;
           sendVote(id, 'upvote');
@@ -222,7 +222,7 @@ function main() {
           item.setAttribute('data-vote', 'false');
           vote.innerHTML = parseInt(vote.innerHTML) + 1;
           btnDownvote.classList.remove('text-red-500');
-          btnUpvote.classList.add('text-blue-500');
+          btnUpvote.classList.remove('text-blue-500');
         } else {
           if (dataVote === 'upvote') vote.innerHTML = parseInt(vote.innerHTML) - 1;
           sendVote(id, 'downvote');
@@ -237,19 +237,31 @@ function main() {
     for (var i = 0; i < items.length; i++) {
       _loop(i);
     }
+  } // search
+
+
+  if (document.querySelector('#forum-searchbox')) {
+    var searchbox = document.querySelector('#forum-searchbox');
+    var form = document.querySelector('form');
+    var input = searchbox.querySelector('input');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var params = Object.fromEntries(new URLSearchParams(window.location.search).entries());
+      console.log(params);
+    });
   }
 }
 
 function sendVote(id, vote) {
   var url = window.location.href;
-  var data = {
+  var params = {
     action: vote,
     discussion_id: id
   };
   Object(_utils_http__WEBPACK_IMPORTED_MODULE_0__["default"])({
     url: 'discussion/actions',
-    method: 'POST',
-    data: data
+    method: 'GET',
+    params: params
   });
 }
 
@@ -312,20 +324,25 @@ var defaultOptions = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   },
-  data: {}
+  data: {},
+  params: {}
 };
 function createHttp() {
+  var _options$data, _options$params;
+
   var instanceOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {}; // merge config
 
   var options = Object.assign({}, defaultOptions, instanceOptions); // prepare
 
-  var data = JSON.stringify(options.data); // create http instance
+  var data = JSON.stringify((_options$data = options.data) !== null && _options$data !== void 0 ? _options$data : {});
+  var params = formatParams((_options$params = options.params) !== null && _options$params !== void 0 ? _options$params : {});
+  var url = options.url + params; // create http instance
 
   var http = new XMLHttpRequest();
   return new Promise(function (resolve, reject) {
     // open request
-    http.open(options.method, options.url, true); //
+    http.open(options.method, url, true); //
 
     options.headers['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content'); // apply headers
 
@@ -352,6 +369,12 @@ function createHttp() {
 
     http.send(data);
   });
+}
+
+function formatParams(params) {
+  return "?" + Object.keys(params).map(function (key) {
+    return key + "=" + encodeURIComponent(params[key]);
+  }).join("&");
 }
 
 /***/ }),

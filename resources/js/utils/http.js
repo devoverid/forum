@@ -6,6 +6,7 @@ export const defaultOptions = {
         'Content-Type': 'application/json',
     },
     data: {},
+    params: {},
 }
 
 export default function createHttp(instanceOptions = {}, callback = () => {}) {
@@ -13,14 +14,16 @@ export default function createHttp(instanceOptions = {}, callback = () => {}) {
     const options = Object.assign({}, defaultOptions, instanceOptions)
 
     // prepare
-    const data = JSON.stringify(options.data)
+    const data = JSON.stringify(options.data ?? {})
+    const params = formatParams(options.params ?? {})
+    const url = options.url + params
 
     // create http instance
     const http = new XMLHttpRequest();
 
     return new Promise((resolve, reject) => {
         // open request
-        http.open(options.method, options.url, true);
+        http.open(options.method, url, true)
 
         //
         options.headers['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -50,3 +53,12 @@ export default function createHttp(instanceOptions = {}, callback = () => {}) {
         http.send(data);
     });
 }
+
+function formatParams( params ){
+    return "?" + Object
+          .keys(params)
+          .map(function(key){
+            return key+"="+encodeURIComponent(params[key])
+          })
+          .join("&")
+  }

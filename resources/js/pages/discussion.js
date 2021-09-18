@@ -18,7 +18,7 @@ function main() {
                     item.setAttribute('data-vote', 'false');
                     vote.innerHTML = parseInt(vote.innerHTML) - 1;
                     btnUpvote.classList.remove('text-blue-500');
-                    btnDownvote.classList.add('text-red-500');
+                    btnDownvote.classList.remove('text-red-500');
                 } else {
                     if (dataVote === 'downvote') vote.innerHTML = parseInt(vote.innerHTML) + 1;
                     sendVote(id, 'upvote');
@@ -35,7 +35,7 @@ function main() {
                     item.setAttribute('data-vote', 'false');
                     vote.innerHTML = parseInt(vote.innerHTML) + 1;
                     btnDownvote.classList.remove('text-red-500');
-                    btnUpvote.classList.add('text-blue-500');
+                    btnUpvote.classList.remove('text-blue-500');
                 } else {
                     if (dataVote === 'upvote') vote.innerHTML = parseInt(vote.innerHTML) - 1;
                     sendVote(id, 'downvote');
@@ -47,17 +47,28 @@ function main() {
             });
         }
     }
+    // search
+    if (document.querySelector('#forum-searchbox')) {
+        const searchbox = document.querySelector('#forum-searchbox');
+        const form = document.querySelector('form');
+        const input = searchbox.querySelector('input');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const params = Object.fromEntries((new URLSearchParams(window.location.search)).entries())
+            console.log(params);
+        });
+    }
 }
 
 function sendVote(id, vote) {
     const url = window.location.href;
-    const data = {
+    const params = {
         action: vote,
         discussion_id: id,
     };
     http({
         url: 'discussion/actions',
-        method: 'POST',
-        data
+        method: 'GET',
+        params
     });
 }

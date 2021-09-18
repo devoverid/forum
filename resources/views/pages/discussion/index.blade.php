@@ -6,13 +6,36 @@
 
 @section('content')
     <div class="container mx-auto">
-        <div class="relative px-4 md:px-4 lg:px-0 py-8 flex flex-col-reverse space-y-6 justify-between lg:flex-row lg:space-x-6 lg:space-x-8 lg:space-x-12">
+        <div class="relative px-4 py-8 flex flex-col-reverse space-y-6 justify-between lg:flex-row lg:space-x-6 lg:space-x-8 lg:space-x-12">
             {{-- panel filters --}}
             <div class="w-full lg:w-2/12 hidden lg:block">
                 <x-discussion.left-sidebar />
             </div>
-            {{-- discussion list --}}
+            {{-- main page --}}
             <div class="w-full lg:w-8/12">
+                {{-- alert --}}
+                @if (request()->has('q') && request()->get('q') != '')
+                    <div class="border-t border-b shadow px-4 py-3 text-sm leading-5 font-medium text-gray-900 border-blue-200 bg-gray-100 mb-3">
+                        <p class="text-center">
+                            <i class="fas fa-search text-gray-500 mr-2"></i>
+                            <span>
+                                Showing results for "<strong>{{ request()->get('q') }}</strong>"
+                            </span>
+                        </p>
+                    </div>
+                @endif
+                {{-- when discussion null --}}
+                @if (count($discussions) == 0)
+                    <div class="bg-gray-100 text-center px-4 py-3">
+                        <p class="text-center">
+                            <i class="fas fa-exclamation-triangle text-white-50 mr-2"></i>
+                            <span>
+                                No discussions found
+                            </span>
+                        </p>
+                    </div>
+                @endif
+                {{-- discussion list --}}
                 @foreach ($discussions as $discussion_index => $discussion)
                     @php
                         $stringCut = substr(strip_tags(markdown($discussion->content)), 0, 440);
@@ -109,16 +132,25 @@
 @stop
 
 @push('app.navbar.center')
-    <div style="max-width: 400px;" class="w-full relative">
-        <input
-            type="text"
-            name="search"
-            id="search"
-            placeholder="Search... Topics, Tags, User"
-            class="w-full block pr-6 py-3 pl-11 text-sm rounded-lg transition-all duration-200 hover:bg-gray-300 bg-gray-200 text-gray-600"
-        >
-        <span class="absolute left-0 top-0.5 ml-2">
-            <i class="fas fa-search m-3 text-sm text-gray-400"></i>
-        </span>
+    <div id="forum-searchbox" style="max-width: 400px;" class="w-full relative">
+        <form class="form">
+            <input
+                type="text"
+                name="q"
+                id="search"
+                placeholder="Search... Topics, Tags, User"
+                class="
+                    w-full block pr-6 py-2 pl-11 text-sm rounded-lg transition-all duration-200
+                    border-2 border-gray-100
+                    focus:border-blue-500
+                    hover:bg-gray-300 bg-gray-200 text-gray-600
+                "
+                value="{{ request()->get('q') }}"
+                style="padding-top: .6rem;"
+            >
+            <span class="absolute left-0 top-0.5 ml-2">
+                <i class="fas fa-search m-3 text-sm text-gray-400"></i>
+            </span>
+        </form>
     </div>
 @endpush

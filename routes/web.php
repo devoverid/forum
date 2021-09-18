@@ -22,8 +22,8 @@ Route::get('owner', 'OwnerController@index')->name('owner');
 
 
 /** discussion */
+Route::get('discussion/actions', [DiscussionController::class, 'actions'])->name('discussion.actions');
 Route::resource('discussion', 'DiscussionController');
-Route::post('discussion/actions', [DiscussionController::class, 'actions'])->name('discussion.actions');
 Route::put('discussion/best-answer/{discussion}/{comment}', [DiscussionController::class, 'best_answer_set'])->name('discussion.best_answer');
 Route::delete('discussion/best-answer/{discussion}', [DiscussionController::class, 'best_answer_delete'])->name('discussion.best_answer.delete');
 
@@ -33,7 +33,7 @@ Route::post('comment/{type}/{slug}', 'CommentController@comment')->name('comment
 Route::delete('comment/{comment}', 'CommentController@delete')->name('comment.delete');
 
 
-/** avatar image from storage */
+/** Users */
 Route::get('avatar/{name}', function ($name) {
     $path = storage_path() . "/app/public/avatar/" . $name;
     $file = File::get($path);
@@ -42,9 +42,6 @@ Route::get('avatar/{name}', function ($name) {
     $response->header("Content-Type", $type);
     return $response;
 });
-
-
-/** profile */
 Route::get('/@{username}', 'ProfileController@index')->name('profile');
 Route::get('/setting', 'SettingController@index')->name('setting');
 Route::post('/setting', 'SettingController@update')->name('setting.update');
